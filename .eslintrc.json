@@ -1,15 +1,11 @@
 {
+    "root": true,
     "env": {
-        "browser": true,
-        "es2021": true
+        "node": true,
+        "es6": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:import/recommended",
-        "plugin:jsx-a11y/recommended",
-        "plugin:@typescript-eslint/recommended"
-    ],
+    "ignorePatterns": ["*.config.js", "*.config.ts", "node_modules/*"],
+    "extends": ["eslint:recommended"],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module",
@@ -18,98 +14,64 @@
     "plugins": [
         "@typescript-eslint"
     ],
-    "settings": {
-        "react": {
-            "version": "detect"
-        }
-    },
-    "ignorePatterns": ["*.config.js", "*.config.ts"],
-    "rules": {
-        "react/jsx-uses-react": "off",
-        "react/react-in-jsx-scope": "off",
-        "import/prefer-default-export": 0,
-        "import/no-unresolved": 0,
-        "react/require-default-props": [
-            1, 
-            { 
-                "ignoreFunctionalComponents": true 
-            }
-        ],
-        "import/no-extraneous-dependencies": [
-            "error",
-            { 
-                "devDependencies": ["**/*.spec.{ts,tsx}", "**/*.stories.tsx"] 
-            }
-        ],
-        "react/jsx-props-no-spreading": 0,
-        "react/function-component-definition": [
-            "error",
-            {
-                "namedComponents": "function-declaration"
-            }
-        ],
-        "react/state-in-constructor": ["error", "never"],
-        "react/prop-types": 0,
-        "no-restricted-exports": 0,
-        "@typescript-eslint/no-non-null-asserted-optional-chain": 0,
-        "@typescript-eslint/no-non-null-assertion": 0,
-        "no-void": 0,
-        "jest/no-disabled-tests": 0,
-        "no-restricted-syntax": [
-            "error",
-            {
-                "selector": "ForInStatement",
-                "message":
-                "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
-            },
-            {
-                "selector": "LabeledStatement",
-                "message":
-                "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
-            },
-            {
-                "selector": "WithStatement",
-                "message":
-                "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
-            }
-        ],
-        "no-nested-ternary": 0,
-        "no-param-reassign": [
-            "error",
-            { 
-                "props": true, 
-                "ignorePropertyModificationsFor": ["draft"]
-            }
-        ],
-        "no-underscore-dangle": 0,
-        "@typescript-eslint/naming-convention": [
-            "error",
-            {
-                "selector": "variable",
-                "filter": "(Atom|AtomFamily)$",
-                "format": ["camelCase", "PascalCase", "UPPER_CASE"],
-                "leadingUnderscore": "allow"
-            },
-            {
-                "selector": "variable",
-                "format": ["camelCase", "PascalCase", "UPPER_CASE"]
-            },
-            {
-                "selector": "function",
-                "format": ["camelCase", "PascalCase"]
-            },
-            {
-                "selector": "typeLike",
-                "format": ["PascalCase"]
-            }
-        ]
-    },
     "overrides": [
         {
-            "files": ["*.spec.{ts,tsx}"],
+            "files": ["**/*.ts", "**/*.tsx"],
+            "parser": "@typescript-eslint/parser",
+            "settings": {
+              "react": { "version": "detect" },
+              "import/resolver": {
+                "typescript": {} //this loads the root tsconfig
+              }
+            },
+            "env": {
+              "browser": true,
+              "node": true,
+              "es6": true
+            },
+            "extends": [
+              "eslint:recommended",
+              "plugin:import/errors",
+              "plugin:import/warnings",
+              "plugin:import/typescript",
+              "plugin:@typescript-eslint/recommended",
+              "plugin:react/recommended",
+              "plugin:react-hooks/recommended",
+              "plugin:jsx-a11y/recommended",
+              "plugin:testing-library/react",
+              "plugin:jest-dom/recommended"
+            ],
             "rules": {
-                "@typescript-eslint/no-unsafe-call": 0,
-                "@typescript-eslint/no-unsafe-assignment": 0
+              "no-restricted-imports": [
+                "error",
+                {
+                  "patterns": ["@/features/*/*"]
+                }
+              ],
+              "linebreak-style": ["error", "unix"],
+              "react/prop-types": "off",
+              "import/order": [
+                "error",
+                {
+                  "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object"],
+                  "newlines-between": "always",
+                  "alphabetize": { "order": "asc", "caseInsensitive": true }
+                }
+              ],
+              "import/default": "off",
+              "import/no-named-as-default-member": "off",
+              "import/no-named-as-default": "off",
+      
+              "react/react-in-jsx-scope": "off",
+      
+              "jsx-a11y/anchor-is-valid": "off",
+      
+              "@typescript-eslint/no-unused-vars": ["error"],
+      
+              "@typescript-eslint/explicit-function-return-type": ["off"],
+              "@typescript-eslint/explicit-module-boundary-types": ["off"],
+              "@typescript-eslint/no-empty-function": ["off"],
+              "@typescript-eslint/no-explicit-any": ["off"]
             }
         }
     ]
