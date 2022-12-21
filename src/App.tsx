@@ -1,13 +1,14 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 
 import './App.css'
 import { Game } from '@/features/quiz'
+import { AppProvider } from '@/providers/app'
 
 function App(): JSX.Element | null {
   return (
-    <Suspense fallback={(<>Loading</>)}>
+    <AppProvider>
       <Game/>
-    </Suspense>
+    </AppProvider>
   )
 }
 

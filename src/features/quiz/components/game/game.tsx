@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { getPokemon } from "../../api";
+import { getPokemon, usePokemon } from "../../api";
 import { Pokemon } from "../../types";
+import { Pokemon as PokemonComponent } from "../pokemon";
 
 export function Game() {
+  const pokemonQuery = usePokemon({id: 1});
   const [pokemon, setPokemon] = useState<Pokemon>();
   
   const fetchData = () => {
@@ -14,14 +16,21 @@ export function Game() {
     fetchData();
   }, []);
 
+  if (pokemonQuery.isLoading) {
+    return (
+      <>Loading</>
+    )
+  }
+
+  if (pokemonQuery.isError) {
+    return (
+      <>{pokemonQuery.error!}</>
+    )
+  }
+
   return (
     <>    
-      {
-        pokemon 
-        ? <>Loading</> 
-        : <>pokemon.name</>
-      }
+      <PokemonComponent pokemon={pokemonQuery.data!} />
     </>
-
   );
 }
