@@ -8,6 +8,8 @@ import {
   VersionGameIndex
 } from './common'
 
+export const POKEMON_COUNT = 300;
+
 export interface Pokemon {
   id: number
   name: string
