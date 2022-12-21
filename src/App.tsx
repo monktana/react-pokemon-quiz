@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 
 import './App.css'
-import { Game } from './components/game'
+import { Game } from '@/features/quiz'
 
 function App(): JSX.Element | null {
   return (
