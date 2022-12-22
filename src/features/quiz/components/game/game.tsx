@@ -1,36 +1,37 @@
-import { useEffect, useState } from "react";
 
-import { getPokemon, usePokemon } from "../../api";
-import { Pokemon } from "../../types";
-import { Pokemon as PokemonComponent } from "../pokemon";
+import { useCallback, useState } from "react";
+
+import { useMatchup } from "../../api";
+import { POKEMON_COUNT } from "../../types";
+import { Pokemon } from "../pokemon";
+
+const getRandomPokemonID = () => Math.floor(Math.random() * POKEMON_COUNT)
 
 export function Game() {
-  const pokemonQuery = usePokemon({id: 1});
-  const [pokemon, setPokemon] = useState<Pokemon>();
-  
-  const fetchData = () => {
-    getPokemon(1).then(response => setPokemon(response));
-  };
+  const [first, setFirst] = useState<number>(getRandomPokemonID());
+  const [second, setSecond] = useState<number>(getRandomPokemonID());
+  const [attacking, defending] = useMatchup({attacking: `${first}`, defending: `${second}`});
 
-  useEffect(() => {
-    fetchData();
+  const selectNewIDs = useCallback(() => {
+    setFirst(getRandomPokemonID());
+    setSecond(getRandomPokemonID());
   }, []);
 
-  if (pokemonQuery.isLoading) {
+  if (attacking.isLoading || defending.isLoading) {
     return (
       <>Loading</>
     )
   }
 
-  if (pokemonQuery.isError) {
-    return (
-      <>{pokemonQuery.error!}</>
-    )
+  if (!attacking.data || !defending.data) {
+    return null;
   }
 
   return (
-    <>    
-      <PokemonComponent pokemon={pokemonQuery.data!} />
+    <>
+      <Pokemon pokemon={attacking.data}/>
+      <Pokemon pokemon={defending.data}/>
+      <button onClick={selectNewIDs}>next</button>
     </>
   );
 }

@@ -6,6 +6,11 @@ type PokemonProps = {
 
 export function Pokemon({pokemon}: PokemonProps) {
   return (
-    <>{pokemon.name}</>
+    <div>
+      <img src={`${pokemon.sprites.front_default}`} alt="pokémon default sprite" />
+      <span>
+        {pokemon.name}
+      </span>
+    </div>
   )
 }
