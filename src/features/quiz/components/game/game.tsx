@@ -1,11 +1,12 @@
 
-import { useCallback, useState } from "react";
+import { Suspense, useCallback, useState } from "react";
 
 import { useMatchup } from "../../api";
 import { POKEMON_COUNT } from "../../types";
+import { getAttackEffectiveness, TypeEffectiveness } from "../../utils/calculateEffectiveness";
 import { Pokemon } from "../pokemon";
 
-const getRandomPokemonID = () => Math.floor(Math.random() * POKEMON_COUNT)
+const getRandomPokemonID = () => Math.floor(Math.random() * POKEMON_COUNT);
 
 export function Game() {
   const [first, setFirst] = useState<number>(getRandomPokemonID());
@@ -27,11 +28,20 @@ export function Game() {
     return null;
   }
 
+  
+  const effectiveness = getAttackEffectiveness(attacking.data, defending.data);
+
   return (
     <>
-      <Pokemon pokemon={attacking.data}/>
-      <Pokemon pokemon={defending.data}/>
-      <button onClick={selectNewIDs}>next</button>
+      <Suspense fallback={<>Loading...</>}>
+        <span>attacking</span><Pokemon pokemon={attacking.data}/>
+        <br/>
+        <span>defending</span><Pokemon pokemon={defending.data}/>
+        <button onClick={() => {effectiveness === TypeEffectiveness.NoEffect && selectNewIDs()}}>No Effect</button>
+        <button onClick={() => {effectiveness === TypeEffectiveness.NotVeryEffective && selectNewIDs()}}>Not Very Effective</button>
+        <button onClick={() => {effectiveness === TypeEffectiveness.Effective && selectNewIDs()}}>Effective</button>
+        <button onClick={() => {effectiveness === TypeEffectiveness.VeryEffective && selectNewIDs()}}>Very Effective</button>
+      </Suspense>
     </>
   );
 }

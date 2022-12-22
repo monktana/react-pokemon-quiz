@@ -11,6 +11,9 @@ export function Pokemon({pokemon}: PokemonProps) {
       <span>
         {pokemon.name}
       </span>
+      <div>
+        {pokemon.types.map(type => (<div key={type.type.url}>{type.type.name}</div>))}
+      </div>
     </div>
   )
 }
