@@ -5,14 +5,37 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #213547;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --info-background-colour: rgb(248, 246, 216);
+  --info-border-colour: rgb(32, 56, 0);
+  --info-shadow-colour: rgb(80, 104, 96);
+
+  --pokemon-type-normal: #A8A77A;
+	--pokemon-type-fire: #EE8130;
+	--pokemon-type-water: #6390F0;
+	--pokemon-type-electric: #F7D02C;
+	--pokemon-type-grass: #7AC74C;
+	--pokemon-type-ice: #96D9D6;
+	--pokemon-type-fighting: #C22E28;
+	--pokemon-type-poison: #A33EA1;
+	--pokemon-type-ground: #E2BF65;
+	--pokemon-type-flying: #A98FF3;
+	--pokemon-type-psychic: #F95587;
+	--pokemon-type-bug: #A6B91A;
+	--pokemon-type-rock: #B6A136;
+	--pokemon-type-ghost: #735797;
+	--pokemon-type-dragon: #6F35FC;
+	--pokemon-type-dark: #705746;
+	--pokemon-type-steel: #B7B7CE;
+	--pokemon-type-fairy: #D685AD;
 }
 
 a {

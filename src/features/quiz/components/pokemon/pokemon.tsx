@@ -25,11 +25,11 @@ export function Pokemon({pokemon, variant}: PokemonProps) {
       </div>
       <div className="info-section">
         <span>
-          {pokemon.name}
+          {pokemon.name.toUpperCase()}
         </span>
         <div className="type-pills">
           { pokemon.types.map(type => (
-              <div key={type.type.url} className="type-pill">{type.type.name}</div>
+              <div key={type.type.url} className={`type-pill type-pill-${type.type.name}`}>{type.type.name}</div>
             ))
           }
         </div>

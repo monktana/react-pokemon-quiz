@@ -3,6 +3,7 @@
 
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .pokemon-container.defending {
@@ -15,37 +16,56 @@
 
 .pokemon-container .info-section {
   width: 50%;
-  padding: 20px;
-  position:relative;
+  padding: 6px;
+  position: relative;
+
+  align-self: flex-start;
 
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 
   color: black;
-  background-color: whitesmoke;
+  background-color: var(--info-background-colour);
 
-  border: 2px solid black;
+  border: 3px solid var(--info-border-colour);
+  border-radius: 10px;
 }
 
-.pokemon-container .info-section::before {
-  content: "";
-
-  position: absolute;
-  bottom: 0px;
+.pokemon-container.attacking .info-section {
+  box-shadow: 10px 10px var(--info-shadow-colour);
 }
 
 .pokemon-container.attacking .info-section::before {
-  left: -20px;
-  
-  border-left: 20px solid transparent;
-  border-bottom: 10px solid whitesmoke;
+  content: "";
+
+  z-index: -1;
+
+  position: absolute;
+  bottom: -13px;
+  left: -25px;
+
+  border-width: 40px 40px 0 0;
+  border-style: solid;
+  border-color: transparent var(--info-shadow-colour);
+}
+
+.pokemon-container.defending .info-section {
+  box-shadow: -10px 10px var(--info-shadow-colour);
 }
 
 .pokemon-container.defending .info-section::before {
-  right: -20px;
-  
-  border-right: 20px solid transparent;
-  border-bottom: 10px solid white;
+  content: "";
+
+  z-index: -1;
+
+  position: absolute;
+  bottom: -13px;
+  right: -25px;
+
+  border-width: 40px 0 0 40px;
+  border-style: solid;
+  border-color: transparent var(--info-shadow-colour);
 }
 
 .pokemon-container .info-section > span {
@@ -63,14 +83,85 @@
 
 .type-pill {
   color: white;
-  background-color: #A8A878;
 
-  min-width: 56px;
+  min-width: 60px;
 
   font-size: .8em;
   line-height: 1.75;
   text-align: center;
 
-  border: 2px solid #C6C6A7;
+  border: 1px solid black;
   border-radius: 20px;
+}
+
+.type-pill-normal {
+  background-color: var(--pokemon-type-normal);
+}
+
+.type-pill-fire {
+  background-color: var(--pokemon-type-fire);
+}
+
+.type-pill-water {
+  background-color: var(--pokemon-type-water);
+}
+
+.type-pill-electric {
+  background-color: var(--pokemon-type-electric);
+}
+
+.type-pill-grass {
+  background-color: var(--pokemon-type-grass);
+}
+
+.type-pill-ice {
+  background-color: var(--pokemon-type-ice);
+}
+
+.type-pill-fighting {
+  background-color: var(--pokemon-type-fighting);
+}
+
+.type-pill-poison {
+  background-color: var(--pokemon-type-poison);
+}
+
+.type-pill-ground {
+  background-color: var(--pokemon-type-ground);
+}
+
+.type-pill-flying {
+  background-color: var(--pokemon-type-flying);
+}
+
+.type-pill-psychic {
+  background-color: var(--pokemon-type-psychic);
+}
+
+.type-pill-bug {
+  background-color: var(--pokemon-type-bug);
+}
+
+.type-pill-rock {
+  background-color: var(--pokemon-type-rock);
+}
+
+.type-pill-ghost {
+  background-color: var(--pokemon-type-ghost);
+}
+
+.type-pill-dragon {
+  background-color: var(--pokemon-type-dragon);
+}
+
+.type-pill-dark {
+  background-color: var(--pokemon-type-dark);
+}
+
+.type-pill-steel {
+  background-color: var(--pokemon-type-steel);
+}
+
+.type-pill-fairy {
+  background-color: var(--pokemon-type-fairy);
 }
