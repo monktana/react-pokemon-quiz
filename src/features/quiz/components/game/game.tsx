@@ -17,16 +17,16 @@ export function Game() {
   const [second, setSecond] = useState<number>(getRandomPokemonID());
   const [attacking, defending] = useMatchup({attacking: `${first}`, defending: `${second}`});
 
-  // const selectNewIDs = useCallback(() => {
-  //   setFirst(getRandomPokemonID());
-  //   setSecond(getRandomPokemonID());
-  // }, []);
+  const selectNewIDs = useCallback(() => {
+    setFirst(getRandomPokemonID());
+    setSecond(getRandomPokemonID());
+  }, []);
 
   if (!attacking.data || !defending.data) {
     return null;
   }
   
-  // const effectiveness = getAttackEffectiveness(attacking.data, defending.data);
+  const effectiveness = getAttackEffectiveness(attacking.data, defending.data);
 
   return (
     <>
@@ -41,7 +41,7 @@ export function Game() {
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, possimus?
             </div>
           </div>
-          {/* <div className="option-buttons">
+          <div className="option-buttons">
             {
               effectivenessKeys.map(effectivenessKey => 
                 (
@@ -51,7 +51,7 @@ export function Game() {
                 )
               )
             }
-          </div> */}
+          </div>
         </div>
       </Suspense>
     </>

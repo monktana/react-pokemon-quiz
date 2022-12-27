@@ -1,0 +1,12 @@
+.decisionButton {
+  width: 50%;
+
+  padding: 3px;
+
+  color: var(--options-button-text-colour);
+  text-align: left;
+
+  border: 2px solid black;
+
+  background-color: transparent;
+}

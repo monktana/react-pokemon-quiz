@@ -1,5 +1,7 @@
 import { PropsWithChildren, useCallback } from "react"
 
+import "./decisionButton.css"
+
 type DecisionButtonProps = PropsWithChildren<{
   conditionMet: boolean,
   onClick?: (() => void)
@@ -13,6 +15,6 @@ export function DecisionButton({conditionMet, onClick, children}: DecisionButton
   }, [conditionMet, onClick])
 
   return (
-    <button onClick={handleClick}>{children}</button>
+    <button className="decisionButton" onClick={handleClick}>{children}</button>
   )
 }
