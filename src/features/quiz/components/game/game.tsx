@@ -17,16 +17,16 @@ export function Game() {
   const [second, setSecond] = useState<number>(getRandomPokemonID());
   const [attacking, defending] = useMatchup({attacking: `${first}`, defending: `${second}`});
 
-  const selectNewIDs = useCallback(() => {
-    setFirst(getRandomPokemonID());
-    setSecond(getRandomPokemonID());
-  }, []);
+  // const selectNewIDs = useCallback(() => {
+  //   setFirst(getRandomPokemonID());
+  //   setSecond(getRandomPokemonID());
+  // }, []);
 
   if (!attacking.data || !defending.data) {
     return null;
   }
   
-  const effectiveness = getAttackEffectiveness(attacking.data, defending.data);
+  // const effectiveness = getAttackEffectiveness(attacking.data, defending.data);
 
   return (
     <>
@@ -35,15 +35,24 @@ export function Game() {
           <Pokemon pokemon={defending.data} variant='defending'/>
           <Pokemon pokemon={attacking.data} variant='attacking'/>
         </div>
-        {
-          effectivenessKeys.map(effectivenessKey => 
-            (
-              <DecisionButton key={effectivenessKey} conditionMet={effectiveness === TypeEffectiveness[effectivenessKey]} onClick={selectNewIDs}>
-                {effectivenessKey}
-              </DecisionButton>
-            )
-          )
-        }
+        <div className="option-section">
+          <div className="option-text-area">
+            <div className="option-text">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, possimus?
+            </div>
+          </div>
+          {/* <div className="option-buttons">
+            {
+              effectivenessKeys.map(effectivenessKey => 
+                (
+                  <DecisionButton key={effectivenessKey} conditionMet={effectiveness === TypeEffectiveness[effectivenessKey]} onClick={selectNewIDs}>
+                    {effectivenessKey}
+                  </DecisionButton>
+                )
+              )
+            }
+          </div> */}
+        </div>
       </Suspense>
     </>
   );

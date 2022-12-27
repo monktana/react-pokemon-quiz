@@ -18,6 +18,12 @@
   --info-border-colour: rgb(32, 56, 0);
   --info-shadow-colour: rgb(80, 104, 96);
 
+  --options-text-area-border: rgb(40, 48, 48);
+  --options-text-area-background: rgb(200, 168, 72);
+  --options-text-area-seperate: rgb(224, 216, 224);
+  --options-text-colour-background: rgb(40, 80, 104);
+  --options-text-colour: rgb(248, 248, 248);
+
   --pokemon-type-normal: #A8A77A;
 	--pokemon-type-fire: #EE8130;
 	--pokemon-type-water: #6390F0;

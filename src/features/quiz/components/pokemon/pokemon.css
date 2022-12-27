@@ -1,6 +1,4 @@
 .pokemon-container {
-  width: 100%;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +13,7 @@
 }
 
 .pokemon-container .info-section {
-  width: 50%;
+  min-width: 40%;
   padding: 6px;
   position: relative;
 
