@@ -11,6 +11,12 @@ import "./game.css";
 
 const getRandomPokemonID = () => Math.floor(Math.random() * POKEMON_COUNT);
 const effectivenessKeys = getEnumKeys(TypeEffectiveness);
+const effectivenessTexts = {
+  "NoEffect": "No Effect",
+  "NotVeryEffective": "Not effective",
+  "Effective": "Effective",
+  "VeryEffective": "Super effective",
+}
 
 export function Game() {
   const [first, setFirst] = useState<number>(getRandomPokemonID());
@@ -38,7 +44,7 @@ export function Game() {
         <div className="option-section">
           <div className="option-text-area">
             <div className="option-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, possimus?
+              {`${attacking.data.name.toUpperCase()} is attacking. What will happen?`}
             </div>
           </div>
           <div className="option-buttons">
@@ -46,7 +52,7 @@ export function Game() {
               effectivenessKeys.map(effectivenessKey => 
                 (
                   <DecisionButton key={effectivenessKey} conditionMet={effectiveness === TypeEffectiveness[effectivenessKey]} onClick={selectNewIDs}>
-                    {effectivenessKey}
+                    {effectivenessTexts[effectivenessKey]}
                   </DecisionButton>
                 )
               )

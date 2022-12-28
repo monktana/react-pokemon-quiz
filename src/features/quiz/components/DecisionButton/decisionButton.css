@@ -1,12 +1,25 @@
 .decisionButton {
-  width: 50%;
-
-  padding: 3px;
+  position: relative;
+  box-sizing: border-box;
 
   color: var(--options-button-text-colour);
   text-align: left;
-
-  border: 2px solid black;
+  font-size: .9rem;
 
   background-color: transparent;
+}
+
+.decisionButton::before {
+  content: '>';
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  opacity: 0;
+  transition: opacity ease-out 250ms;
+}
+
+.decisionButton:hover::before {
+  opacity: 1;
 }
