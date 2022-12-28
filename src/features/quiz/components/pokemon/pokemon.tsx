@@ -19,13 +19,13 @@ export function Pokemon({pokemon, variant}: PokemonProps) {
 
 
   return (
-    <div className={`pokemon-container ${variant}`}>
-      <div className="image-section">
+    <>
+      <div className={`pokemon-sprite-container ${variant}`}>
         <img src={`${sprite}`} alt="pokémon sprite" />
       </div>
-      <div className="info-section">
+      <div className={`pokemon-info-container ${variant}`}>
         <span>
-          {pokemon.name.toUpperCase()}
+          {`${pokemon.name.toUpperCase()} ♂`}
         </span>
         <div className="type-pills">
           { pokemon.types.map(type => (
@@ -34,6 +34,6 @@ export function Pokemon({pokemon, variant}: PokemonProps) {
           }
         </div>
       </div>
-    </div>
+    </>
   )
 }

@@ -1,20 +1,47 @@
-.pokemon-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.pokemon-sprite-container.attacking {
+  grid-column-start: 1;
+  grid-column-end: span 3;
+
+  grid-row-start: 2;
+  grid-row-end: span 2;
 }
 
-.pokemon-container.defending {
-  flex-direction: row-reverse;
+.pokemon-info-container.attacking {
+  grid-column-start: 4;
+  grid-column-end: span 2;
+
+  grid-row-start: 3;
+
+  margin-right: 10%;
 }
 
-.pokemon-container .image-section {
-  width: 50%;
+.pokemon-sprite-container.defending {
+  grid-column-start: 3;
+  grid-column-end: span 3;
+
+  grid-row-start: 1;
+  grid-row-end: span 2;
 }
 
-.pokemon-container .info-section {
+.pokemon-info-container.defending {
+  grid-column-start: 1;
+  grid-column-end: span 2;
+
+  grid-row-start: span 1;
+  grid-row-end: 2;
+
+  margin-left: 10%;
+}
+
+.pokemon-sprite-container > img {
+  width: 65%;
+  height: auto;
+}
+
+.pokemon-info-container {
   min-width: 40%;
   padding: 6px;
+  margin: 2em 0;
   position: relative;
 
   align-self: flex-start;
@@ -30,43 +57,15 @@
   border-radius: 10px 5px;
 }
 
-.pokemon-container.attacking .info-section {
-  box-shadow: 10px 10px var(--info-shadow-colour);
+.pokemon-info-container.attacking {
+  box-shadow: 7px 7px var(--info-shadow-colour);
 }
 
-.pokemon-container.attacking .info-section::before {
-  content: "";
-
-  z-index: -1;
-
-  position: absolute;
-  bottom: -13px;
-  left: -25px;
-
-  border-width: 40px 40px 0 0;
-  border-style: solid;
-  border-color: transparent var(--info-shadow-colour);
+.pokemon-info-container.defending {
+  box-shadow: -7px 7px var(--info-shadow-colour);
 }
 
-.pokemon-container.defending .info-section {
-  box-shadow: -10px 10px var(--info-shadow-colour);
-}
-
-.pokemon-container.defending .info-section::before {
-  content: "";
-
-  z-index: -1;
-
-  position: absolute;
-  bottom: -13px;
-  right: -25px;
-
-  border-width: 40px 0 0 40px;
-  border-style: solid;
-  border-color: transparent var(--info-shadow-colour);
-}
-
-.pokemon-container .info-section > span {
+.pokemon-info-container > span {
   align-self: flex-start;
 
   font-size: .8em;

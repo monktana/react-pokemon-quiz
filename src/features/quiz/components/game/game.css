@@ -1,5 +1,19 @@
+.pokemon-section {
+  background-image: url('/img/battle_backgrounds.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  height: 75%;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
 .option-section {
   padding: 5px;
+  height: 25%;
 
   position: relative;
 
@@ -8,6 +22,8 @@
 }
 
 .option-section .option-text-area {
+  height: 100%;
+
   background-color: var(--options-text-colour-background);
 
   border: 2px solid var(--options-text-area-seperate);
@@ -18,7 +34,7 @@
 
 .option-section .option-text-area .option-text {
   max-width: 50%;
-  padding: 5px;
+  padding: 10px 5px;
 
   color: var(--options-text-colour);
   text-align: left;
