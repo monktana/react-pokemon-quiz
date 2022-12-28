@@ -27,7 +27,7 @@
   background-color: var(--info-background-colour);
 
   border: 3px solid var(--info-border-colour);
-  border-radius: 10px;
+  border-radius: 10px 5px;
 }
 
 .pokemon-container.attacking .info-section {
@@ -69,12 +69,13 @@
 .pokemon-container .info-section > span {
   align-self: flex-start;
 
-  font-size: large;
+  font-size: .8em;
   font-weight: 400;
 }
 
 .type-pills {
   align-self: flex-end;
+
   display: flex;
   justify-content: flex-end;
 }
@@ -84,8 +85,7 @@
 
   min-width: 60px;
 
-  font-size: .8em;
-  line-height: 1.75;
+  font-size: .7em;
   text-align: center;
 
   border: 1px solid black;

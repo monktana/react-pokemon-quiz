@@ -2,6 +2,9 @@
   position: relative;
   box-sizing: border-box;
 
+  padding: 0;
+  margin: 5px 0 5px 20px;
+
   color: var(--options-button-text-colour);
   text-align: left;
   font-size: .9rem;
@@ -10,10 +13,18 @@
 }
 
 .decisionButton::before {
-  content: '>';
+  content: '';
+
+  border: 8px solid;
+	border-color: 
+    transparent
+		transparent
+		transparent
+		black;
 
   position: absolute;
   top: 50%;
+  left: -12.5px;
   transform: translateY(-50%);
 
   opacity: 0;

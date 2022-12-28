@@ -1,7 +1,16 @@
+@font-face {
+  font-family: 'Pokemon';
+    src: url('./fonts/PokemonGb-RAeo.ttf') format('embedded-opentype'), /* Internet Explorer */
+         url('./fonts/PokemonGb-RAeo.ttf') format('woff2'),             /* Super Modern Browsers */
+         url('./fonts/PokemonGb-RAeo.ttf') format('woff'),              /* Pretty Modern Browsers */
+         url('./fonts/PokemonGb-RAeo.ttf') format('truetype'),          /* Safari, Android, iOS */
+         url('./fonts/PokemonGb-RAeo.ttf') format('svg');               /* Legacy iOS */
+}
+
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
+  font-family: Pokemon, serif;
+  font-size: 12px;
+  line-height: 20px;
   font-weight: 400;
 
   color-scheme: light dark;
@@ -46,15 +55,6 @@
 	--pokemon-type-dark: #705746;
 	--pokemon-type-steel: #B7B7CE;
 	--pokemon-type-fairy: #D685AD;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
 }
 
 body {

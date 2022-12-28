@@ -34,7 +34,7 @@
   transform: translateX(-100%);
 
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: auto auto;
   box-sizing: border-box;
 
   border-left: 3px solid var(--options-text-area-border);
