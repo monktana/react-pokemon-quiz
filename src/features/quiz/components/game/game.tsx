@@ -17,7 +17,12 @@ const effectivenessTexts = {
   "VeryEffective": "Super effective",
 }
 
-export function Game() {
+type QuizProps = {
+  showMenu: () => void,
+  endGame: () => void,
+}
+
+export function Game({showMenu, endGame}: QuizProps) {
   const {attacking, defending, refetch} = useMatchup();
   const {roundScore, increaseScore} = useRoundScore();
 
@@ -61,6 +66,14 @@ export function Game() {
               )
             }
           </div>
+        </div>
+        <div className="menu-section">
+          <button className="menuButton" onClick={showMenu}>
+            <span>MENU</span>
+          </button>
+          <button className="menuButton" onClick={endGame}>
+            <span>QUIT</span>
+          </button>
         </div>
       </Suspense>
     </>
