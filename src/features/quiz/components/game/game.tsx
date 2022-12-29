@@ -1,12 +1,13 @@
-import { Suspense } from "react";
+import { Suspense, useCallback } from "react";
 
 import { getEnumKeys } from "@/utils";
 
-import { useMatchup } from "../../hooks/useMatchup";
+import { useRoundScore, useMatchup } from "../../hooks";
 import { getAttackEffectiveness, TypeEffectiveness } from "../../utils/calculateEffectiveness";
 import { DecisionButton } from "../DecisionButton";
 import { Pokemon } from "../Pokemon";
 import "./game.css";
+import { Score } from "../Score";
 
 const effectivenessKeys = getEnumKeys(TypeEffectiveness);
 const effectivenessTexts = {
@@ -18,6 +19,12 @@ const effectivenessTexts = {
 
 export function Game() {
   const {attacking, defending, refetch} = useMatchup();
+  const {roundScore, increaseScore} = useRoundScore();
+
+  const loadNextRound = useCallback(() => {
+    increaseScore();
+    refetch();
+  }, [increaseScore, refetch]);
 
   if (!attacking || !defending) {
     return null;
@@ -28,6 +35,7 @@ export function Game() {
   return (
     <>
       <Suspense fallback={<>Loading...</>}>
+        <Score currentScore={roundScore} />
         <div className="pokemon-section">
           <Pokemon pokemon={defending} variant='defending'/>
           <Pokemon pokemon={attacking} variant='attacking'/>
@@ -41,11 +49,15 @@ export function Game() {
           <div className="option-buttons">
             {
               effectivenessKeys.map(effectivenessKey => 
-                (
-                  <DecisionButton key={effectivenessKey} isCorrect={effectiveness === TypeEffectiveness[effectivenessKey]} onClick={refetch}>
-                    {effectivenessTexts[effectivenessKey]}
-                  </DecisionButton>
-                )
+                {
+                  const isCorrectDecision = effectiveness === TypeEffectiveness[effectivenessKey];
+
+                  return (
+                    <DecisionButton key={effectivenessKey} isCorrect={isCorrectDecision} onClick={loadNextRound}>
+                      {effectivenessTexts[effectivenessKey]}
+                    </DecisionButton>
+                  )
+                }
               )
             }
           </div>
