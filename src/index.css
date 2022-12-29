@@ -7,6 +7,10 @@
          url('./fonts/PokemonGb-RAeo.ttf') format('svg');               /* Legacy iOS */
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 :root {
   font-family: Pokemon, serif;
   font-size: 12px;
