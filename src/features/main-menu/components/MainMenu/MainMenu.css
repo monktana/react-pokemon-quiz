@@ -1,0 +1,38 @@
+.menuContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.menuContainer .menuText {
+  font-size: xx-large;
+}
+
+.menuContainer .startButton {
+  position: relative;
+  margin-top: 10%;
+}
+
+.menuContainer .startButton::before {
+  content: '';
+
+  border: 8px solid;
+	border-color: 
+    transparent
+		transparent
+		transparent
+		black;
+
+  position: absolute;
+  top: 50%;
+  left: -12.5px;
+  transform: translateY(-50%);
+
+  opacity: 0;
+  transition: opacity ease-out 250ms;
+}
+
+.menuContainer .startButton:hover::before {
+  opacity: 1;
+}
