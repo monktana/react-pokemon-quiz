@@ -9,30 +9,6 @@
   font-size: xx-large;
 }
 
-.menuContainer .startButton {
-  position: relative;
+.menuContainer > button {
   margin-top: 10%;
-}
-
-.menuContainer .startButton::before {
-  content: '';
-
-  border: 8px solid;
-	border-color: 
-    transparent
-		transparent
-		transparent
-		black;
-
-  position: absolute;
-  top: 50%;
-  left: -12.5px;
-  transform: translateY(-50%);
-
-  opacity: 0;
-  transition: opacity ease-out 250ms;
-}
-
-.menuContainer .startButton:hover::before {
-  opacity: 1;
 }

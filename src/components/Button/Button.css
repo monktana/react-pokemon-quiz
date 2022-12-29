@@ -1,0 +1,37 @@
+.button {
+  position: relative;
+
+  font-size: 1em;
+  font-weight: 400;
+  font-family: inherit;
+
+  cursor: pointer;
+
+  color: black;
+  background-color: transparent;
+  border: none;
+}
+
+.button::before {
+  content: '';
+
+  border: 8px solid;
+	border-color: 
+    transparent
+		transparent
+		transparent
+		black;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -12.5px;
+  margin: auto;
+
+  opacity: 0;
+  transition: opacity ease-out 250ms;
+}
+
+.button:hover::before {
+  opacity: 1;
+}

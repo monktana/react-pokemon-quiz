@@ -19,29 +19,5 @@
 }
 
 .menuContainer .menuButton {
-  position: relative;
   margin-bottom: 10px;
-}
-
-.menuContainer .menuButton::before {
-  content: '';
-
-  border: 8px solid;
-	border-color: 
-    transparent
-		transparent
-		transparent
-		black;
-
-  position: absolute;
-  top: 50%;
-  left: -12.5px;
-  transform: translateY(-50%);
-
-  opacity: 0;
-  transition: opacity ease-out 250ms;
-}
-
-.menuContainer .menuButton:hover::before {
-  opacity: 1;
 }

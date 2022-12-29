@@ -51,27 +51,10 @@
 
   display: grid;
   grid-template-columns: auto auto;
-  box-sizing: border-box;
 
   border-left: 3px solid var(--options-text-area-border);
 
   box-shadow: inset 0px 0px 0px 4px var(--options-button-shadow-colour);
 
   background-color: var(--options-button-background-colour);
-}
-
-.menuButton {
-  background-color: black;
-
-  transition: background-color ease-out 150ms;
-}
-
-.menuButton:hover {
-  background-color: grey;
-
-  transition: background-color ease-in 150ms;
-}
-
-.menuButton > span {
-  font-size: smaller;
 }

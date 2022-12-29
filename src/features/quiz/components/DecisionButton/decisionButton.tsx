@@ -1,13 +1,15 @@
-import { PropsWithChildren, useCallback } from "react"
+import { useCallback } from "react"
+
+import { Button, ButtonProps } from "@/components"
 
 import "./decisionButton.css"
 
-type DecisionButtonProps = PropsWithChildren<{
+type DecisionButtonProps = {
   isCorrect: boolean,
   onClick?: (() => void)
-}>
+} & ButtonProps
 
-export function DecisionButton({isCorrect, onClick, children}: DecisionButtonProps) {
+export function DecisionButton({isCorrect, onClick, text}: DecisionButtonProps) {
   const handleClick = useCallback(() => {
     if (isCorrect && onClick) {
       onClick();
@@ -15,6 +17,6 @@ export function DecisionButton({isCorrect, onClick, children}: DecisionButtonPro
   }, [isCorrect, onClick])
 
   return (
-    <button className="decisionButton" onClick={handleClick}>{children}</button>
+    <Button variant="menu" text={text} onClick={handleClick} />
   )
 }

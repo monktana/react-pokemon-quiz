@@ -58,9 +58,13 @@ export function Game({showMenu, endGame}: QuizProps) {
                   const isCorrectDecision = effectiveness === TypeEffectiveness[effectivenessKey];
 
                   return (
-                    <DecisionButton key={effectivenessKey} isCorrect={isCorrectDecision} onClick={loadNextRound}>
-                      {effectivenessTexts[effectivenessKey]}
-                    </DecisionButton>
+                    <DecisionButton
+                      key={effectivenessKey}
+                      text={effectivenessTexts[effectivenessKey]}
+                      isCorrect={isCorrectDecision}
+                      onClick={loadNextRound}
+                      variant={"menu"}
+                    />
                   )
                 }
               )

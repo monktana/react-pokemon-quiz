@@ -1,3 +1,4 @@
+import { Button } from '@/components';
 import './MainMenu.css'
 
 type MainMenuProps = {
@@ -8,7 +9,7 @@ export function MainMenu({startQuiz} : MainMenuProps) {
   return (
     <div className="menuContainer">
       <span className="menuText">WELCOME</span>
-      <button className="startButton" onClick={startQuiz}>Start Quiz</button>
+      <Button text="Start Quiz" onClick={startQuiz} variant={'menu'} />
     </div>
   );
 }
