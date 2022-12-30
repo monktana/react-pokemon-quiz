@@ -1,14 +1,13 @@
 .menuContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  place-items: center;
 }
 
 .menuContainer .menuText {
-  font-size: xx-large;
+  font-size: 3rem;
 }
 
 .menuContainer > button {
-  margin-top: 10%;
+  margin-top: 2rem;
 }

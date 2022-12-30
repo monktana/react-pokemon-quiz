@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'Pokemon';
-    src: url('./fonts/PokemonGb-RAeo.ttf') format('embedded-opentype'), /* Internet Explorer */
-         url('./fonts/PokemonGb-RAeo.ttf') format('woff2'),             /* Super Modern Browsers */
-         url('./fonts/PokemonGb-RAeo.ttf') format('woff'),              /* Pretty Modern Browsers */
-         url('./fonts/PokemonGb-RAeo.ttf') format('truetype'),          /* Safari, Android, iOS */
-         url('./fonts/PokemonGb-RAeo.ttf') format('svg');               /* Legacy iOS */
+  src: url('./fonts/Gbboot-ALpM.ttf') format('embedded-opentype'), /* Internet Explorer */
+        url('./fonts/Gbboot-ALpM.ttf') format('woff2'),             /* Super Modern Browsers */
+        url('./fonts/Gbboot-ALpM.ttf') format('woff'),              /* Pretty Modern Browsers */
+        url('./fonts/Gbboot-ALpM.ttf') format('truetype'),          /* Safari, Android, iOS */
+        url('./fonts/Gbboot-ALpM.ttf') format('svg');               /* Legacy iOS */
 }
 
 *, *::before, *::after {
@@ -12,15 +12,13 @@
 }
 
 :root {
-  font-family: Pokemon, serif;
-  font-size: 12px;
-  line-height: 20px;
-  font-weight: 400;
-
   color-scheme: light dark;
-  color: #213547;
+  
   background-color: #ffffff;
 
+  color: #213547;
+  font-family: Pokemon, serif;
+  font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -63,25 +61,16 @@
 
 body {
   margin: 0;
+  padding: 0;
+
   display: flex;
   place-items: center;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }

@@ -1,6 +1,6 @@
 import './Button.css'
 
-type ButtonVariant = 'menu'
+type ButtonVariant = 'menu' | 'decision'
 
 export type ButtonProps = {
   text: string

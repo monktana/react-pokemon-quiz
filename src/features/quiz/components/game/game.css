@@ -4,8 +4,6 @@
   background-position: center;
   background-size: cover;
 
-  height: 75%;
-
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -13,7 +11,6 @@
 
 .option-section {
   padding: 5px;
-  height: 25%;
 
   position: relative;
 
@@ -22,8 +19,6 @@
 }
 
 .option-section .option-text-area {
-  height: 100%;
-
   background-color: var(--options-text-colour-background);
 
   border: 2px solid var(--options-text-area-seperate);
@@ -34,20 +29,21 @@
 
 .option-section .option-text-area .option-text {
   max-width: 50%;
-  padding: 10px 5px;
+  padding: .6em .3em;
 
   color: var(--options-text-colour);
   text-align: left;
 }
 
 .option-section .option-buttons {
-  width: 50%;
-  height: 100%;
+  width: 50ch;
+  max-width: 50%;
 
+  margin: auto;
   position: absolute;
   top: 0;
-  left: 100%;
-  transform: translateX(-100%);
+  bottom: 0;
+  right: 0;
 
   display: grid;
   grid-template-columns: auto auto;
