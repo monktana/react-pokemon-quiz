@@ -1,0 +1,130 @@
+.gameboy-container {
+  /* Original: 84,6 (w) X  82 (h) mm */
+  width: calc(500px * 1.16); /* 580px */
+  height: calc(1000px * 1.095); /* 1095px */
+
+  position: relative;
+
+  background-color: transparent;
+  border: 3px solid black;
+}
+
+.gameboy-container .top-half {
+  height: calc((1000px * 1.095) / 2 - 40px); /* 508px */
+
+  position: relative;
+
+  border: 3px solid pink;
+
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.gameboy-container .top-half .screen-container {
+  margin: auto;
+
+  position: absolute;
+  top: 55px;
+  left: 40px;
+  bottom: 65px;
+  right: 30px;
+
+  border: 3px solid aqua;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.gameboy-container .top-half .screen-container .screen {
+  margin: auto;
+
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  bottom: 55px;
+  right: 25px;
+  
+  border: 3px solid blue;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.gameboy-container .bottom-half {
+  height: calc((1000px * 1.095) / 2 + 40px); /* 548px */
+
+  position: relative;
+
+  border: 3px solid orange;
+
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.gameboy-container .bottom-half .controlls-container {
+  margin: auto;
+
+  position: absolute;
+  top: 75px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  border: 3px solid aqua;
+
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.gameboy-container .bottom-half .controlls-container .cross {
+  width: 200px;
+  height: 200px;
+
+  margin: auto;
+
+  position: absolute;
+  top: 85px;
+  left: 40px;
+  
+  border: 3px solid blue;
+  border-radius: 100%;
+}
+
+.gameboy-container .bottom-half .controlls-container .buttons-a-b {
+  width: 200px;
+  height: 110px;
+
+  margin: auto;
+
+  position: absolute;
+  top: 125px;
+  right: 40px;
+  
+  transform: rotate(-15deg);
+
+  border: 3px solid blue;
+  border-radius: 35%;
+}
+
+.gameboy-container .bottom-half .controlls-container .buttons-start-select {
+  width: 175px;
+  height: 85px;
+
+  margin: auto;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+
+  border: 3px solid blue;
+  border-radius: 35%;
+}

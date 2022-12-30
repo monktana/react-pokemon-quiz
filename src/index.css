@@ -14,7 +14,10 @@
 :root {
   color-scheme: light dark;
   
-  background-color: #ffffff;
+  background-image: url('/img/GameBoyAdvanceSP.jpg');
+  background-repeat: repeat-x;
+  background-position: center;
+  background-size: cover;
 
   color: #213547;
   font-family: Pokemon, serif;
@@ -38,6 +41,8 @@
   --options-button-text-colour: rgb(72, 72, 72);
   --options-button-shadow-colour: rgb(112, 104, 128);
   --options-button-background-colour: rgb(248, 248, 248);
+
+  --gameboy-graphite: #53565B;
 
   --pokemon-type-normal: #A8A77A;
 	--pokemon-type-fire: #EE8130;
