@@ -7,7 +7,6 @@ import { getAttackEffectiveness, TypeEffectiveness } from "../../utils/calculate
 import { DecisionButton } from "../DecisionButton";
 import { Pokemon } from "../Pokemon";
 import "./game.css";
-import { Score } from "../Score";
 
 const effectivenessKeys = getEnumKeys(TypeEffectiveness);
 const effectivenessTexts = {
@@ -17,14 +16,9 @@ const effectivenessTexts = {
   "VeryEffective": "Super effective",
 }
 
-type QuizProps = {
-  showMenu: () => void,
-  endGame: () => void,
-}
-
-export function Game({showMenu, endGame}: QuizProps) {
+export function Game() {
   const {attacking, defending, refetch} = useMatchup();
-  const {roundScore, increaseScore} = useRoundScore();
+  const {increaseScore} = useRoundScore();
 
   const loadNextRound = useCallback(() => {
     increaseScore();
@@ -40,7 +34,6 @@ export function Game({showMenu, endGame}: QuizProps) {
   return (
     <>
       <Suspense fallback={<>Loading...</>}>
-        <Score currentScore={roundScore} />
         <div className="pokemon-section">
           <Pokemon pokemon={defending} variant='defending'/>
           <Pokemon pokemon={attacking} variant='attacking'/>
@@ -70,14 +63,6 @@ export function Game({showMenu, endGame}: QuizProps) {
               )
             }
           </div>
-        </div>
-        <div className="menu-section">
-          <button className="menuButton" onClick={showMenu}>
-            <span>MENU</span>
-          </button>
-          <button className="menuButton" onClick={endGame}>
-            <span>QUIT</span>
-          </button>
         </div>
       </Suspense>
     </>

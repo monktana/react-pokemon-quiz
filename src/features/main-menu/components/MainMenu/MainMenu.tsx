@@ -7,7 +7,7 @@ type MainMenuProps = {
 
 export function MainMenu({startQuiz} : MainMenuProps) {
   return (
-    <div className="menuContainer">
+    <div className="menu-container">
       <span className="menuText">WELCOME</span>
       <Button text="Start Quiz" onClick={startQuiz} variant={'menu'} />
     </div>
