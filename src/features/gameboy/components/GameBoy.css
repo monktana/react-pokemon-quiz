@@ -13,15 +13,16 @@
 
   position: relative;
 
-  /* background-color: var(--gameboy-onyx);
-  background: linear-gradient(to right, rgb(163, 165, 163) 0%, rgb(81, 92, 94) 2%, rgb(53, 66, 73) 98%, rgb(145, 147, 149) 100%); */
+  background-color: var(--gameboy-onyx);
+  background: linear-gradient(to right, rgb(163, 165, 163) 0%, rgb(81, 92, 94) 2%, rgb(53, 66, 73) 98%, rgb(145, 147, 149) 100%);
 
   border-top-left-radius: 35px;
   border-top-right-radius: 35px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 
-  box-shadow: inset 0 7px 4px -2px rgb(163, 165, 163), inset 10px 0 4px -2px rgb(163, 165, 163);
+  box-shadow: inset 0 7px 4px -2px rgb(163, 165, 163), 
+              inset 10px 0 4px -2px rgb(163, 165, 163);
 }
 
 .gameboy-container .top-half::before {
@@ -51,22 +52,6 @@
   border-radius: 50%;
 }
 
-.gameboy-container .top-half .screen-dot::after {
-  content: "";
-
-  width: 100%;
-  height: 100%;
-
-  display: block;
-  position: absolute;
-
-  pointer-events: none;
-
-  opacity: 0.09;
-
-  background-image: url("/img/background.png");
-}
-
 .gameboy-container .top-half .screen-dot:nth-child(1) {
   width: 35px;
   height: 35px;
@@ -74,7 +59,19 @@
   top: 12px;
   left: 31px;
 
-  /* box-shadow: 0 0 7px 0 rgb(255, 255, 255, 30%); */
+  box-shadow: 0 0 7px 0 rgb(0, 0, 0, 50%);
+}
+
+.gameboy-container .top-half .screen-dot::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: inset 0 8px 7px -4px rgb(255, 255, 255, 40%);
+  border-radius: 100%;
+  transform: rotate(-30deg);
 }
 
 .gameboy-container .top-half .screen-dot:nth-child(2) {
