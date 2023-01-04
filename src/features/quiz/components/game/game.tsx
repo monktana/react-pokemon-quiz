@@ -2,7 +2,8 @@ import { Suspense, useCallback } from "react";
 
 import { getEnumKeys } from "@/utils";
 
-import { useRoundScore, useMatchup } from "../../hooks";
+import { useMatchup } from "../../api";
+import { useRoundScore } from "../../hooks";
 import { getAttackEffectiveness, TypeEffectiveness } from "../../utils/calculateEffectiveness";
 import { DecisionButton } from "../DecisionButton";
 import { Pokemon } from "../Pokemon";
@@ -17,31 +18,31 @@ const effectivenessTexts = {
 }
 
 export function Game() {
-  const {attacking, defending, refetch} = useMatchup();
-  const {increaseScore} = useRoundScore();
+  const { data: matchup, refetch } = useMatchup();
+  const { increaseScore } = useRoundScore();
 
   const loadNextRound = useCallback(() => {
     increaseScore();
     refetch();
   }, [increaseScore, refetch]);
 
-  if (!attacking || !defending) {
+  if (!matchup) {
     return null;
   }
   
-  const effectiveness = getAttackEffectiveness(attacking, defending);
+  const effectiveness = getAttackEffectiveness(matchup.move, matchup.defender);
 
   return (
-    <>
+    <div className="game-container">
       <Suspense fallback={<>Loading...</>}>
         <div className="pokemon-section">
-          <Pokemon pokemon={defending} variant='defending'/>
-          <Pokemon pokemon={attacking} variant='attacking'/>
+          <Pokemon pokemon={matchup.defender} variant='defending'/>
+          <Pokemon pokemon={matchup.attacker} variant='attacking'/>
         </div>
         <div className="option-section">
           <div className="option-text-area">
             <div className="option-text">
-              {`${attacking.name.toUpperCase()} is attacking. What will happen?`}
+              {`${matchup.attacker.name.toUpperCase()} uses ${matchup.move.name.toUpperCase()}`}
             </div>
           </div>
           <div className="option-buttons">
@@ -65,6 +66,6 @@ export function Game() {
           </div>
         </div>
       </Suspense>
-    </>
+    </div>
   );
 }

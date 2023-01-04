@@ -1,2 +1,3 @@
-export * from './common'
-export * from './pokemon'
+export * from './common';
+export * from './move';
+export * from './pokemon';

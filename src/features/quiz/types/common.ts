@@ -53,3 +53,19 @@ export interface Encounter {
   chance: number
   method: NamedAPIResource
 }
+
+export interface MachineVersionDetail {
+  machine: APIResource;
+  version_group: NamedAPIResource;
+}
+
+export interface Effect {
+  effect: string;
+  language: NamedAPIResource;
+}
+
+export interface VerboseEffect {
+  effect: string;
+  short_effect: string;
+  language: NamedAPIResource;
+}

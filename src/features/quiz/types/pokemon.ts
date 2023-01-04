@@ -1,6 +1,7 @@
 import {
   APIResource,
   Description,
+  Effect,
   FlavorText,
   Name,
   NamedAPIResource,
@@ -443,3 +444,7 @@ export interface PokemonSpeciesVariety {
   pokemon: NamedAPIResource
 }
 
+export interface AbilityEffectChange {
+  effect_entries: Effect[];
+  version_group: NamedAPIResource;
+}

@@ -1,4 +1,4 @@
-import { Pokemon, PokemonType } from "../types";
+import { Move, Pokemon, PokemonType } from "../types";
 
 import { typeMatchups } from "./typematrix";
 
@@ -9,8 +9,8 @@ export enum TypeEffectiveness {
   VeryEffective
 }
 
-export const getAttackEffectiveness = (attacking: Pokemon, defending: Pokemon): TypeEffectiveness => {
-  const multiplier = getAttackMultiplier(attacking, defending);
+export const getAttackEffectiveness = (move: Move, defending: Pokemon): TypeEffectiveness => {
+  const multiplier = getAttackMultiplier(move, defending);
   switch (multiplier) {
     case 0:
       return TypeEffectiveness.NoEffect;
@@ -27,14 +27,12 @@ export const getAttackEffectiveness = (attacking: Pokemon, defending: Pokemon): 
   }
 };
 
-const getAttackMultiplier = (attacking: Pokemon, defending: Pokemon): number => {
-  return attacking.types.reduce((multiplier, attackingType) => {
-    return multiplier * defending.types.reduce((prev, defendingType) => 
-      prev * getTypeMatchupMultiplier(attackingType, defendingType)
-    , 1);
-  }, 1);
+const getAttackMultiplier = (move: Move, defending: Pokemon): number => {
+  return defending.types.reduce((prev, defendingType) => 
+    prev * getTypeMatchupMultiplier(move.type.name, defendingType)
+  , 1);
 };
 
-const getTypeMatchupMultiplier = (attackingType: PokemonType, defendingType: PokemonType): number => {
-  return typeMatchups[attackingType.type.name][defendingType.type.name];
+const getTypeMatchupMultiplier = (attackingType: string, defendingType: PokemonType): number => {
+  return typeMatchups[attackingType][defendingType.type.name];
 }
