@@ -1,5 +1,6 @@
 import { Suspense, useCallback } from "react";
 
+import { useAppStateStore } from "@/stores";
 import { getEnumKeys } from "@/utils";
 
 import { useMatchup } from "../../api";
@@ -19,6 +20,7 @@ const effectivenessTexts = {
 
 export function Game() {
   const { data: matchup, refetch } = useMatchup();
+  const endGame = useAppStateStore((state) => state.endQuiz);
   const { increaseScore } = useRoundScore();
 
   const loadNextRound = useCallback(() => {
@@ -55,8 +57,13 @@ export function Game() {
                     <DecisionButton
                       key={effectivenessKey}
                       text={effectivenessTexts[effectivenessKey]}
-                      isCorrect={isCorrectDecision}
-                      onClick={loadNextRound}
+                      onClick={() => {
+                        if(isCorrectDecision) {
+                          loadNextRound();
+                        } else {
+                          endGame();
+                        }}
+                      }
                       variant={"menu"}
                     />
                   )
