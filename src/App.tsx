@@ -2,7 +2,7 @@ import React from 'react'
 
 import './App.css'
 import { Game } from '@/features/quiz'
-import { AppProvider } from '@/providers/app'
+import { AppProvider, LocalizationProvider } from '@/providers'
 
 import { GameBoy } from './features/gameboy/components/GameBoy'
 import { Menu } from './features/menu'
@@ -13,11 +13,13 @@ function App(): JSX.Element | null {
 
   return (
     <AppProvider>
-      <GameBoy>
-        { appState === 'menu' && <Menu variant='Main' />}
-        { appState === 'quiz' && <Game />}
-        { appState === 'gameover' && <Menu variant='End' />}
-      </GameBoy>
+      <LocalizationProvider>
+        <GameBoy>
+          { appState === 'menu' && <Menu variant='mainmenu' />}
+          { appState === 'quiz' && <Game />}
+          { appState === 'gameover' && <Menu variant='gameover' />}
+        </GameBoy>
+      </LocalizationProvider>
     </AppProvider>
   )
 }
