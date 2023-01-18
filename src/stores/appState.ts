@@ -1,4 +1,4 @@
-import create from 'zustand'
+import { create } from 'zustand'
 
 type AppState = 'menu' | 'quiz' | 'gameover'
 
@@ -7,7 +7,7 @@ type AppStateStore = {
   startQuiz: () => void,
   endQuiz: () => void,
   openMenu: () => void
-}
+};
 
 export const useAppStateStore = create<AppStateStore>()((set) => ({
     appState: 'menu',
@@ -15,4 +15,4 @@ export const useAppStateStore = create<AppStateStore>()((set) => ({
     endQuiz: () => set(() => ({appState: 'gameover'})),
     openMenu: () => set(() => ({appState: 'menu'})),
   }
-))
+));
