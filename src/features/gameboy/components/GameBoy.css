@@ -96,18 +96,23 @@
   margin: auto;
 
   position: absolute;
-  top: 65px;
+  top: 60px;
   left: 45px;
-  bottom: 70px;
+  bottom: 65px;
   right: 35px;
 
-  background-color: black;
+  background-color: var(--gameboy-onyx);
   background: linear-gradient(to right, rgb(39, 50, 50) 0%, rgb(53, 63, 63) 100%);
 
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+
+  box-shadow: 
+    inset -6px -6px 3px 0px rgb(119 121 121),
+    inset 6px 6px 3px 0px rgb(20 27 28);
+
 }
 
 .gameboy-container .top-half .screen-container .screen-headline {
