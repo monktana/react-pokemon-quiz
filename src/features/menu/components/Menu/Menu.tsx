@@ -3,7 +3,6 @@ import { useContext } from 'react';
 import { Button } from '@/components';
 import { LocalizationContext } from '@/providers';
 import { useAppStateStore, useScoreStore } from '@/stores';
-import './Menu.css'
 
 type MenuProps = {
   variant: 'mainmenu' | 'gameover'
@@ -19,20 +18,18 @@ export function Menu({variant}: MenuProps) {
   const Localization = useContext(LocalizationContext)
 
   return (
-    <div className="menu-container">
-      <span className="menuText">{Localization.getText('en', `${variant}.title`)}</span>
+    <div className='flex flex-col items-center justify-center gap-4 h-full p-2'>
+      <span className='text-5xl font-semibold p-2'>{Localization.getText('en', `${variant}.title`)}</span>
       { variant === 'gameover' && (<><span>{score}</span></>)}
-      <div className="buttons">
+      <div className="flex flex-col items-center justify-center">
         <Button 
           text={Localization.getText('en', `${variant}.button.newgame`)} 
-          variant="menu" 
           onClick={() => { resetScore(); startGame(); }} 
         />
         { 
           variant === 'gameover' && 
           <Button 
             text={Localization.getText('en', `${variant}.button.mainmenu`)} 
-            variant="menu" 
             onClick={() => { resetScore(); backToMainMenu(); }} 
           />
         }

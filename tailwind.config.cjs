@@ -224,6 +224,9 @@ module.exports = {
           900: '#341123',
         },
       },
+      aspectRatio: {
+        'gameboy': '3 / 2',
+      },
     },
   },
   plugins: [],
