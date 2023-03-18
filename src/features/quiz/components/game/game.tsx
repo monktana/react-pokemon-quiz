@@ -1,10 +1,9 @@
 import { Suspense, useCallback } from "react";
 
-import { useAppStateStore } from "@/stores";
+import { useAppStateStore, useScoreStore } from "@/stores";
 import { getEnumKeys } from "@/utils";
 
 import { useMatchup } from "../../api";
-import { useRoundScore } from "../../hooks";
 import { getAttackEffectiveness, TypeEffectiveness } from "../../utils/calculateEffectiveness";
 import { DecisionButton } from "../DecisionButton";
 import { Pokemon } from "../Pokemon";
@@ -21,7 +20,7 @@ const effectivenessTexts = {
 export function Game() {
   const { data: matchup, refetch } = useMatchup();
   const endGame = useAppStateStore((state) => state.endQuiz);
-  const { increaseScore } = useRoundScore();
+  const increaseScore = useScoreStore((state) => state.increase);
 
   const loadNextRound = useCallback(() => {
     increaseScore();

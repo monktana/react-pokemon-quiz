@@ -1,29 +1,24 @@
 .pokemon-sprite-container.defending {
-  grid-column-start: 2;
-  grid-row-start: 2
+  grid-area: defending-sprite;
 }
-
 .pokemon-info-container.defending {
-  grid-row-start: 1;
-  grid-column-start: 1;
-}
-
-.pokemon-sprite-container.attacking,
-.pokemon-info-container.attacking {
-  grid-row-start: 3;
+  grid-area: defending-info;
 }
 
 .pokemon-sprite-container.attacking {
-  grid-column: 1 / 2;
+  grid-area: attacking-sprite;
+}
+.pokemon-info-container.attacking {
+  grid-area: attacking-info;
 }
 
-.pokemon-info-container.attacking {
-  grid-column-start: 2;
+.pokemon-sprite-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .pokemon-info-container {
-  position: relative;
-
   padding: .3em;
   
   display: flex;
@@ -55,6 +50,7 @@
   align-self: flex-end;
 
   display: flex;
+  gap: .25em;
   justify-content: flex-end;
 }
 
