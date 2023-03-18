@@ -1,47 +1,11 @@
-@font-face {
-  font-family: 'Pokemon';
-  src: url('./fonts/Gbboot-ALpM.ttf') format('embedded-opentype'), /* Internet Explorer */
-       url('./fonts/Gbboot-ALpM.ttf') format('woff2'),             /* Super Modern Browsers */
-       url('./fonts/Gbboot-ALpM.ttf') format('woff'),              /* Pretty Modern Browsers */
-       url('./fonts/Gbboot-ALpM.ttf') format('truetype'),          /* Safari, Android, iOS */
-       url('./fonts/Gbboot-ALpM.ttf') format('svg');               /* Legacy iOS */
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-}
-
-:root {
-  --pokemon-type-normal: #A8A77A;
-	--pokemon-type-fire: #EE8130;
-	--pokemon-type-water: #6390F0;
-	--pokemon-type-electric: #F7D02C;
-	--pokemon-type-grass: #7AC74C;
-	--pokemon-type-ice: #96D9D6;
-	--pokemon-type-fighting: #C22E28;
-	--pokemon-type-poison: #A33EA1;
-	--pokemon-type-ground: #E2BF65;
-	--pokemon-type-flying: #A98FF3;
-	--pokemon-type-psychic: #F95587;
-	--pokemon-type-bug: #A6B91A;
-	--pokemon-type-rock: #B6A136;
-	--pokemon-type-ghost: #735797;
-	--pokemon-type-dragon: #6F35FC;
-	--pokemon-type-dark: #705746;
-	--pokemon-type-steel: #B7B7CE;
-	--pokemon-type-fairy: #D685AD;
-
-  --font-color: #213547;
-
-  color: var(--font-color);
-
-  font-family: Pokemon, serif;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 }
 
 body {
