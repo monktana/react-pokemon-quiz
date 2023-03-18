@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'Pokemon';
   src: url('./fonts/Gbboot-ALpM.ttf') format('embedded-opentype'), /* Internet Explorer */
-        url('./fonts/Gbboot-ALpM.ttf') format('woff2'),             /* Super Modern Browsers */
-        url('./fonts/Gbboot-ALpM.ttf') format('woff'),              /* Pretty Modern Browsers */
-        url('./fonts/Gbboot-ALpM.ttf') format('truetype'),          /* Safari, Android, iOS */
-        url('./fonts/Gbboot-ALpM.ttf') format('svg');               /* Legacy iOS */
+       url('./fonts/Gbboot-ALpM.ttf') format('woff2'),             /* Super Modern Browsers */
+       url('./fonts/Gbboot-ALpM.ttf') format('woff'),              /* Pretty Modern Browsers */
+       url('./fonts/Gbboot-ALpM.ttf') format('truetype'),          /* Safari, Android, iOS */
+       url('./fonts/Gbboot-ALpM.ttf') format('svg');               /* Legacy iOS */
 }
 
 *, *::before, *::after {
@@ -12,38 +12,6 @@
 }
 
 :root {
-  color-scheme: light dark;
-  
-  background-image: url('/img/GameBoyAdvanceSP.jpg');
-  background-repeat: repeat-x;
-  background-position: center;
-  background-size: cover;
-
-  color: #213547;
-  font-family: Pokemon, serif;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-
-  --info-background-colour: rgb(248, 246, 216);
-  --info-border-colour: rgb(32, 56, 0);
-  --info-shadow-colour: rgb(80, 104, 96);
-
-  --options-text-area-border: rgb(40, 48, 48);
-  --options-text-area-background: rgb(200, 168, 72);
-  --options-text-area-seperate: rgb(224, 216, 224);
-  --options-text-colour-background: rgb(40, 80, 104);
-  --options-text-colour: rgb(248, 248, 248);
-
-  --options-button-text-colour: rgb(72, 72, 72);
-  --options-button-shadow-colour: rgb(112, 104, 128);
-  --options-button-background-colour: rgb(248, 248, 248);
-
-  --gameboy-onyx: rgb(36, 48, 52);
-
   --pokemon-type-normal: #A8A77A;
 	--pokemon-type-fire: #EE8130;
 	--pokemon-type-water: #6390F0;
@@ -62,20 +30,25 @@
 	--pokemon-type-dark: #705746;
 	--pokemon-type-steel: #B7B7CE;
 	--pokemon-type-fairy: #D685AD;
+
+  --font-color: #213547;
+
+  color: var(--font-color);
+
+  font-family: Pokemon, serif;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
 
-  display: flex;
+  display: grid;
   place-items: center;
   min-height: 100vh;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
 }
