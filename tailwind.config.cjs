@@ -227,6 +227,9 @@ module.exports = {
       aspectRatio: {
         'gameboy': '3 / 2',
       },
+      animation: {
+        'bounce-sideways': 'sideway-bounce 1s infinite',
+      }
     },
   },
   plugins: [],
