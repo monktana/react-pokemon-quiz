@@ -1,8 +1,8 @@
 import React from 'react'
 
+import { Menu } from '@/features/menu'
 import { Game } from '@/features/quiz'
 
-import { Menu } from './features/menu'
 import { useAppStateStore } from './stores'
 
 function App(): JSX.Element | null {

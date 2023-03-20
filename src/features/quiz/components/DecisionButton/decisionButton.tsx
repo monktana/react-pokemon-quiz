@@ -6,6 +6,6 @@ type DecisionButtonProps = {
 
 export function DecisionButton({onClick, text}: DecisionButtonProps) {
   return (
-    <Button variant="decision" text={text} onClick={onClick} />
+    <Button text={text} onClick={onClick} />
   )
 }
