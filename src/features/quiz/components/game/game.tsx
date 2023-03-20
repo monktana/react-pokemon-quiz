@@ -6,7 +6,7 @@ import { getEnumKeys } from "@/utils";
 import { useMatchup } from "../../api";
 import { getAttackEffectiveness, TypeEffectiveness } from "../../utils/calculateEffectiveness";
 import { DecisionButton } from "../DecisionButton";
-import { Pokemon } from "../Pokemon";
+import { Pokemon } from "../pokemon";
 import "./game.css";
 
 const effectivenessKeys = getEnumKeys(TypeEffectiveness);
