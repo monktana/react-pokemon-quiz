@@ -2,8 +2,6 @@ import { useMemo } from "react";
 
 import { Pokemon } from "../../types";
 
-import './pokemon.css';
-
 type PokemonProps = {
   pokemon: Pokemon,
   variant: 'attacking' | 'defending'
@@ -19,21 +17,20 @@ export function Pokemon({pokemon, variant}: PokemonProps) {
 
 
   return (
-    <>
-      <div className={`pokemon-sprite-container ${variant}`}>
-        <img src={`${sprite}`} alt="pokémon sprite" />
-      </div>
-      <div className={`pokemon-info-container ${variant}`}>
-        <span>
-          {`${pokemon.name.toUpperCase()} ♂`}
+    <div className='flex flex-row h-1/2'>
+      <img src={`${sprite}`} alt={`${variant} pokémon's sprite`} className="pixelated"/>
+      {/* <div className='container max-h-min flex-col bg-slate-400 border border-black rounded'>
+        <span className="self-start uppercase">
+          {`${pokemon.name}`}
         </span>
-        <div className="type-pills">
-          { pokemon.types.map(type => (
-              <div key={type.type.url} className={`type-pill type-pill-${type.type.name}`}>{type.type.name}</div>
+        <div className="flex gap-1">
+          {
+            pokemon.types.map(type => (
+              <div key={type.type.url} style={{backgroundColor: type.type.name}} className={`w-[10ch] text-xs text-center capitalize border border-solid border-black rounded`}>{type.type.name}</div>
             ))
           }
         </div>
-      </div>
-    </>
+      </div> */}
+    </div>
   )
 }
