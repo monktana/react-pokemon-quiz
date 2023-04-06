@@ -39,6 +39,29 @@ export interface PokemonAbility {
   ability: NamedAPIResource
 }
 
+export const PokemonTypeVariants = [
+   'normal'
+  ,'fire'
+  ,'water'
+  ,'electric'
+  ,'grass'
+  ,'ice'
+  ,'fighting'
+  ,'poison'
+  ,'ground'
+  ,'flying'
+  ,'psychic'
+  ,'bug'
+  ,'rock'
+  ,'ghost'
+  ,'dragon'
+  ,'dark'
+  ,'steel'
+  ,'fairy'
+] as const;
+
+export type PokemonTypes = typeof PokemonTypeVariants[number];
+
 export interface PokemonType {
   slot: number
   type: NamedAPIResource

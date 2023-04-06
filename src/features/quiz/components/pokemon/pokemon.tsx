@@ -1,11 +1,33 @@
 import { useMemo } from "react";
 
-import { Pokemon } from "../../types";
+import { Pokemon, PokemonTypes } from "../../types";
 
 type PokemonProps = {
   pokemon: Pokemon,
   variant: 'attacking' | 'defending'
 }
+
+type PokemonTypeStyles = {[key in PokemonTypes]: string};
+const TypeStyles: PokemonTypeStyles = {
+  normal: 'bg-normal-500',
+  fire: 'bg-fire-500',
+  water: 'bg-water-400',
+  electric: 'bg-electric-500',
+  grass: 'bg-grass-500',
+  ice: 'bg-ice-500',
+  fighting: 'bg-fighting-500',
+  poison: 'bg-poison-500',
+  ground: 'bg-ground-500',
+  flying: 'bg-flying-500',
+  psychic: 'bg-psychic-500',
+  bug: 'bg-bug-500',
+  rock: 'bg-rock-500',
+  ghost: 'bg-ghost-500',
+  dragon: 'bg-dragon-500',
+  dark: 'bg-dark-500',
+  steel: 'bg-steel-500',
+  fairy: 'bg-fairy-500'
+};
 
 export function Pokemon({pokemon, variant}: PokemonProps) {
   const sprite = useMemo(() => {
@@ -17,20 +39,24 @@ export function Pokemon({pokemon, variant}: PokemonProps) {
 
 
   return (
-    <div className='flex flex-row h-1/2'>
-      <img src={`${sprite}`} alt={`${variant} pokémon's sprite`} className="pixelated"/>
-      {/* <div className='container max-h-min flex-col bg-slate-400 border border-black rounded'>
-        <span className="self-start uppercase">
-          {`${pokemon.name}`}
-        </span>
-        <div className="flex gap-1">
-          {
-            pokemon.types.map(type => (
-              <div key={type.type.url} style={{backgroundColor: type.type.name}} className={`w-[10ch] text-xs text-center capitalize border border-solid border-black rounded`}>{type.type.name}</div>
-            ))
-          }
+    <div className={`flex ${(variant === 'attacking') ? 'flex-row' : 'flex-row-reverse'}`}>
+      <div className="my-auto w-1/2">
+        <img src={`${sprite}`} alt={`${variant} pokémon's sprite`} className="pixelated mx-auto scale-150"/>
+      </div>
+      <div className="container w-1/2">
+        <div className='flex flex-col gap-1 p-2 mx-auto h-fit w-4/5 text-base bg-slate-100 border-4 border-gray-800 rounded-md rounded-tl-2xl rounded-br-2xl'>
+          <span className="uppercase">
+            {`${pokemon.name}`}
+          </span>
+          <div className="flex gap-1 self-end">
+            {
+              pokemon.types.map(type => (
+                <div key={type.type.url} className={`w-[10ch] text-xs text-center capitalize ${TypeStyles[type.type.name as PokemonTypes]} border border-gray-800 rounded-md`}>{type.type.name}</div>
+              ))
+            }
+          </div>
         </div>
-      </div> */}
+      </div>
     </div>
   )
 }

@@ -3,7 +3,6 @@ import { Suspense } from "react";
 
 import { useMatchup } from "../../api";
 import { Pokemon } from "../Pokemon";
-import "./game.css";
 
 export function Game() {
   const { data: matchup } = useMatchup();
@@ -13,9 +12,9 @@ export function Game() {
   }
   
   return (
-    <div className="h-full grid bg-gradient-to-b from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+    <div className="h-full grid bg-gradient-to-b from-yellow-100 from-0% via-slate-100 via-10% to-slate-300 to-30%">
       <Suspense fallback={<>Loading...</>}>
-        <div className="">
+        <div className="grid">
           <Pokemon pokemon={matchup.defender} variant='defending'/>
           <Pokemon pokemon={matchup.attacker} variant='attacking'/>
         </div>
