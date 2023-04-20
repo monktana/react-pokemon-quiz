@@ -40,10 +40,11 @@ export function Pokemon({pokemon, variant}: PokemonProps) {
 
   return (
     <div className={`flex ${(variant === 'attacking') ? 'flex-row' : 'flex-row-reverse'}`}>
-      <div className="my-auto w-1/2">
-        <img src={`${sprite}`} alt={`${variant} pokémon's sprite`} className="pixelated mx-auto scale-150"/>
+      <div className="my-auto w-1/2 relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-slate-300 rounded-[50%]" />
+        <img src={`${sprite}`} alt={`${variant} pokémon's sprite`} className="pixelated mx-auto scale-[200%]"/>
       </div>
-      <div className="container w-1/2">
+      <div className={`container w-1/2 ${(variant === 'defending') ? 'mt-4' : 'mt-0'}`}>
         <div className='flex flex-col gap-1 p-2 mx-auto h-fit w-4/5 text-base bg-slate-100 border-4 border-gray-800 rounded-md rounded-tl-2xl rounded-br-2xl'>
           <span className="uppercase">
             {`${pokemon.name}`}
