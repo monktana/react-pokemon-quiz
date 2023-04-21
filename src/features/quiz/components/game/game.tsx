@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 
+import { Button } from "@/components";
 
 import { useMatchup } from "../../api";
 import { Pokemon } from "../Pokemon";
@@ -21,8 +22,8 @@ export function Game() {
         <div className="absolute bottom-0 inset-x-0 h-20 p-1 bg-black">
           <div className="w-full h-full p-1 bg-yellow-500 rounded-md">
             <div className="w-full h-full bg-blue-900 border-neutral-100 border-2">
-              <div className="w-1/2 h-full grid items-center pl-1">
-                <span className="text-slate-50 text-base uppercase">{matchup.attacker.name} uses {matchup.move.name}</span>
+              <div className="w-1/2 h-full grid items-start py-2 px-1">
+                <p className="text-slate-50 text-base"><span className="uppercase">{matchup.attacker.name}</span> used <span className="uppercase">{matchup.move.name}</span>!</p>
               </div>
             </div>
           </div>
@@ -30,11 +31,11 @@ export function Game() {
         <div className="absolute bottom-0 right-0 w-1/2 h-20 p-1 bg-black">
           <div className="w-full h-full p-1 bg-violet-600 rounded-md">
             <div className="w-full h-full bg-slate-50">
-              <div className="h-full grid grid-cols-2 grid-rows-2 items-center p-1">
-                <span className="text-base uppercase">Button 1</span>
-                <span className="text-base uppercase">Button 2</span>
-                <span className="text-base uppercase">Button 3</span>
-                <span className="text-base uppercase">Button 4</span>
+              <div className="h-full grid grid-cols-[auto_auto] gap-x-1 items-center px-3 py-1">
+                <Button className="p-0" text={"No Effect"}/>
+                <Button className="p-0" text={"Not Very Effective"}/>
+                <Button className="p-0" text={"Effective"}/>
+                <Button className="p-0" text={"Super Effective"}/>
               </div>
             </div>
           </div>
