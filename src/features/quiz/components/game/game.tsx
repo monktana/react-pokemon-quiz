@@ -1,25 +1,25 @@
 import { Suspense, useCallback } from "react";
 
 import { Button } from "@/components";
-import { useScoreStore } from "@/stores";
+import { useScoreStore, useAppStateStore } from "@/stores";
 
 import { useMatchup } from "../../api";
 import { TypeEffectiveness, getAttackEffectiveness } from "../../utils/calculateEffectiveness";
 import { Pokemon } from "../Pokemon";
 
 export function Game() {
-  const { data: matchup } = useMatchup({config: { suspense: true }});
+  const { data: matchup, refetch } = useMatchup({config: { suspense: true }});
   const increase = useScoreStore((state) => state.increase);
+  const { end } = useAppStateStore((state) => ({end: state.endQuiz}));
 
   const guess = useCallback((guess: TypeEffectiveness) => {
     const correctAnswer = getAttackEffectiveness(matchup!.move, matchup!.defender);
     if (guess !== correctAnswer) {
-      console.log('incorrect');
-      return
+      return end();
     }
-    console.log('correct');
     increase();
-  }, [matchup, increase]);
+    refetch();
+  }, [matchup, increase, end, refetch]);
   
   return (
     <div className="relative h-full grid bg-gradient-to-b from-yellow-100 from-0% via-slate-100 via-10% to-slate-300 to-30%">
