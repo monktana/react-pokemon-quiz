@@ -60,10 +60,6 @@
             ]
           }
         ],
-        "linebreak-style": [
-          "error",
-          "unix"
-        ],
         "react/prop-types": "off",
         "import/order": [
           "error",

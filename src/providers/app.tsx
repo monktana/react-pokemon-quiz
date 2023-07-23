@@ -1,9 +1,11 @@
+import { ChakraProvider } from "@chakra-ui/react";
 import * as React from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { queryClient } from '@/lib/react-query';
+import theme from "@/theme";
 
 const ErrorFallback = () => {
   return (
@@ -30,10 +32,12 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       }
     >
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <QueryClientProvider client={queryClient}>
-          {children}
-          <ReactQueryDevtools />
-        </QueryClientProvider>
+        <ChakraProvider theme={theme}>
+          <QueryClientProvider client={queryClient}>
+            {children}
+            <ReactQueryDevtools />
+          </QueryClientProvider>
+        </ChakraProvider>
       </ErrorBoundary>
     </React.Suspense>
   );
