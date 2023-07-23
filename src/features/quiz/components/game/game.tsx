@@ -1,11 +1,12 @@
-import { Button } from "@chakra-ui/react";
+import { Box, Button, Grid, Tag, Text } from "@chakra-ui/react";
 import { Suspense, useCallback } from "react";
 
 import { useScoreStore, useAppStateStore } from "@/stores";
 
 import { useMatchup } from "../../api";
-import { TypeEffectiveness, getAttackEffectiveness } from "../../utils/calculateEffectiveness";
+import { TypeEffectiveness, getAttackEffectiveness } from "../../utils";
 import { Pokemon } from "../pokemon";
+import { getMoveName } from "../pokemon/util";
 
 export function Game() {
   const { data: matchup, refetch } = useMatchup({config: { suspense: true }});
@@ -26,31 +27,27 @@ export function Game() {
       <Suspense fallback={<>Loading...</>}>
       { matchup && 
         <>
-          <div className="grid">
+          <Grid>
             <Pokemon pokemon={matchup.defender} variant='defending'/>
             <Pokemon pokemon={matchup.attacker} variant='attacking'/>
-          </div>
-          <div className="absolute bottom-0 inset-x-0 h-20 p-1 bg-black">
-            <div className="w-full h-full p-1 bg-yellow-500 rounded-md">
-              <div className="w-full h-full bg-blue-900 border-neutral-100 border-2">
-                <div className="w-1/2 h-full grid items-start py-2 px-1">
-                  <p className="text-slate-50 text-base"><span className="uppercase">{matchup.attacker.name}</span> used <span className="uppercase">{matchup.move.name}</span>!</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="absolute bottom-0 right-0 w-1/2 h-20 p-1 bg-black">
-            <div className="w-full h-full p-1 bg-violet-600 rounded-md">
-              <div className="w-full h-full bg-slate-50">
-                <div className="h-full grid grid-cols-[auto_auto] gap-x-1 items-center px-1 py-1">
-                  <Button onClick={() => guess(TypeEffectiveness.NoEffect)}> {"No Effect"}</Button>
-                  <Button onClick={() => guess(TypeEffectiveness.NotVeryEffective)} >{"Not Very Effective"}</Button>
-                  <Button onClick={() => guess(TypeEffectiveness.Effective)} >{"Effective"}</Button>
-                  <Button onClick={() => guess(TypeEffectiveness.VeryEffective)}>{"Super Effective"}</Button>
-                </div>
-              </div>
-            </div>
-          </div>
+          </Grid>
+          <Box my={2}>
+            <Text>
+              {matchup.attacker.name} used 
+              <Tag borderRadius="md" variant="solid" colorScheme={matchup.move.type.name}>
+                {getMoveName(matchup.move, "en")}
+              </Tag>
+            </Text>
+          </Box>
+          <Grid
+            gridTemplateColumns="repeat(2, 1fr)"
+            gap={1}
+          >
+            <Button onClick={() => guess(TypeEffectiveness.NoEffect)}>{"No Effect"}</Button>
+            <Button onClick={() => guess(TypeEffectiveness.NotVeryEffective)}>{"Not Very Effective"}</Button>
+            <Button onClick={() => guess(TypeEffectiveness.Effective)}>{"Effective"}</Button>
+            <Button onClick={() => guess(TypeEffectiveness.VeryEffective)}>{"Super Effective"}</Button>
+          </Grid>
         </>
       }
       </Suspense>
