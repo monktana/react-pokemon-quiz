@@ -1,11 +1,11 @@
+import { Button } from "@chakra-ui/react";
 import { Suspense, useCallback } from "react";
 
-import { Button } from "@/components";
 import { useScoreStore, useAppStateStore } from "@/stores";
 
 import { useMatchup } from "../../api";
 import { TypeEffectiveness, getAttackEffectiveness } from "../../utils/calculateEffectiveness";
-import { Pokemon } from "../Pokemon";
+import { Pokemon } from "../pokemon";
 
 export function Game() {
   const { data: matchup, refetch } = useMatchup({config: { suspense: true }});
@@ -43,10 +43,10 @@ export function Game() {
             <div className="w-full h-full p-1 bg-violet-600 rounded-md">
               <div className="w-full h-full bg-slate-50">
                 <div className="h-full grid grid-cols-[auto_auto] gap-x-1 items-center px-1 py-1">
-                  <Button onClick={() => guess(TypeEffectiveness.NoEffect)} className="p-0 focus:border focus:border-solid focus:border-red-500 " text={"No Effect"}/>
-                  <Button onClick={() => guess(TypeEffectiveness.NotVeryEffective)} className="p-0 focus:border focus:border-solid focus:border-red-500 " text={"Not Very Effective"}/>
-                  <Button onClick={() => guess(TypeEffectiveness.Effective)} className="p-0 focus:border focus:border-solid focus:border-red-500 " text={"Effective"}/>
-                  <Button onClick={() => guess(TypeEffectiveness.VeryEffective)} className="p-0 focus:border focus:border-solid focus:border-red-500 " text={"Super Effective"}/>
+                  <Button onClick={() => guess(TypeEffectiveness.NoEffect)}> {"No Effect"}</Button>
+                  <Button onClick={() => guess(TypeEffectiveness.NotVeryEffective)} >{"Not Very Effective"}</Button>
+                  <Button onClick={() => guess(TypeEffectiveness.Effective)} >{"Effective"}</Button>
+                  <Button onClick={() => guess(TypeEffectiveness.VeryEffective)}>{"Super Effective"}</Button>
                 </div>
               </div>
             </div>

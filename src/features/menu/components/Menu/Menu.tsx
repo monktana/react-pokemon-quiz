@@ -1,6 +1,6 @@
+import { Button, Flex, Heading, Text } from '@chakra-ui/react';
 import { useContext } from 'react';
 
-import { Button } from '@/components';
 import { LocalizationContext } from '@/providers';
 import { useAppStateStore, useScoreStore } from '@/stores';
 
@@ -15,25 +15,27 @@ export function Menu({variant}: MenuProps) {
   const score = useScoreStore((state) => state.score);
   const resetScore = useScoreStore((state) => state.reset);
 
-  const Localization = useContext(LocalizationContext)
+  const Localization = useContext(LocalizationContext);
 
   return (
-    <div className='flex flex-col items-center justify-center gap-4 h-full p-2'>
-      <span className='text-5xl font-semibold p-2'>{Localization.getText('en', `${variant}.title`)}</span>
-      { variant === 'gameover' && (<><span>{score}</span></>)}
-      <div className="flex flex-col items-center justify-center">
+    <Flex alignItems="center" justifyContent="center" gap={4} p={2}>
+      <Heading as="h1" size="4xl">{Localization.getText('en', `${variant}.title`)}</Heading>
+      { variant === 'gameover' && (<Text>{score}</Text>)}
+      <Flex alignItems="center" justifyContent="center">
         <Button 
-          text={Localization.getText('en', `${variant}.button.newgame`)} 
           onClick={() => { resetScore(); startGame(); }} 
-        />
+        >
+          {Localization.getText('en', `${variant}.button.newgame`)} 
+        </Button>
         { 
           variant === 'gameover' && 
           <Button 
-            text={Localization.getText('en', `${variant}.button.mainmenu`)} 
             onClick={() => { resetScore(); backToMainMenu(); }} 
-          />
+          >
+            {Localization.getText('en', `${variant}.button.mainmenu`)} 
+          </Button>
         }
-      </div>
-    </div>
+      </Flex>
+    </Flex>
   );
 }

@@ -4,13 +4,15 @@
     "mainmenu.button.newgame": "New Game",
     "gameover.title": "Game Over",
     "gameover.button.newgame": "New Game",
-    "gameover.button.mainmenu": "Main Menu"
+    "gameover.button.mainmenu": "Main Menu",
+    "score.label": "Current Score"
   },
   "de": {
     "mainmenu.title": "Willkommen",
     "mainmenu.button.newgame": "Neues Spiel",
     "gameover.title": "Game Over",
     "gameover.button.newgame": "Neues Spiel",
-    "gameover.button.mainmenu": "Hauptmenü"
+    "gameover.button.mainmenu": "Hauptmenü",
+    "score.label": "Punktzahl"
   }
 }

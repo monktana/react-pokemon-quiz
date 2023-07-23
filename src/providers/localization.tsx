@@ -6,6 +6,7 @@ import { LanguageKey, TextKey, useLocalization } from "@/hooks/useLocalization";
 type LocalizationContext = {
   getText: (language: LanguageKey, key: TextKey) => string
 };
+
 export const LocalizationContext = createContext<LocalizationContext>({
   getText: function (): string {
     throw new Error("Function not implemented.");

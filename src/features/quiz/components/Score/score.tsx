@@ -1,13 +1,20 @@
-type ScoreProps = {
-  currentScore: number,
-  className?: string,
-}
+import { Stat, StatGroup, StatLabel, StatNumber } from "@chakra-ui/react";
+import { useContext } from "react";
 
-export function Score({currentScore, className}: ScoreProps) {
+import { LocalizationContext } from "@/providers";
+import { useScoreStore } from "@/stores";
+
+
+export function Score() {
+  const score = useScoreStore((state) => state.score);
+  const Localization = useContext(LocalizationContext);
+  
   return (
-    <div className={`${className} text-base font-normal text-left text-slate-50`}>
-      <span className="underline decoration-slate-50 decoration-solid decoration-2 font-semibold after:content-[':'] after:no-underline">Score</span>
-      <span className="ml-2 text-lg font-bold">{currentScore}</span>
-    </div>
+    <StatGroup>
+      <Stat>
+        <StatLabel>{Localization.getText("en", "score.label")}</StatLabel>
+        <StatNumber>{score}</StatNumber>
+      </Stat>
+    </StatGroup>
   )
 }
