@@ -1,41 +1,41 @@
-import { Button, Flex, Heading, Text } from '@chakra-ui/react';
-import { useContext } from 'react';
+import { Box } from '@chakra-ui/react';
 
-import { LocalizationContext } from '@/providers';
 import { useAppStateStore, useScoreStore } from '@/stores';
 
-type MenuProps = {
-  variant: 'mainmenu' | 'gameover'
-}
-
-export function Menu({variant}: MenuProps) {
+export function Menu() {
   const startGame = useAppStateStore((state) => state.startQuiz);
-  const backToMainMenu = useAppStateStore((state) => state.openMenu);
-
-  const score = useScoreStore((state) => state.score);
   const resetScore = useScoreStore((state) => state.reset);
 
-  const Localization = useContext(LocalizationContext);
-
   return (
-    <Flex alignItems="center" justifyContent="center" gap={4} p={2}>
-      <Heading as="h1" size="4xl">{Localization.getText('en', `${variant}.title`)}</Heading>
-      { variant === 'gameover' && (<Text>{score}</Text>)}
-      <Flex alignItems="center" justifyContent="center">
-        <Button 
-          onClick={() => { resetScore(); startGame(); }} 
-        >
-          {Localization.getText('en', `${variant}.button.newgame`)} 
-        </Button>
-        { 
-          variant === 'gameover' && 
-          <Button 
-            onClick={() => { resetScore(); backToMainMenu(); }} 
-          >
-            {Localization.getText('en', `${variant}.button.mainmenu`)} 
-          </Button>
-        }
-      </Flex>
-    </Flex>
+    <Box
+      position="relative"
+      w="xs"
+      h="xs"
+      backgroundColor="white"
+      rounded="full"
+      borderWidth="6px"
+      borderColor="black"
+    >
+      <Box
+        h="50%"
+        backgroundColor="red.500"
+        borderTopRadius="full"
+      />
+      <Box
+        position="absolute"
+        top="50%"
+        left="50%"
+        transform={"translate(-50%, -50%)"}
+        w="4rem"
+        h="4rem"
+        backgroundColor="white"
+        rounded="full"
+        borderWidth="6px"
+        borderColor="black"
+        onClick={() => { resetScore(); startGame(); }}
+      />
+      {/* <Flex alignItems="center" justifyContent="center">
+      </Flex> */}
+    </Box>
   );
 }
