@@ -48,6 +48,9 @@ export function Menu() {
         borderWidth="6px"
         borderColor="black"
         onClick={() => { resetScore(); startGame(); }}
+        _hover={{
+          bg: "blue.200"
+        }}
       />
     </Box>
   );

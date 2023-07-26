@@ -111,14 +111,14 @@ export interface VersionSprites {
 }
 
 export interface PokemonSprites {
-  front_default: string | null
-  front_shiny: string | null
-  front_female: string | null
-  front_shiny_female: string | null
-  back_default: string | null
-  back_shiny: string | null
-  back_female: string | null
-  back_shiny_female: string | null
+  front_default: string | undefined
+  front_shiny: string | undefined
+  front_female: string | undefined
+  front_shiny_female: string | undefined
+  back_default: string | undefined
+  back_shiny: string | undefined
+  back_female: string | undefined
+  back_shiny_female: string | undefined
   other?: OtherPokemonSprites
   versions: VersionSprites
 }
@@ -130,19 +130,19 @@ export interface OtherPokemonSprites {
 }
 
 export interface DreamWorld {
-  front_default: string | null
-  front_female: string | null
+  front_default: string | undefined
+  front_female: string | undefined
 }
 
 interface OfficialArtwork {
-  front_default: string | null
+  front_default: string | undefined
 }
 
 export interface Home {
-  front_default: string | null
-  front_female: string | null
-  front_shiny: string | null
-  front_shiny_female: string | null
+  front_default: string | undefined
+  front_female: string | undefined
+  front_shiny: string | undefined
+  front_shiny_female: string | undefined
 }
 
 export interface GenerationISprites {
@@ -151,21 +151,21 @@ export interface GenerationISprites {
 }
 
 export interface RedBlue {
-  back_default: string | null
-  back_gray: string | null
-  back_transparent: string | null
-  front_default: string | null
-  front_gray: string | null
-  front_transparent: string | null
+  back_default: string | undefined
+  back_gray: string | undefined
+  back_transparent: string | undefined
+  front_default: string | undefined
+  front_gray: string | undefined
+  front_transparent: string | undefined
 }
 
 export interface Yellow {
-  back_default: string | null
-  back_gray: string | null
-  back_transparent: string | null
-  front_default: string | null
-  front_gray: string | null
-  front_transparent: string | null
+  back_default: string | undefined
+  back_gray: string | undefined
+  back_transparent: string | undefined
+  front_default: string | undefined
+  front_gray: string | undefined
+  front_transparent: string | undefined
 }
 
 export interface GenerationIISprites {
@@ -175,30 +175,30 @@ export interface GenerationIISprites {
 }
 
 export interface Crystal {
-  back_default: string | null
-  back_shiny: string | null
-  back_shiny_transparent: string | null
-  back_transparent: string | null
-  front_default: string | null
-  front_shiny: string | null
-  front_shiny_transparent: string | null
-  front_transparent: string | null
+  back_default: string | undefined
+  back_shiny: string | undefined
+  back_shiny_transparent: string | undefined
+  back_transparent: string | undefined
+  front_default: string | undefined
+  front_shiny: string | undefined
+  front_shiny_transparent: string | undefined
+  front_transparent: string | undefined
 }
 
 export interface Gold {
-  back_default: string | null
-  back_shiny: string | null
-  front_default: string | null
-  front_shiny: string | null
-  front_transparent: string | null
+  back_default: string | undefined
+  back_shiny: string | undefined
+  front_default: string | undefined
+  front_shiny: string | undefined
+  front_transparent: string | undefined
 }
 
 interface Silver {
-  back_default: string | null
-  back_shiny: string | null
-  front_default: string | null
-  front_shiny: string | null
-  front_transparent: string | null
+  back_default: string | undefined
+  back_shiny: string | undefined
+  front_default: string | undefined
+  front_shiny: string | undefined
+  front_transparent: string | undefined
 }
 
 export interface GenerationIIISprites {
@@ -208,22 +208,22 @@ export interface GenerationIIISprites {
 }
 
 export interface Emerald {
-  front_default: string | null
-  front_shiny: string | null
+  front_default: string | undefined
+  front_shiny: string | undefined
 }
 
 export interface FireredLeafgreen {
-  back_default: string | null
-  back_shiny: string | null
-  front_default: string | null
-  front_shiny: string | null
+  back_default: string | undefined
+  back_shiny: string | undefined
+  front_default: string | undefined
+  front_shiny: string | undefined
 }
 
 export interface RubySapphire {
-  back_default: string | null
-  back_shiny: string | null
-  front_default: string | null
-  front_shiny: string | null
+  back_default: string | undefined
+  back_shiny: string | undefined
+  front_default: string | undefined
+  front_shiny: string | undefined
 }
 
 export interface GenerationIVSprites {
@@ -233,36 +233,36 @@ export interface GenerationIVSprites {
 }
 
 export interface DiamondPearl {
-  back_default: string | null
-  back_shiny: string | null
-  back_female: string | null
-  front_default: string | null
-  front_shiny: string | null
-  back_shiny_female: string | null
-  front_female: string | null
-  front_shiny_female: string | null
+  back_default: string | undefined
+  back_shiny: string | undefined
+  back_female: string | undefined
+  front_default: string | undefined
+  front_shiny: string | undefined
+  back_shiny_female: string | undefined
+  front_female: string | undefined
+  front_shiny_female: string | undefined
 }
 
 export interface HeartgoldSoulsilver {
-  back_default: string | null
-  back_shiny: string | null
-  back_female: string | null
-  front_default: string | null
-  front_shiny: string | null
-  back_shiny_female: string | null
-  front_female: string | null
-  front_shiny_female: string | null
+  back_default: string | undefined
+  back_shiny: string | undefined
+  back_female: string | undefined
+  front_default: string | undefined
+  front_shiny: string | undefined
+  back_shiny_female: string | undefined
+  front_female: string | undefined
+  front_shiny_female: string | undefined
 }
 
 export interface Platinum {
-  back_default: string | null
-  back_shiny: string | null
-  back_female: string | null
-  front_default: string | null
-  front_shiny: string | null
-  back_shiny_female: string | null
-  front_female: string | null
-  front_shiny_female: string | null
+  back_default: string | undefined
+  back_shiny: string | undefined
+  back_female: string | undefined
+  front_default: string | undefined
+  front_shiny: string | undefined
+  back_shiny_female: string | undefined
+  front_female: string | undefined
+  front_shiny_female: string | undefined
 }
 
 export interface GenerationVSprites {
@@ -271,25 +271,25 @@ export interface GenerationVSprites {
 
 export interface BlackWhite {
   animated: Animated
-  back_default: string | null
-  back_shiny: string | null
-  back_female: string | null
-  front_default: string | null
-  front_shiny: string | null
-  back_shiny_female: string | null
-  front_female: string | null
-  front_shiny_female: string | null
+  back_default: string | undefined
+  back_shiny: string | undefined
+  back_female: string | undefined
+  front_default: string | undefined
+  front_shiny: string | undefined
+  back_shiny_female: string | undefined
+  front_female: string | undefined
+  front_shiny_female: string | undefined
 }
 
 export interface Animated {
-  back_default: string | null
-  back_shiny: string | null
-  back_female: string | null
-  front_default: string | null
-  front_shiny: string | null
-  back_shiny_female: string | null
-  front_female: string | null
-  front_shiny_female: string | null
+  back_default: string | undefined
+  back_shiny: string | undefined
+  back_female: string | undefined
+  front_default: string | undefined
+  front_shiny: string | undefined
+  back_shiny_female: string | undefined
+  front_female: string | undefined
+  front_shiny_female: string | undefined
 }
 
 export interface GenerationVISprites {
@@ -298,17 +298,17 @@ export interface GenerationVISprites {
 }
 
 export interface OmegarubyAlphasapphire {
-  front_default: string | null
-  front_female: string | null
-  front_shiny: string | null
-  front_shiny_female: string | null
+  front_default: string | undefined
+  front_female: string | undefined
+  front_shiny: string | undefined
+  front_shiny_female: string | undefined
 }
 
 export interface XY {
-  front_default: string | null
-  front_female: string | null
-  front_shiny: string | null
-  front_shiny_female: string | null
+  front_default: string | undefined
+  front_female: string | undefined
+  front_shiny: string | undefined
+  front_shiny_female: string | undefined
 }
 
 export interface GenerationVIISprites {
@@ -317,15 +317,15 @@ export interface GenerationVIISprites {
 }
 
 export interface GenerationViiIcons {
-  front_default: string | null
-  front_female: string | null
+  front_default: string | undefined
+  front_female: string | undefined
 }
 
 export interface UltraSunUltraMoon {
-  front_default: string | null
-  front_female: string | null
-  front_shiny: string | null
-  front_shiny_female: string | null
+  front_default: string | undefined
+  front_female: string | undefined
+  front_shiny: string | undefined
+  front_shiny_female: string | undefined
 }
 
 export interface GenerationVIIISprites {
@@ -333,8 +333,8 @@ export interface GenerationVIIISprites {
 }
 
 export interface GenerationViiiIcons {
-  front_default: string | null
-  front_female: string | null
+  front_default: string | undefined
+  front_female: string | undefined
 }
 
 export interface LocationAreaEncounter {
@@ -377,14 +377,14 @@ export interface PokemonForm {
 }
 
 export interface PokemonFormSprites {
-  front_default: string | null
-  front_female: string | null
-  front_shiny: string | null
-  front_shiny_female: string | null
-  back_default: string | null
-  back_female: string | null
-  back_shiny: string | null
-  back_shiny_female: string | null
+  front_default: string | undefined
+  front_female: string | undefined
+  front_shiny: string | undefined
+  front_shiny_female: string | undefined
+  back_default: string | undefined
+  back_female: string | undefined
+  back_shiny: string | undefined
+  back_shiny_female: string | undefined
 }
 
 export interface PokemonHabitat {
