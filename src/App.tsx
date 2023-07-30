@@ -15,7 +15,6 @@ function App(): JSX.Element | null {
       display="flex"
       alignItems="center"
       justifyContent="center"
-      backgroundColor="gray.300"
     >
       <Score pos="absolute" top={2} left={4} />
       { appState === 'menu' && <Menu /> }

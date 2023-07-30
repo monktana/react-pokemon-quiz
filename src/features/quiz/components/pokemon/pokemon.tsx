@@ -1,4 +1,4 @@
-import { Flex, Image, Progress, Tag, Text, VStack } from "@chakra-ui/react";
+import { Flex, Image, Progress, Tag, Text } from "@chakra-ui/react";
 import { useMemo } from "react";
 
 import { Pokemon } from "../../types";

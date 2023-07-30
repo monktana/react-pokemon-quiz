@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Tag, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, Tag, Text } from "@chakra-ui/react";
 import { Suspense, useCallback } from "react";
 
 import { useScoreStore, useAppStateStore } from "@/stores";
@@ -23,34 +23,37 @@ export function Game() {
   }, [matchup, increase, end, refetch]);
   
   return (
-    <div className="relative h-full grid bg-gradient-to-b from-yellow-100 from-0% via-slate-100 via-10% to-slate-300 to-30%">
+    <Box>
       <Suspense fallback={<>Loading...</>}>
       { matchup && 
         <>
-          <Grid>
+          <Flex flexDir="column" gap={1}>
             <Pokemon pokemon={matchup.defender} variant='defending'/>
             <Pokemon pokemon={matchup.attacker} variant='attacking'/>
-          </Grid>
-          <Box my={2}>
-            <Text>
-              {matchup.attacker.name} used 
+          </Flex>
+          <Flex flexDir="column" gap={2}>
+            <Flex gap={1} alignItems="center">
+              <Text fontWeight="bold" fontSize="3xl">
+                {matchup.attacker.name}                
+              </Text>
+              <Text> used </Text>
               <Tag borderRadius="md" variant="solid" colorScheme={matchup.move.type.name}>
                 {getMoveName(matchup.move, "en")}
               </Tag>
-            </Text>
-          </Box>
-          <Grid
-            gridTemplateColumns="repeat(2, 1fr)"
-            gap={1}
-          >
-            <Button onClick={() => guess(TypeEffectiveness.NoEffect)}>{"No Effect"}</Button>
-            <Button onClick={() => guess(TypeEffectiveness.NotVeryEffective)}>{"Not Very Effective"}</Button>
-            <Button onClick={() => guess(TypeEffectiveness.Effective)}>{"Effective"}</Button>
-            <Button onClick={() => guess(TypeEffectiveness.VeryEffective)}>{"Super Effective"}</Button>
-          </Grid>
+            </Flex>
+            <Grid
+              gridTemplateColumns="repeat(2, 1fr)"
+              gap={1}
+            >
+              <Button colorScheme="red" onClick={() => guess(TypeEffectiveness.NoEffect)}>{"No Effect"}</Button>
+              <Button colorScheme="orange" onClick={() => guess(TypeEffectiveness.NotVeryEffective)}>{"Not Very Effective"}</Button>
+              <Button colorScheme="gray" onClick={() => guess(TypeEffectiveness.Effective)}>{"Effective"}</Button>
+              <Button colorScheme="green" onClick={() => guess(TypeEffectiveness.VeryEffective)}>{"Super Effective"}</Button>
+            </Grid>
+          </Flex>
         </>
       }
       </Suspense>
-    </div>
+    </Box>
   );
 }
