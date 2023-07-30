@@ -1,10 +1,11 @@
-import { Box, Button, Flex, Grid, Tag, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, Tag, TagLabel, TagLeftIcon, Text } from "@chakra-ui/react";
 import { Suspense, useCallback } from "react";
 
 import { useScoreStore, useAppStateStore } from "@/stores";
 
 import { useMatchup } from "../../api";
 import { TypeEffectiveness, getAttackEffectiveness } from "../../utils";
+import { TypeIcon } from "../icons/TypeIcon";
 import { Pokemon } from "../pokemon";
 import { getMoveName } from "../pokemon/util";
 
@@ -34,11 +35,12 @@ export function Game() {
           <Flex flexDir="column" gap={2}>
             <Flex gap={1} alignItems="center">
               <Text fontWeight="bold" fontSize="3xl">
-                {matchup.attacker.name}                
+                {matchup.attacker.name}
               </Text>
               <Text> used </Text>
               <Tag borderRadius="md" variant="solid" colorScheme={matchup.move.type.name}>
-                {getMoveName(matchup.move, "en")}
+                <TagLeftIcon as={TypeIcon} name={matchup.move.type.name} />
+                <TagLabel>{getMoveName(matchup.move, "en")}</TagLabel>
               </Tag>
             </Flex>
             <Grid

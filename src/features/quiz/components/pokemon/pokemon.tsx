@@ -1,7 +1,8 @@
-import { Flex, Image, Progress, Tag, Text } from "@chakra-ui/react";
+import { Flex, Image, Progress, Tag, TagLabel, TagLeftIcon, Text } from "@chakra-ui/react";
 import { useMemo } from "react";
 
 import { Pokemon } from "../../types";
+import { TypeIcon } from "../icons/TypeIcon";
 
 type PokemonProps = {
   pokemon: Pokemon,
@@ -21,28 +22,34 @@ export function Pokemon({pokemon, variant}: PokemonProps) {
     <Flex
       flexDir={(variant === 'attacking') ? 'row' : 'row-reverse'}
       justifyContent="space-between"
+      alignItems="center"
+      flexGrow={1}
+      gap={1}
     >
       <Image boxSize="150px" src={sprite} alt={pokemon.name}/>
       <Flex
         gap={1}
         flexDirection="column"
-        height="fit-content"
+        width="full"
         padding={1}
         backgroundColor="white"
         border="1px solid"
         borderColor="black"
         rounded="md"
       >
-        <Text>{pokemon.name.toUpperCase()}</Text>
+        <Text fontWeight="bold">{pokemon.name.toUpperCase()}</Text>
         <Progress value={80} size="sm" colorScheme="green" />
         <Flex gap={1}>
           {
             pokemon.types.map(type => (
-              <Tag key={type.type.url} colorScheme={type.type.name} borderRadius="md">{type.type.name}</Tag>
+              <Tag key={type.type.url} colorScheme={type.type.name} borderRadius="md">
+                <TagLeftIcon as={TypeIcon} type={type.type.name} />
+                <TagLabel>{type.type.name}</TagLabel>
+              </Tag>
             ))
           }
         </Flex>
-      </Flex>
+      </Flex> 
     </Flex>
   )
 }
