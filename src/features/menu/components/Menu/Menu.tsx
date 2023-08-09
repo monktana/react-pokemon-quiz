@@ -26,16 +26,11 @@ export function Menu() {
       position="relative"
       w="xs"
       h="xs"
-      backgroundColor="white"
       rounded="full"
       borderWidth="6px"
       borderColor="black"
+      bgGradient="linear(red.500 0%, red.500 50%, white 50%)"
     >
-      <Box
-        h="50%"
-        backgroundColor="red.500"
-        borderTopRadius="full"
-      />
       <Button
         position="absolute"
         top="50%"
