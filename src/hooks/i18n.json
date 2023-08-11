@@ -5,7 +5,11 @@
     "gameover.title": "Game Over",
     "gameover.button.newgame": "New Game",
     "gameover.button.mainmenu": "Main Menu",
-    "score.label": "Score"
+    "score.label": "Score",
+    "types.effectiveness.noeffect": "No effect",
+    "types.effectiveness.noteffective": "Not very effective",
+    "types.effectiveness.effective": "Effective",
+    "types.effectiveness.supereffective": "Super effective"
   },
   "de": {
     "mainmenu.title": "Willkommen",
@@ -13,6 +17,10 @@
     "gameover.title": "Game Over",
     "gameover.button.newgame": "Neues Spiel",
     "gameover.button.mainmenu": "Hauptmenü",
-    "score.label": "Punktzahl"
+    "score.label": "Punktzahl",
+    "types.effectiveness.noeffect": "Kein Effekt",
+    "types.effectiveness.noteffective": "Nicht sehr effektiv",
+    "types.effectiveness.effective": "Effektiv",
+    "types.effectiveness.supereffective": "Sehr effektiv"
   }
 }

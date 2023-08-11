@@ -6,7 +6,7 @@ export enum TypeEffectiveness {
   NoEffect,
   NotVeryEffective,
   Effective,
-  VeryEffective
+  SuperEffective
 }
 
 export const getAttackEffectiveness = (move: Move, defending: Pokemon): TypeEffectiveness => {
@@ -21,16 +21,16 @@ export const getAttackEffectiveness = (move: Move, defending: Pokemon): TypeEffe
       return TypeEffectiveness.Effective;
     case 2:
     case 4:
-      return TypeEffectiveness.VeryEffective;
+      return TypeEffectiveness.SuperEffective;
     default:
       throw new Error("invalid type multiplier");
   }
 };
 
 const getAttackMultiplier = (move: Move, defending: Pokemon): number => {
-  return defending.types.reduce((prev, defendingType) => 
+  return defending.types.reduce((prev, defendingType) =>
     prev * getTypeMatchupMultiplier(move.type.name, defendingType)
-  , 1);
+    , 1);
 };
 
 const getTypeMatchupMultiplier = (attackingType: string, defendingType: PokemonType): number => {
