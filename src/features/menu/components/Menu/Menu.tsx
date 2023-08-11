@@ -1,6 +1,7 @@
 import { Box, Button, keyframes } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 
+import { useLocalization } from '@/hooks/useLocalization';
 import { useAppStateStore, useScoreStore } from '@/stores';
 
 const animationKeyframes = keyframes`
@@ -18,35 +19,49 @@ const animation = `${animationKeyframes} 4s ease-in-out infinite`;
 export function Menu() {
   const startGame = useAppStateStore((state) => state.startQuiz);
   const resetScore = useScoreStore((state) => state.reset);
+  const { getText } = useLocalization();
 
   return (
-    <Box
-      as={motion.div}
-      animation={animation}
-      position="relative"
-      w="xs"
-      h="xs"
-      rounded="full"
-      borderWidth="6px"
-      borderColor="black"
-      bgGradient="linear(red.500 0%, red.500 50%, white 50%)"
-    >
-      <Button
-        position="absolute"
-        top="50%"
-        left="50%"
-        transform={"translate(-50%, -50%)"}
-        w="4rem"
-        h="4rem"
-        bg="white"
+    <Box>
+      <Box
+        as={motion.div}
+        animation={animation}
+        position="relative"
+        w="xs"
+        h="xs"
         rounded="full"
         borderWidth="6px"
         borderColor="black"
+        bgGradient="linear(red.500 0%, red.500 50%, white 50%)"
+      >
+        <Button
+          position="absolute"
+          top="50%"
+          left="50%"
+          transform={"translate(-50%, -50%)"}
+          w="4rem"
+          h="4rem"
+          bg="white"
+          rounded="full"
+          borderWidth="6px"
+          borderColor="black"
+          _hover={{
+            bg: "blue.200"
+          }}
+        />
+      </Box>
+      <Button
+        width="xs"
+        height="12"
+        mt="8"
+        fontSize="lg"
+        rounded="md"
+        color="white"
+        backgroundColor="#393939"
         onClick={() => { resetScore(); startGame(); }}
-        _hover={{
-          bg: "blue.200"
-        }}
-      />
+      >
+        {getText("en", "mainmenu.button.newgame")}
+      </Button>
     </Box>
   );
 }
