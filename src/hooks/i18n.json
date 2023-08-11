@@ -1,11 +1,11 @@
 {
   "en": {
     "mainmenu.title": "Welcome",
-    "mainmenu.button.newgame": "New Game",
+    "mainmenu.button.newgame": "Tap to play",
     "gameover.title": "Game Over",
     "gameover.button.newgame": "New Game",
     "gameover.button.mainmenu": "Main Menu",
-    "score.label": "Current Score"
+    "score.label": "Score"
   },
   "de": {
     "mainmenu.title": "Willkommen",

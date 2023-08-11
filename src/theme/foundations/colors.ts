@@ -1,4 +1,5 @@
 export default {
+  background: '#2A2A2C',
   'normal': {
     50: '#f5f5f0',
     100: '#e1e0d1',

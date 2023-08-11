@@ -1,44 +1,29 @@
-import { Flex, Image, Progress, Tag, TagLabel, TagLeftIcon, Text } from "@chakra-ui/react";
-import { useMemo } from "react";
+import { Flex, Image, Tag, TagLabel, TagLeftIcon, Text, VStack } from "@chakra-ui/react";
 
 import { Pokemon } from "../../types";
 import { TypeIcon } from "../icons/TypeIcon";
 
 type PokemonProps = {
-  pokemon: Pokemon,
-  variant: 'attacking' | 'defending'
+  pokemon: Pokemon
 }
 
-export function Pokemon({pokemon, variant}: PokemonProps) {
-  const sprite = useMemo(() => {
-    if (variant === 'attacking') {
-      return pokemon.sprites.back_default;
-    }
-    return pokemon.sprites.front_default;
-  }, [pokemon.sprites.back_default, pokemon.sprites.front_default, variant]);
-
-
+export function Pokemon({pokemon}: PokemonProps) {
   return (
-    <Flex
-      flexDir={(variant === 'attacking') ? 'row' : 'row-reverse'}
+    <VStack
+      spacing={1}
       justifyContent="space-between"
       alignItems="center"
-      flexGrow={1}
-      gap={1}
+      padding={2}
+      rounded="md"
+      backgroundColor="#393939"
     >
-      <Image boxSize="150px" src={sprite} alt={pokemon.name}/>
+      <Image boxSize="200px" src={pokemon.sprites.front_default} alt={pokemon.name}/>
       <Flex
         gap={1}
         flexDirection="column"
         width="full"
-        padding={1}
-        backgroundColor="white"
-        border="1px solid"
-        borderColor="black"
-        rounded="md"
       >
-        <Text fontWeight="bold">{pokemon.name.toUpperCase()}</Text>
-        <Progress value={80} size="sm" colorScheme="green" />
+        <Text color="white" fontWeight="bold" fontSize="2xl">{pokemon.name.toUpperCase()}</Text>
         <Flex gap={1}>
           {
             pokemon.types.map(type => (
@@ -50,6 +35,6 @@ export function Pokemon({pokemon, variant}: PokemonProps) {
           }
         </Flex>
       </Flex> 
-    </Flex>
+    </VStack>
   )
 }
