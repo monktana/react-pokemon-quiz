@@ -1,5 +1,6 @@
 import { Container } from '@chakra-ui/react'
 
+import { GameOver } from '@/features/gameover'
 import { Menu } from '@/features/menu'
 import { Game } from '@/features/quiz'
 
@@ -17,7 +18,7 @@ function App(): JSX.Element | null {
     >
       { appState === 'menu' && <Menu /> }
       { appState === 'quiz' && <Game /> }
-      { appState === 'gameover' && <Menu /> }
+      { appState === 'gameover' && <GameOver /> }
     </Container>
   )
 }

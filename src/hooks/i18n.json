@@ -1,9 +1,10 @@
 {
   "en": {
     "mainmenu.title": "Welcome",
-    "mainmenu.button.newgame": "Tap to play",
+    "mainmenu.button.newgame": "Click to play",
     "gameover.title": "Game Over",
-    "gameover.button.newgame": "New Game",
+    "gameover.text.blackout": "you blacked out...",
+    "gameover.button.newgame": "Try again",
     "gameover.button.mainmenu": "Main Menu",
     "score.label": "Score",
     "types.effectiveness.noeffect": "No effect",
@@ -14,7 +15,7 @@
   "de": {
     "mainmenu.title": "Willkommen",
     "mainmenu.button.newgame": "Neues Spiel",
-    "gameover.title": "Game Over",
+    "gameover.text.blackout": "you blacked out...",
     "gameover.button.newgame": "Neues Spiel",
     "gameover.button.mainmenu": "Hauptmenü",
     "score.label": "Punktzahl",

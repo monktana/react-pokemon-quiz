@@ -54,7 +54,7 @@ export function Menu() {
         fontSize="lg"
         rounded="md"
         color="font.100"
-        backgroundColor="background.500"
+        backgroundColor="background.100"
         onClick={() => { resetScore(); startGame(); }}
       >
         {getText("en", "mainmenu.button.newgame").toUpperCase()}
