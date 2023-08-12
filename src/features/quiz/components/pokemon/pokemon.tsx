@@ -4,24 +4,29 @@ import { Pokemon } from "../../types";
 import { TypeIcon } from "../icons/TypeIcon";
 
 type PokemonProps = {
-  pokemon: Pokemon
+  pokemon: Pokemon,
+  variant: "attack" | "defend"
 }
 
-export function Pokemon({pokemon}: PokemonProps) {
+export function Pokemon({pokemon, variant}: PokemonProps) {
+
+  const sprite = variant === "attack" ? pokemon.sprites.back_default : pokemon.sprites.front_default;
+
   return (
-    <VStack
-      spacing={1}
-      justifyContent="space-between"
+    <Flex
+      gap={1}
+      flexDirection={variant === "attack" ? "row" : "row-reverse"}
       alignItems="center"
       padding={2}
+      width="full"
       rounded="md"
       backgroundColor="#393939"
     >
-      <Image boxSize="200px" src={pokemon.sprites.front_default} alt={pokemon.name}/>
-      <Flex
-        gap={1}
-        flexDirection="column"
+      <Image boxSize="200px" src={sprite} alt={pokemon.name}/>
+      <VStack
+        spacing={1}
         width="full"
+        align="flex-start"
       >
         <Text color="white" fontWeight="bold" fontSize="2xl">{pokemon.name.toUpperCase()}</Text>
         <Flex gap={1}>
@@ -34,7 +39,7 @@ export function Pokemon({pokemon}: PokemonProps) {
             ))
           }
         </Flex>
-      </Flex> 
-    </VStack>
+      </VStack> 
+    </Flex>
   )
 }

@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Grid, VStack } from "@chakra-ui/react";
+import { Box, Button, Grid, VStack } from "@chakra-ui/react";
 import { Suspense, useCallback } from "react";
 
 import { useLocalization } from "@/hooks/useLocalization";
@@ -32,10 +32,8 @@ export function Game() {
       <Suspense fallback={<>Loading...</>}>
       { matchup && 
         <VStack>
-          <Flex gap={2}>
-            <Pokemon pokemon={matchup.attacker} />
-            <Pokemon pokemon={matchup.defender} />
-          </Flex>
+          <Pokemon pokemon={matchup.defender} variant="defend" />
+          <Pokemon pokemon={matchup.attacker} variant="attack" />
           <Attack attacker={matchup.attacker} move={matchup.move} />
           <Grid
             gridTemplateColumns="repeat(2, 1fr)"
@@ -43,10 +41,10 @@ export function Game() {
             width="full"
             rounded="md"
           >
-            <Button backgroundColor="#393939" onClick={() => guess(TypeEffectiveness.NoEffect)}>{getText('en', 'types.effectiveness.noeffect')}</Button>
-            <Button backgroundColor="#393939" onClick={() => guess(TypeEffectiveness.NotVeryEffective)}>{getText('en', 'types.effectiveness.noteffective')}</Button>
-            <Button backgroundColor="#393939" onClick={() => guess(TypeEffectiveness.Effective)}>{getText('en', 'types.effectiveness.effective')}</Button>
-            <Button backgroundColor="#393939" onClick={() => guess(TypeEffectiveness.SuperEffective)}>{getText('en', 'types.effectiveness.supereffective')}</Button>
+            <Button backgroundColor="#393939" color="fire.300" onClick={() => guess(TypeEffectiveness.NoEffect)}>{getText('en', 'types.effectiveness.noeffect')}</Button>
+            <Button backgroundColor="#393939" color="electric.300" onClick={() => guess(TypeEffectiveness.NotVeryEffective)}>{getText('en', 'types.effectiveness.noteffective')}</Button>
+            <Button backgroundColor="#393939" color="grass.300" onClick={() => guess(TypeEffectiveness.Effective)}>{getText('en', 'types.effectiveness.effective')}</Button>
+            <Button backgroundColor="#393939" color="water.300" onClick={() => guess(TypeEffectiveness.SuperEffective)}>{getText('en', 'types.effectiveness.supereffective')}</Button>
           </Grid>
         </VStack>
       }
