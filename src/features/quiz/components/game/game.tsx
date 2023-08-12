@@ -36,15 +36,19 @@ export function Game() {
           <Pokemon pokemon={matchup.attacker} variant="attack" />
           <Attack attacker={matchup.attacker} move={matchup.move} />
           <Grid
-            gridTemplateColumns="repeat(2, 1fr)"
             gap={2}
+            gridTemplateColumns="repeat(2, 1fr)"
+            padding={2}
             width="full"
             rounded="md"
+            border="1px solid"
+            borderColor="border"
+            backgroundColor="background.500"
           >
-            <Button backgroundColor="#393939" color="fire.300" onClick={() => guess(TypeEffectiveness.NoEffect)}>{getText('en', 'types.effectiveness.noeffect')}</Button>
-            <Button backgroundColor="#393939" color="electric.300" onClick={() => guess(TypeEffectiveness.NotVeryEffective)}>{getText('en', 'types.effectiveness.noteffective')}</Button>
-            <Button backgroundColor="#393939" color="grass.300" onClick={() => guess(TypeEffectiveness.Effective)}>{getText('en', 'types.effectiveness.effective')}</Button>
-            <Button backgroundColor="#393939" color="water.300" onClick={() => guess(TypeEffectiveness.SuperEffective)}>{getText('en', 'types.effectiveness.supereffective')}</Button>
+            <Button backgroundColor="background.100" color="fire.300" onClick={() => guess(TypeEffectiveness.NoEffect)}>{getText('en', 'types.effectiveness.noeffect')}</Button>
+            <Button backgroundColor="background.100" color="electric.300" onClick={() => guess(TypeEffectiveness.NotVeryEffective)}>{getText('en', 'types.effectiveness.noteffective')}</Button>
+            <Button backgroundColor="background.100" color="grass.300" onClick={() => guess(TypeEffectiveness.Effective)}>{getText('en', 'types.effectiveness.effective')}</Button>
+            <Button backgroundColor="background.100" color="water.300" onClick={() => guess(TypeEffectiveness.SuperEffective)}>{getText('en', 'types.effectiveness.supereffective')}</Button>
           </Grid>
         </VStack>
       }

@@ -6,7 +6,7 @@ const styles: Styles = {
       boxSizing: 'border-box',
     },
     'html, body': {
-      bgColor: 'background',
+      bgColor: 'background.900',
     },
     'img': {
       imageRendering: 'pixelated'

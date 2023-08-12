@@ -20,7 +20,9 @@ export function Pokemon({pokemon, variant}: PokemonProps) {
       padding={2}
       width="full"
       rounded="md"
-      backgroundColor="#393939"
+      border="1px solid"
+      borderColor="border"
+      backgroundColor="background.500"
     >
       <Image boxSize="200px" src={sprite} alt={pokemon.name}/>
       <VStack

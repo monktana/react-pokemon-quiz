@@ -11,14 +11,16 @@ type AttackProps = {
 
 export function Attack({attacker, move}: AttackProps) {
   return (
-    <Flex
+  <Flex
     gap={1}
     alignItems="center"
     padding={2}
     width="full"
     rounded="md"
-    color="white"
-    backgroundColor="#393939"
+    color="font.100"
+    border="1px solid"
+    borderColor="border"
+    backgroundColor="background.500"
   >
     <Text fontSize="3xl">
       {attacker.name}

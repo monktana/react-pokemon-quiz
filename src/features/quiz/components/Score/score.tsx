@@ -12,8 +12,8 @@ export function Score(props: StatGroupProps) {
   return (
     <StatGroup {...props}>
       <Stat>
-        <StatLabel>{Localization.getText("en", "score.label")}</StatLabel>
-        <StatNumber>{score}</StatNumber>
+        <StatLabel color="font.500">{Localization.getText("en", "score.label")}</StatLabel>
+        <StatNumber color="font.100">{score}</StatNumber>
       </Stat>
     </StatGroup>
   )

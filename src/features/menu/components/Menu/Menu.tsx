@@ -27,27 +27,24 @@ export function Menu() {
         as={motion.div}
         animation={animation}
         position="relative"
-        w="xs"
-        h="xs"
+        width="xs"
+        height="xs"
         rounded="full"
         borderWidth="6px"
         borderColor="black"
         bgGradient="linear(red.500 0%, red.500 50%, white 50%)"
       >
-        <Button
+        <Box
           position="absolute"
           top="50%"
           left="50%"
           transform={"translate(-50%, -50%)"}
-          w="4rem"
-          h="4rem"
+          width="4rem"
+          height="4rem"
           bg="white"
           rounded="full"
           borderWidth="6px"
           borderColor="black"
-          _hover={{
-            bg: "blue.200"
-          }}
         />
       </Box>
       <Button
@@ -56,11 +53,11 @@ export function Menu() {
         mt="8"
         fontSize="lg"
         rounded="md"
-        color="white"
-        backgroundColor="#393939"
+        color="font.100"
+        backgroundColor="background.500"
         onClick={() => { resetScore(); startGame(); }}
       >
-        {getText("en", "mainmenu.button.newgame")}
+        {getText("en", "mainmenu.button.newgame").toUpperCase()}
       </Button>
     </Box>
   );

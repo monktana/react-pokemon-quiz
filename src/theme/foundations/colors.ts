@@ -1,5 +1,15 @@
 export default {
-  background: '#2A2A2C',
+  border: '#484848',
+  font: {
+    100: '#ffffff',
+    500: '#C4C4C4',
+    900: '#919191'
+  },
+  background: {
+    100: '#2E2E2E',
+    500: '#202020',
+    900: '#171717'
+  },
   'normal': {
     50: '#f5f5f0',
     100: '#e1e0d1',
