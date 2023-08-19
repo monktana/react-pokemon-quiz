@@ -1,4 +1,4 @@
-import { Box, Button, keyframes } from '@chakra-ui/react';
+import { Box, Button, Center, VStack, keyframes } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 
 import { useLocalization } from '@/hooks/useLocalization';
@@ -22,7 +22,7 @@ export function Menu() {
   const { getText } = useLocalization();
 
   return (
-    <Box>
+    <VStack spacing={2}>
       <Box
         as={motion.div}
         animation={animation}
@@ -47,18 +47,16 @@ export function Menu() {
           borderColor="black"
         />
       </Box>
-      <Button
-        width="xs"
-        height="12"
-        mt="8"
-        fontSize="lg"
-        rounded="md"
-        color="font.100"
-        backgroundColor="background.100"
-        onClick={() => { resetScore(); startGame(); }}
-      >
-        {getText("en", "mainmenu.button.newgame").toUpperCase()}
-      </Button>
-    </Box>
+      <Center>
+        <Button
+          size="lg"
+          variant="primary"
+          mt="8"
+          onClick={() => { resetScore(); startGame(); }}
+        >
+          {getText("en", "mainmenu.button.newgame").toUpperCase()}
+        </Button>
+      </Center>
+    </VStack>
   );
 }
