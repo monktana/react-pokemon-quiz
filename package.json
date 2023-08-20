@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gen:theme-typings": "chakra-cli tokens ./src/theme/index.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.0",
@@ -21,6 +22,7 @@
     "zustand": "^4.3.6"
   },
   "devDependencies": {
+    "@chakra-ui/cli": "^2.4.1",
     "@types/node": "^20.0.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
