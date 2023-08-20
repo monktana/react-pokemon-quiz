@@ -17,7 +17,7 @@ const baseStyleContainer = defineStyle({
   borderRadius: $radius.reference,
   borderWidth: $border.reference,
   borderColor: $borderColor.reference,
-  [$bg.variable]: "colors.background.500",
+  [$bg.variable]: "background.500",
   backgroundColor: $bg.reference,
 });
 const baseStyleImage = defineStyle({
