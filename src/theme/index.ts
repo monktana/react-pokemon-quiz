@@ -2,6 +2,7 @@
 import { extendTheme } from '@chakra-ui/react';
 
 import { Button } from "./components/Button";
+import { Pokemon } from "./components/Pokemon";
 // Global style overrides
 import colors from './foundations/colors';
 import styles from './styles';
@@ -12,7 +13,8 @@ const overrides = {
   colors,
   // Other foundational style overrides go here
   components: {
-    Button
+    Button,
+    Pokemon
   },
 }
 

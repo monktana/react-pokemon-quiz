@@ -1,36 +1,23 @@
-import { Flex, Image, Tag, TagLabel, TagLeftIcon, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Image, ResponsiveValue, Tag, TagLabel, TagLeftIcon, Text, useMultiStyleConfig } from "@chakra-ui/react";
 
 import { Pokemon } from "../../types";
 import { TypeIcon } from "../icons/TypeIcon";
 
 type PokemonProps = {
   pokemon: Pokemon,
-  variant: "attack" | "defend"
+  variant: ResponsiveValue<"attack" | "defend">,
 }
 
 export function Pokemon({pokemon, variant}: PokemonProps) {
 
+  const styles = useMultiStyleConfig('Pokemon', { variant })
   const sprite = variant === "attack" ? pokemon.sprites.back_default : pokemon.sprites.front_default;
 
   return (
-    <Flex
-      gap={1}
-      flexDirection={variant === "attack" ? "row" : "row-reverse"}
-      alignItems="center"
-      padding={2}
-      width="full"
-      rounded="md"
-      border="1px solid"
-      borderColor="border"
-      backgroundColor="background.500"
-    >
-      <Image boxSize="200px" src={sprite} alt={pokemon.name}/>
-      <VStack
-        spacing={1}
-        width="full"
-        align="flex-start"
-      >
-        <Text color="white" fontWeight="bold" fontSize="2xl">{pokemon.name.toUpperCase()}</Text>
+    <Box __css={styles.container} >
+      <Image __css={styles.image} src={sprite} alt={pokemon.name}/>
+      <Box __css={styles.infoContainer}>
+        <Text fontWeight="bold" fontSize="2xl">{pokemon.name.toUpperCase()}</Text>
         <Flex gap={1}>
           {
             pokemon.types.map(type => (
@@ -41,7 +28,7 @@ export function Pokemon({pokemon, variant}: PokemonProps) {
             ))
           }
         </Flex>
-      </VStack> 
-    </Flex>
+      </Box> 
+    </Box>
   )
 }
