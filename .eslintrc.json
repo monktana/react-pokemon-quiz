@@ -52,14 +52,6 @@
         "plugin:jest-dom/recommended"
       ],
       "rules": {
-        "no-restricted-imports": [
-          "error",
-          {
-            "patterns": [
-              "@/features/*/*"
-            ]
-          }
-        ],
         "react/prop-types": "off",
         "import/order": [
           "error",
