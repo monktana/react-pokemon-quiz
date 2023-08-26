@@ -6,8 +6,8 @@ import { useScoreStore, useAppStateStore } from "@/stores";
 
 import { useMatchup } from "../../api";
 import { TypeEffectiveness, getAttackEffectiveness } from "../../utils";
-import { Attack } from "../attack";
 import { Pokemon } from "../pokemon";
+import { Question } from "../question";
 import { Score } from "../score";
 
 export function Game() {
@@ -28,13 +28,13 @@ export function Game() {
   
   return (
     <Box>
-      <Score />
       <Suspense fallback={<>Loading...</>}>
       { matchup && 
-        <VStack>
+        <VStack align="start">
+          <Score />
           <Pokemon pokemon={matchup.defender} variant="defend" />
           <Pokemon pokemon={matchup.attacker} variant="attack" />
-          <Attack attacker={matchup.attacker} move={matchup.move} />
+          <Question attacker={matchup.attacker} move={matchup.move} />
           <Grid
             gap={2}
             gridTemplateColumns="repeat(2, 1fr)"
