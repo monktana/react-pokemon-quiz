@@ -10,7 +10,7 @@ export default {
     500: '#202020',
     900: '#171717'
   },
-  'normal': {
+  normal: {
     50: '#f5f5f0',
     100: '#e1e0d1',
     200: '#cdccb2',
@@ -22,7 +22,7 @@ export default {
     800: '#2e2e1e',
     900: '#0f0f0a',
   },
-  'fire': {
+  fire: {
     50:  '#fdf1e7',
     100: '#f9d4b8',
     200: '#f5b789',
@@ -34,7 +34,7 @@ export default {
     800: '#472106',
     900: '#180b02',
   },
-  'water': {
+  water: {
     50:  '#e8eefd',
     100: '#b9cdf8',
     200: '#8bacf4',
@@ -46,7 +46,7 @@ export default {
     800: '#071b46',
     900: '#020917',
   },
-  'electric': {
+  electric: {
     50:  '#fefae6',
     100: '#fcefb5',
     200: '#fae484',
@@ -58,7 +58,7 @@ export default {
     800: '#4a3c03',
     900: '#191401',
   },
-  'grass': {
+  grass: {
     50:  '#f2f9ed',
     100: '#d8eeca',
     200: '#bde3a7',
@@ -70,7 +70,7 @@ export default {
     800: '#32581c',
     900: '#1e3511',
   },
-  'ice': {
+  ice: {
     50:  '#eef9f8',
     100: '#ccedeb',
     200: '#aae0de',
@@ -82,7 +82,7 @@ export default {
     800: '#1f5553',
     900: '#123332',
   },
-  'fighting': {
+  fighting: {
     50:  '#fbecec',
     100: '#f3c7c5',
     200: '#eba29f',
@@ -94,7 +94,7 @@ export default {
     800: '#601714',
     900: '#3a0e0c',
   },
-  'poison': {
+  poison: {
     50:  '#f9eef8',
     100: '#eccdeb',
     200: '#dfabde',
@@ -106,7 +106,7 @@ export default {
     800: '#542053',
     900: '#321332',
   },
-  'ground': {
+  ground: {
     50:  '#fbf7eb',
     100: '#f4e7c4',
     200: '#edd69d',
@@ -118,7 +118,7 @@ export default {
     800: '#624b12',
     900: '#3a2d0b',
   },
-  'flying': {
+  flying: {
     50:  '#efeafd',
     100: '#cfc0f8',
     200: '#af96f4',
@@ -130,7 +130,7 @@ export default {
     800: '#240b69',
     900: '#15073f',
   },
-  'psychic': {
+  psychic: {
     50:  '#fee9ef',
     100: '#fdbcd0',
     200: '#fb8fb0',
@@ -142,7 +142,7 @@ export default {
     800: '#700425',
     900: '#430216',
   },
-  'bug': {
+  bug: {
     50:  '#fafceb',
     100: '#f0f6c2',
     200: '#e6f199',
@@ -154,7 +154,7 @@ export default {
     800: '#5b660e',
     900: '#373d09',
   },
-  'rock': {
+  rock: {
     50:  '#faf8ed',
     100: '#efe9c9',
     200: '#e4daa6',
@@ -166,7 +166,7 @@ export default {
     800: '#594f1b',
     900: '#362f10',
   },
-  'ghost': {
+  ghost: {
     50:  '#f3f0f7',
     100: '#dbd3e6',
     200: '#c3b5d5',
@@ -178,7 +178,7 @@ export default {
     800: '#382a4a',
     900: '#22192c',
   },
-  'dragon': {
+  dragon: {
     50:  '#efe8ff',
     100: '#cebafe',
     200: '#ae8dfd',
@@ -190,7 +190,7 @@ export default {
     800: '#220272',
     900: '#150144',
   },
-  'dark': {
+  dark: {
     50:  '#f6f3f1',
     100: '#e4dbd4',
     200: '#d2c2b8',
@@ -202,7 +202,7 @@ export default {
     800: '#47372d',
     900: '#2b211b',
   },
-  'steel': {
+  steel: {
     50:  '#f1f1f6',
     100: '#d6d6e3',
     200: '#babad0',
@@ -214,7 +214,7 @@ export default {
     800: '#2f2f45',
     900: '#1c1c29',
   },
-  'fairy': {
+  fairy: {
     50:  '#f9eef3',
     100: '#eecbdc',
     200: '#e2a8c5',

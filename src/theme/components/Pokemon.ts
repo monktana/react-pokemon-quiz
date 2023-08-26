@@ -1,27 +1,19 @@
-import { cssVar, createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/styled-system';
+import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/styled-system';
 
 const { definePartsStyle, defineMultiStyleConfig } = 
   createMultiStyleConfigHelpers(["container", "image", "infoContainer"]);
-
-const $bg = cssVar("container-bg");
-const $padding = cssVar("container-padding");
-const $radius = cssVar("container-radius");
-const $border = cssVar("card-border-width", "0");
-const $borderColor = cssVar("card-border-color");
 
 const baseStyleContainer = defineStyle({
   display: "flex",
   alignItems: "center",
   width: "full",
-  padding: $padding.reference,
-  borderRadius: $radius.reference,
-  borderWidth: $border.reference,
-  borderColor: $borderColor.reference,
-  [$bg.variable]: "background.500",
-  backgroundColor: $bg.reference,
+  borderRadius: "md",
+  borderWidth: "1px",
+  borderColor: "border",
+  backgroundColor: "background.500",
 });
 const baseStyleImage = defineStyle({
-  boxSize: "200px"
+  boxSize: "200px",
 });
 const baseStyleInfoContainer = defineStyle({
   display: "flex",
@@ -40,8 +32,7 @@ const baseStyle = definePartsStyle({
 const sizes = {
   sm: definePartsStyle({
     container: {
-      [$radius.variable]: "radii.md",
-      [$padding.variable]: "space.1",
+      padding: 1,
     },
     image: {
       boxSize: "100px"
@@ -52,8 +43,7 @@ const sizes = {
   }),
   md: definePartsStyle({
     container: {
-      [$radius.variable]: "radii.md",
-      [$padding.variable]: "space.2",
+      padding: 2,
     },
     image: {
       boxSize: "200px"
@@ -64,8 +54,7 @@ const sizes = {
   }),
   lg: definePartsStyle({
     container: {
-      [$radius.variable]: "radii.base",
-      [$padding.variable]: "space.4",
+      padding: 4,
     },
     image: {
       boxSize: "300px"
