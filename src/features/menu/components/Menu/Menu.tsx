@@ -2,7 +2,7 @@ import { Box, Button, Center, VStack, keyframes } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 
 import { useLocalization } from '@/hooks/useLocalization';
-import { useAppStateStore, useScoreStore } from '@/stores';
+import { useAppStateStore, useLanguageStore, useScoreStore } from '@/stores';
 
 const animationKeyframes = keyframes`
   0% { transform: rotate(0) }
@@ -19,6 +19,7 @@ const animation = `${animationKeyframes} 4s ease-in-out infinite`;
 export function Menu() {
   const startGame = useAppStateStore((state) => state.startQuiz);
   const resetScore = useScoreStore((state) => state.reset);
+  const language = useLanguageStore((state) => state.language);
   const { getText } = useLocalization();
 
   return (
@@ -54,7 +55,7 @@ export function Menu() {
           mt="8"
           onClick={() => { resetScore(); startGame(); }}
         >
-          {getText("en", "mainmenu.button.newgame").toUpperCase()}
+          {getText(language, "mainmenu.button.newgame").toUpperCase()}
         </Button>
       </Center>
     </VStack>

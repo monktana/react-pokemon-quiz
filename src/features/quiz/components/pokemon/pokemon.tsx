@@ -9,7 +9,6 @@ type PokemonProps = {
 }
 
 export function Pokemon({pokemon, variant}: PokemonProps) {
-
   const styles = useMultiStyleConfig('Pokemon', { variant })
   const sprite = variant === "attack" ? pokemon.sprites.back_default : pokemon.sprites.front_default;
 

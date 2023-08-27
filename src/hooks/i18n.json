@@ -16,6 +16,7 @@
   "de": {
     "mainmenu.title": "Willkommen",
     "mainmenu.button.newgame": "Neues Spiel",
+    "gameover.title": "Verloren",
     "gameover.text.blackout": "Du hast keine kampffähigen Pokemon mehr...",
     "gameover.text.score": "Dein Endergebnis ist",
     "gameover.button.newgame": "Neues Spiel",

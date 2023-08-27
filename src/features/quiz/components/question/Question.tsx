@@ -1,5 +1,7 @@
 import { Flex, Tag, TagLeftIcon, TagLabel, Text } from "@chakra-ui/react";
 
+import { useLanguageStore } from "@/stores";
+
 import { Move, Pokemon } from "../../types";
 import { TypeIcon } from "../icons/TypeIcon";
 import { getMoveName } from "../pokemon/util";
@@ -10,6 +12,8 @@ type AttackProps = {
 }
 
 export function Question({attacker, move}: AttackProps) {
+  const language = useLanguageStore((state) => state.language);
+
   return (
     <Flex
       gap={1}
@@ -26,9 +30,9 @@ export function Question({attacker, move}: AttackProps) {
         {attacker.name}
       </Text>
       <Text fontSize="2xl"> used </Text>
-      <Tag size="lg" borderRadius="md" colorScheme={move.type.name}>
+      <Tag borderRadius="md" colorScheme={move.type.name}>
         <TagLeftIcon as={TypeIcon} type={move.type.name} />
-        <TagLabel>{getMoveName(move, "en")}</TagLabel>
+        <TagLabel>{getMoveName(move, language)}</TagLabel>
       </Tag>
     </Flex>
   )
