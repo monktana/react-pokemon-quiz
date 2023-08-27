@@ -3,7 +3,7 @@ import { Flex, Tag, TagLeftIcon, TagLabel, Text } from "@chakra-ui/react";
 import { useLanguageStore } from "@/stores";
 
 import { Move, Pokemon } from "../../types";
-import { TypeIcon } from "../icons/TypeIcon";
+import { TypeIcon } from "../icons";
 import { getMoveName } from "../pokemon/util";
 
 type AttackProps = {

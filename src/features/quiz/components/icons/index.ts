@@ -16,3 +16,4 @@ export * from "./Psychic";
 export * from "./Rock";
 export * from "./Steel";
 export * from "./Water";
+export * from "./TypeIcon";

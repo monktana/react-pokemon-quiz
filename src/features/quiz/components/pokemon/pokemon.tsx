@@ -1,7 +1,7 @@
 import { Box, Flex, Image, ResponsiveValue, Tag, TagLabel, TagLeftIcon, Text, useMultiStyleConfig } from "@chakra-ui/react";
 
 import { Pokemon } from "../../types";
-import { TypeIcon } from "../icons/TypeIcon";
+import { TypeIcon } from "../icons";
 
 type PokemonProps = {
   pokemon: Pokemon,
