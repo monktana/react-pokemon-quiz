@@ -8,6 +8,7 @@ import {
   VersionEncounterDetail,
   VersionGameIndex
 } from './common'
+import { Type } from './type';
 
 export const POKEMON_COUNT = 809;
 export const POKEMON_MOVE_COUNT = 742;
@@ -27,9 +28,9 @@ export interface Pokemon {
   location_area_encounters: string
   moves: PokemonMove[]
   sprites: PokemonSprites
-  species: NamedAPIResource
+  species: PokemonSpecies
   stats: PokemonStat[]
-  types: PokemonType[]
+  types: Type[]
   past_types: PokemonPastType[]
 }
 

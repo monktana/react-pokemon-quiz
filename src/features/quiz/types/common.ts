@@ -69,3 +69,8 @@ export interface VerboseEffect {
   short_effect: string;
   language: NamedAPIResource;
 }
+
+export interface GenerationGameIndex {
+  game_index: number;
+  generation: NamedAPIResource;
+}

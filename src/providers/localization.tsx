@@ -1,7 +1,8 @@
 
 import { createContext, PropsWithChildren } from "react"
 
-import { LanguageKey, TextKey, useLocalization } from "@/hooks/useLocalization";
+import { LanguageKey, TextKey } from "@/hooks/i18n";
+import { useLocalization } from "@/hooks/useLocalization";
 
 type LocalizationContext = {
   getText: (language: LanguageKey, key: TextKey) => string

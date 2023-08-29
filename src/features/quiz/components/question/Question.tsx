@@ -4,7 +4,7 @@ import { useLanguageStore } from "@/stores";
 
 import { Move, Pokemon } from "../../types";
 import { TypeIcon } from "../icons";
-import { getMoveName } from "../pokemon/util";
+import { getRessourceName } from "../pokemon/util";
 
 type AttackProps = {
   attacker: Pokemon,
@@ -27,12 +27,12 @@ export function Question({attacker, move}: AttackProps) {
       backgroundColor="background.500"
     >
       <Text fontSize="3xl">
-        {attacker.name}
+        {getRessourceName(attacker.species.names, language)}
       </Text>
       <Text fontSize="2xl"> used </Text>
       <Tag borderRadius="md" colorScheme={move.type.name}>
         <TagLeftIcon as={TypeIcon} type={move.type.name} />
-        <TagLabel>{getMoveName(move, language)}</TagLabel>
+        <TagLabel>{getRessourceName(move.names, language)}</TagLabel>
       </Tag>
     </Flex>
   )
