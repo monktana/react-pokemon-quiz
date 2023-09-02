@@ -7,9 +7,11 @@ import {
   MenuItem,
   MenuList,
   Text,
+  useColorMode,
+  useColorModeValue,
 } from '@chakra-ui/react';
 
-import { GhostIcon } from '@/features/quiz/components/icons';
+import { TypeIcon } from '@/features/quiz/components/icons';
 import { Languages } from '@/hooks/i18n';
 import { useLanguageStore } from '@/stores';
 
@@ -18,6 +20,8 @@ import { LanguageIcon } from '../icons';
 export function Navbar() {
   const language = useLanguageStore((state) => state.language);
   const setLanguage = useLanguageStore((state) => state.setLanguage);
+  const { toggleColorMode } = useColorMode();
+  const iconName = useColorModeValue('dark', 'psychic');
 
   return (
     <Box position="fixed" zIndex="overlay" width="full" background="background.500">
@@ -42,7 +46,7 @@ export function Navbar() {
             })}
           </MenuList>
         </Menu>
-        <IconButton aria-label="change color mode" icon={<GhostIcon />} />
+        <IconButton aria-label="change color mode" variant='solid' colorScheme={iconName} icon={<TypeIcon type={iconName} color='current' />} onClick={toggleColorMode} />
       </HStack>
     </Box>
   );

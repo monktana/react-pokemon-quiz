@@ -1,5 +1,5 @@
 // theme/index.js
-import { extendTheme } from '@chakra-ui/react';
+import { ThemeConfig, extendTheme } from '@chakra-ui/react';
 
 import { Button } from './components/Button';
 import { Pokemon } from './components/Pokemon';
@@ -7,8 +7,14 @@ import { Pokemon } from './components/Pokemon';
 import colors from './foundations/colors';
 import styles from './styles';
 
+const config: ThemeConfig = {
+  initialColorMode: 'system',
+  useSystemColorMode: false,
+};
+
 // Foundational style overrides
 const overrides = {
+  config,
   styles,
   colors,
   // Other foundational style overrides go here
