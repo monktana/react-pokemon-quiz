@@ -1,11 +1,11 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider } from '@chakra-ui/react';
 import * as React from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { queryClient } from '@/lib/react-query';
-import theme from "@/theme";
+import theme from '@/theme';
 
 const ErrorFallback = () => {
   return (

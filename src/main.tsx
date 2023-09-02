@@ -1,9 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-import { AppProvider, LocalizationProvider } from '@/providers'
+import { AppProvider, LocalizationProvider } from '@/providers';
 
-import App from './App'
+import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -13,4 +13,4 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       </LocalizationProvider>
     </AppProvider>
   </React.StrictMode>
-)
+);

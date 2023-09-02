@@ -1,4 +1,3 @@
-
 import { useCallback } from 'react';
 
 import { TEXTS, LanguageKey, TextKey } from './i18n';
@@ -8,5 +7,5 @@ export const useLocalization = () => {
     return TEXTS[language][key];
   }, []);
 
-  return {getText};
-}
+  return { getText };
+};

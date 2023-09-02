@@ -13,26 +13,34 @@ export function GameOver() {
 
   return (
     <VStack spacing={2}>
-      <Text my={1} fontSize="2xl" color="font.100">{getText(language, "gameover.text.blackout")}</Text>
+      <Text my={1} fontSize="2xl" color="font.100">
+        {getText(language, 'gameover.text.blackout')}
+      </Text>
       <Text my={2} fontSize="sm" color="gray.300">
-        {getText(language, "gameover.text.score")} {score}
+        {getText(language, 'gameover.text.score')} {score}
       </Text>
       <VStack spacing={4} mt="8">
         <Button
           size="lg"
           variant="primary"
           width="full"
-          onClick={() => { resetScore(); startGame(); }}
+          onClick={() => {
+            resetScore();
+            startGame();
+          }}
         >
-          {getText(language, "gameover.button.newgame").toUpperCase()}
+          {getText(language, 'gameover.button.newgame').toUpperCase()}
         </Button>
         <Button
           size="lg"
           variant="primary"
           width="full"
-          onClick={() => { resetScore(); openMenu(); }}
+          onClick={() => {
+            resetScore();
+            openMenu();
+          }}
         >
-          {getText(language, "gameover.button.mainmenu").toUpperCase()}
+          {getText(language, 'gameover.button.mainmenu').toUpperCase()}
         </Button>
       </VStack>
     </VStack>

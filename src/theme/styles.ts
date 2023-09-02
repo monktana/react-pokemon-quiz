@@ -8,9 +8,9 @@ const styles: Styles = {
     'html, body': {
       bgColor: 'background.900',
     },
-    'img': {
-      imageRendering: 'pixelated'
-    }
+    img: {
+      imageRendering: 'pixelated',
+    },
   },
 };
 

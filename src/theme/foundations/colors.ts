@@ -3,12 +3,12 @@ export default {
   font: {
     100: '#ffffff',
     500: '#C4C4C4',
-    900: '#919191'
+    900: '#919191',
   },
   background: {
     100: '#2E2E2E',
     500: '#202020',
-    900: '#171717'
+    900: '#171717',
   },
   normal: {
     50: '#f5f5f0',
@@ -23,7 +23,7 @@ export default {
     900: '#0f0f0a',
   },
   fire: {
-    50:  '#fdf1e7',
+    50: '#fdf1e7',
     100: '#f9d4b8',
     200: '#f5b789',
     300: '#f19b5a',
@@ -35,7 +35,7 @@ export default {
     900: '#180b02',
   },
   water: {
-    50:  '#e8eefd',
+    50: '#e8eefd',
     100: '#b9cdf8',
     200: '#8bacf4',
     300: '#5c8bef',
@@ -47,7 +47,7 @@ export default {
     900: '#020917',
   },
   electric: {
-    50:  '#fefae6',
+    50: '#fefae6',
     100: '#fcefb5',
     200: '#fae484',
     300: '#f8d953',
@@ -59,7 +59,7 @@ export default {
     900: '#191401',
   },
   grass: {
-    50:  '#f2f9ed',
+    50: '#f2f9ed',
     100: '#d8eeca',
     200: '#bde3a7',
     300: '#a3d883',
@@ -71,7 +71,7 @@ export default {
     900: '#1e3511',
   },
   ice: {
-    50:  '#eef9f8',
+    50: '#eef9f8',
     100: '#ccedeb',
     200: '#aae0de',
     300: '#88d4d0',
@@ -83,7 +83,7 @@ export default {
     900: '#123332',
   },
   fighting: {
-    50:  '#fbecec',
+    50: '#fbecec',
     100: '#f3c7c5',
     200: '#eba29f',
     300: '#e37d78',
@@ -95,7 +95,7 @@ export default {
     900: '#3a0e0c',
   },
   poison: {
-    50:  '#f9eef8',
+    50: '#f9eef8',
     100: '#eccdeb',
     200: '#dfabde',
     300: '#d289d1',
@@ -107,7 +107,7 @@ export default {
     900: '#321332',
   },
   ground: {
-    50:  '#fbf7eb',
+    50: '#fbf7eb',
     100: '#f4e7c4',
     200: '#edd69d',
     300: '#e5c676',
@@ -119,7 +119,7 @@ export default {
     900: '#3a2d0b',
   },
   flying: {
-    50:  '#efeafd',
+    50: '#efeafd',
     100: '#cfc0f8',
     200: '#af96f4',
     300: '#8e6cef',
@@ -131,7 +131,7 @@ export default {
     900: '#15073f',
   },
   psychic: {
-    50:  '#fee9ef',
+    50: '#fee9ef',
     100: '#fdbcd0',
     200: '#fb8fb0',
     300: '#f96290',
@@ -143,7 +143,7 @@ export default {
     900: '#430216',
   },
   bug: {
-    50:  '#fafceb',
+    50: '#fafceb',
     100: '#f0f6c2',
     200: '#e6f199',
     300: '#dceb71',
@@ -155,7 +155,7 @@ export default {
     900: '#373d09',
   },
   rock: {
-    50:  '#faf8ed',
+    50: '#faf8ed',
     100: '#efe9c9',
     200: '#e4daa6',
     300: '#dacb82',
@@ -167,7 +167,7 @@ export default {
     900: '#362f10',
   },
   ghost: {
-    50:  '#f3f0f7',
+    50: '#f3f0f7',
     100: '#dbd3e6',
     200: '#c3b5d5',
     300: '#ab98c4',
@@ -179,7 +179,7 @@ export default {
     900: '#22192c',
   },
   dragon: {
-    50:  '#efe8ff',
+    50: '#efe8ff',
     100: '#cebafe',
     200: '#ae8dfd',
     300: '#8d5ffd',
@@ -191,7 +191,7 @@ export default {
     900: '#150144',
   },
   dark: {
-    50:  '#f6f3f1',
+    50: '#f6f3f1',
     100: '#e4dbd4',
     200: '#d2c2b8',
     300: '#c1aa9b',
@@ -203,7 +203,7 @@ export default {
     900: '#2b211b',
   },
   steel: {
-    50:  '#f1f1f6',
+    50: '#f1f1f6',
     100: '#d6d6e3',
     200: '#babad0',
     300: '#9e9ebd',
@@ -215,7 +215,7 @@ export default {
     900: '#1c1c29',
   },
   fairy: {
-    50:  '#f9eef3',
+    50: '#f9eef3',
     100: '#eecbdc',
     200: '#e2a8c5',
     300: '#d686ad',
@@ -226,4 +226,4 @@ export default {
     800: '#571d3a',
     900: '#341123',
   },
-}
+};

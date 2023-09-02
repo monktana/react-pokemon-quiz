@@ -6,9 +6,9 @@ const queryConfig: DefaultOptions = {
     useErrorBoundary: true,
     refetchOnWindowFocus: false,
     retry: true,
-    suspense: true
-  }
-}
+    suspense: true,
+  },
+};
 
 export const queryClient = new QueryClient({ defaultOptions: queryConfig });
 

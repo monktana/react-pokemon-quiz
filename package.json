@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "gen:theme-typings": "chakra-cli tokens ./src/theme/index.ts"
+    "gen:theme-typings": "chakra-cli tokens ./src/theme/index.ts",
+    "lint": "eslint --fix --ext .js,.ts,.tsx ./src --ignore-path .gitignore",
+    "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
+    "format": "npm run prettier -- --write"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.0",
@@ -41,6 +44,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-testing-library": "^6.0.0",
     "postcss": "^8.4.21",
+    "prettier": "3.0.3",
     "typescript": "^5.1.0",
     "vite": "^4.2.0",
     "vite-tsconfig-paths": "^4.0.7"

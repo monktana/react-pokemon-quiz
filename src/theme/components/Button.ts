@@ -1,27 +1,29 @@
-import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
-import { mode, transparentize } from "@chakra-ui/theme-tools"
+import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system';
+import { mode, transparentize } from '@chakra-ui/theme-tools';
 
 const variantPrimary = defineStyle((props) => {
   return {
-    bg: mode("background.100", "background.100")(props),
-    color: mode("font.100", "font.100")(props),
+    bg: mode('background.100', 'background.100')(props),
+    color: mode('font.100', 'font.100')(props),
     _hover: {
-      bg: mode(transparentize("background.100", 0.66), transparentize("background.100", 0.5))(props),
+      bg: mode(
+        transparentize('background.100', 0.66),
+        transparentize('background.100', 0.5)
+      )(props),
       _disabled: {
-        cursor: "disabled"
+        cursor: 'disabled',
       },
-    }
-  }
+    },
+  };
 });
 
-
 const variants = {
-  primary: variantPrimary
+  primary: variantPrimary,
 };
 
 export const Button = defineStyleConfig({
   variants,
   defaultProps: {
-    variant: "primary",
+    variant: 'primary',
   },
-})
+});

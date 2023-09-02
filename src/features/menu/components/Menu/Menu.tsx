@@ -1,5 +1,5 @@
 import { Box, Button, Center, VStack, keyframes } from '@chakra-ui/react';
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 import { useLocalization } from '@/hooks/useLocalization';
 import { useAppStateStore, useLanguageStore, useScoreStore } from '@/stores';
@@ -39,7 +39,7 @@ export function Menu() {
           position="absolute"
           top="50%"
           left="50%"
-          transform={"translate(-50%, -50%)"}
+          transform={'translate(-50%, -50%)'}
           width="4rem"
           height="4rem"
           bg="white"
@@ -53,9 +53,12 @@ export function Menu() {
           size="lg"
           variant="primary"
           mt="8"
-          onClick={() => { resetScore(); startGame(); }}
+          onClick={() => {
+            resetScore();
+            startGame();
+          }}
         >
-          {getText(language, "mainmenu.button.newgame").toUpperCase()}
+          {getText(language, 'mainmenu.button.newgame').toUpperCase()}
         </Button>
       </Center>
     </VStack>

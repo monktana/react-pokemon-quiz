@@ -1,3 +1,3 @@
-export * from "./DE";
-export * from "./GB";
-export * from "./LanguageIcon";
+export * from './DE';
+export * from './GB';
+export * from './LanguageIcon';
