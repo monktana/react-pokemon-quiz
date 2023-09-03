@@ -1,7 +1,6 @@
 import { Container } from '@chakra-ui/react';
 
-import { GameOver } from '@/features/gameover';
-import { Menu, Navbar } from '@/features/menu';
+import { Menu, Navbar, GameOver } from '@/features/menu';
 import { Game } from '@/features/quiz';
 
 import { useAppStateStore } from './stores';
