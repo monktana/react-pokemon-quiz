@@ -1,4 +1,4 @@
-import { Move, Pokemon, PokemonType } from '../types';
+import { Move, Pokemon, Type } from '../types';
 
 import { typeMatchups } from './typematrix';
 
@@ -34,6 +34,6 @@ const getAttackMultiplier = (move: Move, defending: Pokemon): number => {
   );
 };
 
-const getTypeMatchupMultiplier = (attackingType: string, defendingType: PokemonType): number => {
-  return typeMatchups[attackingType][defendingType.type.name];
+const getTypeMatchupMultiplier = (attackingType: string, defendingType: Type): number => {
+  return typeMatchups[attackingType][defendingType.name];
 };
