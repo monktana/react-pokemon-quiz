@@ -1,17 +1,17 @@
-import { Styles } from '@chakra-ui/theme-tools';
+import { Styles, mode } from '@chakra-ui/theme-tools';
 
 const styles: Styles = {
-  global: {
+  global: (props) => ({
     '*, ::after, ::before': {
       boxSizing: 'border-box',
     },
     'html, body': {
-      bgColor: 'background.900',
+      bgColor: mode('background.300', 'background.900')(props),
     },
     img: {
       imageRendering: 'pixelated',
     },
-  },
+  }),
 };
 
 export default styles;

@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <AppProvider>
       <LocalizationProvider>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode}/>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <App />
       </LocalizationProvider>
     </AppProvider>

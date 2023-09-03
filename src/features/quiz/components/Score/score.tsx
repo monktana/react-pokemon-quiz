@@ -1,4 +1,11 @@
-import { HStack, Stat, StatProps, StatLabel, StatNumber } from '@chakra-ui/react';
+import {
+  HStack,
+  Stat,
+  StatProps,
+  StatLabel,
+  StatNumber,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { useContext } from 'react';
 
 import { LocalizationContext } from '@/providers';
@@ -9,11 +16,13 @@ export function Score(props: StatProps) {
   const language = useLanguageStore((state) => state.language);
   const Localization = useContext(LocalizationContext);
 
+  const fontColor = useColorModeValue('font.800', 'font.100');
+
   return (
     <Stat {...props}>
-      <HStack>
-        <StatLabel color="font.500">{Localization.getText(language, 'score.label')}</StatLabel>
-        <StatNumber color="font.100">{score}</StatNumber>
+      <HStack color={fontColor}>
+        <StatLabel>{Localization.getText(language, 'score.label')}</StatLabel>
+        <StatNumber>{score}</StatNumber>
       </HStack>
     </Stat>
   );

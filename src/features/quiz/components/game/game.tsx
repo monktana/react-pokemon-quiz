@@ -1,4 +1,4 @@
-import { Box, Button, Grid, VStack } from '@chakra-ui/react';
+import { Box, Button, Grid, VStack, useColorModeValue } from '@chakra-ui/react';
 import { Suspense, useCallback } from 'react';
 
 import { useLocalization } from '@/hooks/useLocalization';
@@ -15,6 +15,9 @@ export function Game() {
   const { end } = useAppStateStore((state) => ({ end: state.endQuiz }));
   const increase = useScoreStore((state) => state.increase);
   const language = useLanguageStore((state) => state.language);
+
+  const backgroundColor = useColorModeValue('background.200', 'background.800');
+  const borderColor = useColorModeValue('border.500', 'border.100');
 
   const { getText } = useLocalization();
 
@@ -46,8 +49,8 @@ export function Game() {
               width="full"
               rounded="md"
               border="1px solid"
-              borderColor="border"
-              backgroundColor="background.500"
+              borderColor={borderColor}
+              backgroundColor={backgroundColor}
             >
               <Button
                 variant="primary"

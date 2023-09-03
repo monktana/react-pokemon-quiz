@@ -1,4 +1,4 @@
-import { Flex, Tag, TagLeftIcon, TagLabel, Text } from '@chakra-ui/react';
+import { Flex, Tag, TagLeftIcon, TagLabel, Text, useColorModeValue } from '@chakra-ui/react';
 
 import { useLanguageStore } from '@/stores';
 
@@ -13,6 +13,9 @@ type AttackProps = {
 
 export function Question({ attacker, move }: AttackProps) {
   const language = useLanguageStore((state) => state.language);
+  const fontColor = useColorModeValue('font.800', 'font.100');
+  const backgroundColor = useColorModeValue('background.200', 'background.800');
+  const borderColor = useColorModeValue('border.500', 'border.100');
 
   return (
     <Flex
@@ -21,10 +24,10 @@ export function Question({ attacker, move }: AttackProps) {
       padding={2}
       width="full"
       rounded="md"
-      color="font.100"
+      color={fontColor}
       border="1px solid"
-      borderColor="border"
-      backgroundColor="background.500"
+      borderColor={borderColor}
+      backgroundColor={backgroundColor}
     >
       <Text fontSize="3xl">{getRessourceName(attacker.species.names, language)}</Text>
       <Text fontSize="2xl"> used </Text>

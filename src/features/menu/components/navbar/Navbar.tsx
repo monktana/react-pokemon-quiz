@@ -46,7 +46,13 @@ export function Navbar() {
             })}
           </MenuList>
         </Menu>
-        <IconButton aria-label="change color mode" variant='solid' colorScheme={iconName} icon={<TypeIcon type={iconName} color='current' />} onClick={toggleColorMode} />
+        <IconButton
+          aria-label="change color mode"
+          variant="solid"
+          colorScheme={iconName}
+          icon={<TypeIcon type={iconName} color="current" />}
+          onClick={toggleColorMode}
+        />
       </HStack>
     </Box>
   );
