@@ -1,5 +1,7 @@
 {
   "en": {
+    "error.title": "Something went wrong",
+    "error.info": "An error occured. Please reload the site and try again.",
     "mainmenu.title": "Welcome",
     "mainmenu.button.newgame": "Click to play",
     "gameover.title": "Game Over",
@@ -14,6 +16,8 @@
     "types.effectiveness.supereffective": "Super effective"
   },
   "de": {
+    "error.title": "Irgendetwas stimmt hier nicht",
+    "error.info": "Ein Fehler ist aufgetreten. Bitte lade die Seite neu und versuche es nochmal.",
     "mainmenu.title": "Willkommen",
     "mainmenu.button.newgame": "Neues Spiel",
     "gameover.title": "Verloren",
