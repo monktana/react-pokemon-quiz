@@ -14,9 +14,9 @@ const Error = () => {
     <Center>
       <GhostIcon />
       <Heading as="h2" mb={2} size="xl" colorScheme="red">
-        {getText(language, 'mainmenu.title')}
+        {getText(language, 'error.title')}
       </Heading>
-      <Text color={fontColor}>{getText(language, 'mainmenu.title')}</Text>
+      <Text color={fontColor}>{getText(language, 'error.title')}</Text>
     </Center>
   );
 };

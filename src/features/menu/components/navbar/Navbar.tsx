@@ -13,6 +13,7 @@ import {
 
 import { TypeIcon } from '@/features/quiz/components/icons';
 import { Languages } from '@/hooks/i18n';
+import { useLocalization } from '@/hooks/useLocalization';
 import { useLanguageStore } from '@/stores';
 
 import { LanguageIcon } from '../icons';
@@ -20,7 +21,9 @@ import { LanguageIcon } from '../icons';
 export function Navbar() {
   const language = useLanguageStore((state) => state.language);
   const setLanguage = useLanguageStore((state) => state.setLanguage);
+  const { getText } = useLocalization();
   const { toggleColorMode } = useColorMode();
+
   const iconName = useColorModeValue('dark', 'psychic');
 
   return (
@@ -40,7 +43,7 @@ export function Navbar() {
                   icon={<LanguageIcon type={language} />}
                   onClick={() => setLanguage(language)}
                 >
-                  <Text>{language}</Text>
+                  <Text>{getText(language, "language")}</Text>
                 </MenuItem>
               );
             })}
