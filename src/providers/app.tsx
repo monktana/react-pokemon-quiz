@@ -4,7 +4,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-import { Error } from '@/components';
+import { Error, Loading } from '@/components';
 import { queryClient } from '@/lib/react-query';
 import theme from '@/theme';
 
@@ -14,13 +14,7 @@ type AppProviderProps = {
 
 export const AppProvider = ({ children }: AppProviderProps) => {
   return (
-    <React.Suspense
-      fallback={
-        <div className="flex items-center justify-center w-screen h-screen">
-          <span>Loading...</span>
-        </div>
-      }
-    >
+    <React.Suspense fallback={<Loading />}>
       <ErrorBoundary FallbackComponent={Error}>
         <ChakraProvider theme={theme}>
           <QueryClientProvider client={queryClient}>
