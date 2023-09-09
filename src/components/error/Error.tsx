@@ -1,4 +1,4 @@
-import { Center, Heading, Text, useColorModeValue } from '@chakra-ui/react';
+import { Container, Flex, Heading, Text, useColorModeValue } from '@chakra-ui/react';
 
 import { GhostIcon } from '@/features/quiz/components/icons';
 import { useLocalization } from '@/hooks/useLocalization';
@@ -11,13 +11,15 @@ const Error = () => {
   const fontColor = useColorModeValue('font.800', 'font.100');
 
   return (
-    <Center>
-      <GhostIcon />
-      <Heading as="h2" mb={2} size="xl" colorScheme="red">
-        {getText(language, 'error.title')}
-      </Heading>
-      <Text color={fontColor}>{getText(language, 'error.title')}</Text>
-    </Center>
+    <Container height="100vh">
+      <Flex flexDirection="column" height="full" alignItems="center" justifyContent="center">
+        <GhostIcon width="12" height="12" marginBottom={4} />
+        <Heading as="h2" mb={2} size="xl" colorScheme="red">
+          {getText(language, 'error.title')}
+        </Heading>
+        <Text color={fontColor}>{getText(language, 'error.info')}</Text>
+      </Flex>
+    </Container>
   );
 };
 
