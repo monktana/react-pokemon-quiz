@@ -1,6 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react';
+import * as Sentry from "@sentry/react";
 import * as React from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
 import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
@@ -14,15 +14,15 @@ type AppProviderProps = {
 
 export const AppProvider = ({ children }: AppProviderProps) => {
   return (
-    <React.Suspense fallback={<Loading />}>
-      <ErrorBoundary FallbackComponent={Error}>
-        <ChakraProvider theme={theme}>
+    <ChakraProvider theme={theme}>
+      <Sentry.ErrorBoundary fallback={<Error />}>
+        <React.Suspense fallback={<Loading />}>
           <QueryClientProvider client={queryClient}>
             {children}
             <ReactQueryDevtools />
           </QueryClientProvider>
-        </ChakraProvider>
-      </ErrorBoundary>
-    </React.Suspense>
+        </React.Suspense>
+      </Sentry.ErrorBoundary>
+    </ChakraProvider>
   );
 };

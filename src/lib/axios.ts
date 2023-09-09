@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/react";
 import Axios from 'axios';
 
 import { API_URL } from '@/config';
@@ -11,6 +12,7 @@ axios.interceptors.response.use(
     return response.data;
   },
   (error) => {
+    Sentry.captureException(error);
     return Promise.reject(error);
   }
 );
