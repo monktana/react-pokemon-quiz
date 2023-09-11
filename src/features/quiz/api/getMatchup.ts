@@ -23,8 +23,8 @@ type UseMatchupOptions = {
 
 export const useMatchup = ({ config }: UseMatchupOptions = {}) => {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
-    ...config,
     queryKey: ['matchup'],
     queryFn: () => getMatchup(),
+    ...config,
   });
 };

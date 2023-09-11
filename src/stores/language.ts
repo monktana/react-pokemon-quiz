@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { LanguageKey } from '@/hooks/useLocalization';
+import { LanguageKey } from '@/hooks/i18n';
 
 type LanguageStore = {
   language: LanguageKey;
