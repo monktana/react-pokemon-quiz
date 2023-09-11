@@ -7,11 +7,11 @@ import { TypeIcon } from '../icons';
 import { getRessourceName } from '../pokemon/util';
 
 type AttackProps = {
-  attacker: Pokemon;
+  pokemon: Pokemon;
   move: Move;
 };
 
-export function Question({ attacker, move }: AttackProps) {
+export function Question({ pokemon: attacker, move }: AttackProps) {
   const language = useLanguageStore((state) => state.language);
   const fontColor = useColorModeValue('font.800', 'font.100');
   const backgroundColor = useColorModeValue('background.200', 'background.800');
@@ -29,11 +29,11 @@ export function Question({ attacker, move }: AttackProps) {
       borderColor={borderColor}
       backgroundColor={backgroundColor}
     >
-      <Text fontSize="3xl">{getRessourceName(attacker.species.names, language)}</Text>
+      <Text fontSize="3xl" data-cy="pokemon-name">{getRessourceName(attacker.species.names, language)}</Text>
       <Text fontSize="2xl"> used </Text>
-      <Tag borderRadius="md" colorScheme={move.type.name}>
-        <TagLeftIcon as={TypeIcon} type={move.type.name} />
-        <TagLabel>{getRessourceName(move.names, language)}</TagLabel>
+      <Tag borderRadius="md" colorScheme={move.type.name} data-cy="attack-tag">
+        <TagLeftIcon as={TypeIcon} type={move.type.name} data-cy="attack-tag-icon"/>
+        <TagLabel data-cy="attack-tag-name">{getRessourceName(move.names, language)}</TagLabel>
       </Tag>
     </Flex>
   );
