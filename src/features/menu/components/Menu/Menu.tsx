@@ -53,6 +53,7 @@ export function Menu() {
           size="lg"
           variant="primary"
           mt="8"
+          data-cy="new-game"
           onClick={() => {
             resetScore();
             startGame();
