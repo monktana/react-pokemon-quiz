@@ -11,7 +11,7 @@
     "lint": "eslint --fix --ext .js,.ts,.tsx ./src --ignore-path .gitignore",
     "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
     "format": "npm run prettier -- --write",
-    "cy:open": "cypress open --component"
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.0",
@@ -39,6 +39,7 @@
     "cypress": "^13.1.0",
     "eslint": "^8.36.0",
     "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jest-dom": "^5.0.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
