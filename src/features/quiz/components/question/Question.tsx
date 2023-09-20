@@ -29,7 +29,7 @@ export function Question({ pokemon: attacker, move }: AttackProps) {
       borderColor={borderColor}
       backgroundColor={backgroundColor}
     >
-      <Text fontSize="3xl" data-cy="pokemon-name">{getRessourceName(attacker.species.names, language)}</Text>
+      <Text fontSize="3xl" data-cy="pokemon-name">{getRessourceName(attacker.names, language)}</Text>
       <Text fontSize="2xl"> used </Text>
       <Tag borderRadius="md" colorScheme={move.type.name} data-cy="attack-tag">
         <TagLeftIcon as={TypeIcon} type={move.type.name} data-cy="attack-tag-icon"/>
