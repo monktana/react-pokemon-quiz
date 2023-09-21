@@ -3,7 +3,7 @@ import * as Sentry from "@sentry/react";
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { AppProvider, LocalizationProvider } from '@/providers';
+import { AppProvider } from '@/providers';
 
 import App from './App';
 
@@ -23,10 +23,8 @@ Sentry.init({
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <AppProvider>
-      <LocalizationProvider>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <App />
-      </LocalizationProvider>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <App />
     </AppProvider>
   </React.StrictMode>
 );

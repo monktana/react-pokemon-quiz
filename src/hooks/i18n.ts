@@ -1,7 +1,7 @@
-import LOCALIZATION_TEXTS from './i18n.json';
+import LOCALIZATION_TEXTS from './test/i18n.json';
 
-export const Languages = ['en', 'de'] as const;
-export type LanguageKey = (typeof Languages)[number];
-export type TextKey = keyof typeof LOCALIZATION_TEXTS.en;
+export const languages = ['en', 'de'] as const;
+export type Language = typeof languages[number];
+export type TextKey = keyof typeof LOCALIZATION_TEXTS[Language];
 
-export const TEXTS: { [key in LanguageKey]: { [key in TextKey]: string } } = LOCALIZATION_TEXTS;
+export const getText = (language: Language, key: TextKey) => LOCALIZATION_TEXTS[language][key];

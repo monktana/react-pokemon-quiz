@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 
 import { TypeIcon } from '@/features/quiz/components/icons';
-import { Languages } from '@/hooks/i18n';
+import { languages } from '@/hooks/i18n';
 import { useLocalization } from '@/hooks/useLocalization';
 import { useLanguageStore } from '@/stores';
 
@@ -31,15 +31,17 @@ export function Navbar() {
       <HStack align="center" justify="end" px={4} spacing={2}>
         <Menu>
           <MenuButton
+            data-cy="language-switch"
+            aria-label="change language"
             as={IconButton}
             icon={<LanguageIcon type={language} aria-label={language} />}
-            aria-label="change language"
           />
           <MenuList>
-            {Languages.map((language) => {
+            {languages.map((language) => {
               return (
                 <MenuItem
                   key={language}
+                  data-cy={`${language}-language`}
                   icon={<LanguageIcon type={language} />}
                   onClick={() => setLanguage(language)}
                 >
@@ -50,6 +52,7 @@ export function Navbar() {
           </MenuList>
         </Menu>
         <IconButton
+          data-cy="color-mode-switch"
           aria-label="change color mode"
           variant="solid"
           colorScheme={iconName}
