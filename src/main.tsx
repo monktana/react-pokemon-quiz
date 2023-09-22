@@ -6,9 +6,10 @@ import ReactDOM from 'react-dom/client';
 import { AppProvider } from '@/providers';
 
 import App from './App';
+import { SENTRY_DSN } from './config';
 
 Sentry.init({
-  dsn: "https://a1b13ef884fb900bf80f6c81ba3090ce@o1160434.ingest.sentry.io/4505846438625280",
+  dsn: SENTRY_DSN,
   integrations: [
     new Sentry.BrowserTracing({
       tracePropagationTargets: ["localhost"],
@@ -16,8 +17,8 @@ Sentry.init({
     new Sentry.Replay(),
   ],
   tracesSampleRate: 1.0,
-  replaysSessionSampleRate: 1,
-  replaysOnErrorSampleRate: 1.0,
+  replaysSessionSampleRate: 0,
+  replaysOnErrorSampleRate: 0,
 });
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
