@@ -1,5 +1,4 @@
 /// <reference types="cypress" />
-/// <reference types="cypress" />
 
 describe('Main Menu', () => {
   beforeEach(() => {
@@ -53,12 +52,30 @@ describe('Main Menu', () => {
 
     it('can start a new game', () => {
       cy.fixture('matchup/matchup').then((matchup) => {
-        cy.intercept('GET', 'http://localhost:3000', {
+        cy.intercept(Cypress.env('api_url'), {
           body: matchup
         });
   
         cy.get('[data-cy="new-game"]').click();
 
+        cy.get('[data-cy=attack-sprite]').should('have.attr', 'src').and('include', matchup.attacker.sprites.back_default);
+        cy.get('[data-cy=defend-sprite]').should('have.attr', 'src').and('include', matchup.defender.sprites.front_default);
+      })
+    });
+
+    it('displays a loading screen while waiting for the request to resolve', () => {
+      cy.fixture('matchup/matchup').then((matchup) => {
+        cy.intercept(Cypress.env('api_url'), async (req) => {
+          req.reply({
+            body: matchup,
+            delay: 500,
+          })
+        }).as('startGame');
+  
+        cy.get('[data-cy="new-game"]').click();
+        cy.contains('Loading', {matchCase: false});
+
+        cy.wait('@startGame');
         cy.get('[data-cy=attack-sprite]').should('have.attr', 'src').and('include', matchup.attacker.sprites.back_default);
         cy.get('[data-cy=defend-sprite]').should('have.attr', 'src').and('include', matchup.defender.sprites.front_default);
       })

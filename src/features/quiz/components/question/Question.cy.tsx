@@ -5,7 +5,7 @@ import { getRessourceName } from '../pokemon/util';
 import { Question } from './Question';
 
 describe('<Question />', () => {
-  before(() => {
+  beforeEach(() => {
     cy.fixture('matchup/matchup').as('matchup');
   });
 
