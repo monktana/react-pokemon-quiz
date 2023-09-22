@@ -20,8 +20,8 @@ export function Score(props: StatProps) {
   return (
     <Stat {...props}>
       <HStack color={fontColor}>
-        <StatLabel>{getText(language, 'score.label')}</StatLabel>
-        <StatNumber>{score}</StatNumber>
+        <StatLabel data-cy="score-label">{getText(language, 'score.label')}</StatLabel>
+        <StatNumber data-cy="score-value">{score}</StatNumber>
       </HStack>
     </Stat>
   );

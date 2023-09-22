@@ -29,7 +29,7 @@ export function Pokemon({ pokemon, variant }: PokemonProps) {
     variant === 'attack' ? pokemon.sprites.back_default : pokemon.sprites.front_default;
 
   return (
-    <Box __css={styles.container}>
+    <Box __css={styles.container} data-cy={`${variant}-pokemon`}>
       <Image __css={styles.image} src={sprite} alt={pokemon.name} data-cy={`${variant}-sprite`} />
       <Box __css={styles.infoContainer}>
         <Text fontWeight="bold" fontSize="2xl" data-cy={`${variant}-name`} >

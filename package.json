@@ -11,7 +11,7 @@
     "lint": "eslint --fix --ext .js,.ts,.tsx ./src --ignore-path .gitignore",
     "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
     "format": "npm run prettier -- --write",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open --browser electron"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.0",
