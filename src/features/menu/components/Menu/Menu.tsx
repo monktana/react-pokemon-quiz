@@ -50,10 +50,10 @@ export function Menu() {
       </Box>
       <Center>
         <Button
+          data-cy="start-game-button"
           size="lg"
           variant="primary"
           mt="8"
-          data-cy="new-game"
           onClick={() => {
             resetScore();
             startGame();

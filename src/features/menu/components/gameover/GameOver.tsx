@@ -21,6 +21,7 @@ export function GameOver() {
       </Text>
       <VStack spacing={4} mt="8">
         <Button
+          data-cy="new-game-button"
           size="lg"
           variant="primary"
           width="full"
@@ -32,6 +33,7 @@ export function GameOver() {
           {getText(language, 'gameover.button.newgame').toUpperCase()}
         </Button>
         <Button
+          data-cy="main-menu-button"
           size="lg"
           variant="primary"
           width="full"

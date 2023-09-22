@@ -6,14 +6,10 @@ describe('Main Menu', () => {
   });
 
   context('localization', () => {
-    it('contains the language button', () => {
-      cy.get('[data-cy="language-switch"]')
-        .should('be.visible')
-        .should('be.enabled');
-    });
-
     it('can switch the language', () => {
-      cy.get('[data-cy="new-game"]').contains('Click to play', { matchCase: false });
+      cy.get('[data-cy="language-switch"]').should('be.visible').should('be.enabled');
+
+      cy.get('[data-cy="start-game-button"]').contains('Click to play', { matchCase: false });
 
       cy.get('[data-cy="language-switch"]').click();
   
@@ -21,7 +17,7 @@ describe('Main Menu', () => {
       cy.get('[data-cy="de-language"]').should('be.visible');
       cy.get('[data-cy="de-language"]').click();
   
-      cy.get('[data-cy="new-game"]').contains('Neues Spiel', { matchCase: false });
+      cy.get('[data-cy="start-game-button"]').contains('Neues Spiel', { matchCase: false });
     });
   });
 
@@ -44,19 +40,14 @@ describe('Main Menu', () => {
   });
 
   context('new game', () => {
-    it('contains a button to start a new game', () => {
-      cy.get('[data-cy="new-game"]')
-        .should('be.visible')
-        .should('be.enabled');
-    });
-
     it('can start a new game', () => {
       cy.fixture('matchup/matchup').then((matchup) => {
         cy.intercept(Cypress.env('api_url'), {
           body: matchup
         });
   
-        cy.get('[data-cy="new-game"]').click();
+        cy.get('[data-cy="start-game-button"]').should('be.visible') .should('be.enabled');
+        cy.get('[data-cy="start-game-button"]').click();
 
         cy.get('[data-cy=attack-sprite]').should('have.attr', 'src').and('include', matchup.attacker.sprites.back_default);
         cy.get('[data-cy=defend-sprite]').should('have.attr', 'src').and('include', matchup.defender.sprites.front_default);
@@ -72,7 +63,7 @@ describe('Main Menu', () => {
           })
         }).as('startGame');
   
-        cy.get('[data-cy="new-game"]').click();
+        cy.get('[data-cy="start-game-button"]').click();
         cy.contains('Loading', {matchCase: false});
 
         cy.wait('@startGame');

@@ -1,4 +1,4 @@
-import LOCALIZATION_TEXTS from './test/i18n.json';
+import LOCALIZATION_TEXTS from './i18n.json';
 
 export const languages = ['en', 'de'] as const;
 export type Language = typeof languages[number];
