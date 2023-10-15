@@ -5,7 +5,7 @@ describe('Main Menu', () => {
     cy.visit("/");
   });
 
-  context('localization', () => {
+  context('menu bar', () => {
     it('can switch the language', () => {
       cy.get('[data-cy="language-switch"]').should('be.visible').should('be.enabled');
 
@@ -19,16 +19,12 @@ describe('Main Menu', () => {
   
       cy.get('[data-cy="start-game-button"]').contains('Neues Spiel', { matchCase: false });
     });
-  });
 
-  context('color mode', () => {
-    it('contains the color mode button', () => {
+    it('can switch the color mode', () => {
       cy.get('[data-cy="color-mode-switch"]')
         .should('be.visible')
         .should('be.enabled');
-    });
 
-    it('can switch the color mode', () => {
       cy.get('html').should('have.css', 'color-scheme', 'dark');
       cy.get('body').should('have.class', 'chakra-ui-dark');
 
@@ -42,11 +38,12 @@ describe('Main Menu', () => {
   context('new game', () => {
     it('can start a new game', () => {
       cy.fixture('matchup/matchup').then((matchup) => {
+        cy.get('[data-cy="start-game-button"]').should('be.visible').should('be.enabled');
+
         cy.intercept(Cypress.env('api_url'), {
           body: matchup
         });
   
-        cy.get('[data-cy="start-game-button"]').should('be.visible') .should('be.enabled');
         cy.get('[data-cy="start-game-button"]').click();
 
         cy.get('[data-cy=attack-sprite]').should('have.attr', 'src').and('include', matchup.attacker.sprites.back_default);

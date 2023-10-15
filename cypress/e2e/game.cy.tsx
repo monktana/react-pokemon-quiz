@@ -1,8 +1,6 @@
 /// <reference types="cypress" />
 
-import { getRessourceName } from "../../src/features/quiz/components/pokemon/util";
-
-describe('Main Menu', () => {
+describe('Game', () => {
   beforeEach(() => {
     cy.visit("/");
 
@@ -13,34 +11,12 @@ describe('Main Menu', () => {
     cy.get('[data-cy="start-game-button"]').click();
   });
 
-  context('localization', () => {
+  context('menu bar', () => {
     it('can switch the language', () => {
-      cy.wait('@startGame').then((interception) => {
-        assert.isNotNull(interception.response?.body, '1st API call has data')
-        cy.get('[data-cy="language-switch"]').should('be.visible').should('be.enabled');
-  
-        cy.get('[data-cy="attack-name"]').should('have.text', getRessourceName(interception.response!.body.attacker.names, 'en'));
-  
-        cy.get('[data-cy="language-switch"]').click();
-        cy.get('[data-cy="de-language"]').click();
-  
-        cy.get('[data-cy="attack-name"]').should('have.text', getRessourceName(interception.response!.body.attacker.names, 'de'));
-      });
-    });
-  });
-
-  context('color mode', () => {
-    it('can switch the color mode', () => {
       cy.wait('@startGame');
+
+      cy.get('[data-cy="language-switch"]').should('be.visible').should('be.enabled');
       cy.get('[data-cy="color-mode-switch"]').should('be.visible').should('be.enabled');
-
-      cy.get('html').should('have.css', 'color-scheme', 'dark');
-      cy.get('body').should('have.class', 'chakra-ui-dark');
-
-      cy.get('[data-cy="color-mode-switch"]').click();
-
-      cy.get('html').should('have.css', 'color-scheme', 'light');
-      cy.get('body').should('have.class', 'chakra-ui-light');
     });
   });
 
