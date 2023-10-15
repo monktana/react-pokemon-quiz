@@ -12,7 +12,7 @@ type PokemonMatchup = {
 };
 
 export const getMatchup = (): Promise<PokemonMatchup> => {
-  return axios.get('/');
+  return axios.get('/matchup');
 };
 
 type QueryFnType = typeof getMatchup;
