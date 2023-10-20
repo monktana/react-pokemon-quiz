@@ -1,7 +1,7 @@
-import { useQuery } from 'react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { axios } from '@/lib/axios';
-import { ExtractFnReturnType, QueryConfig } from '@/lib/react-query';
+import { QueryFnReturnType, QueryConfig } from '@/lib/react-query';
 
 import { Pokemon, Move } from '../types';
 
@@ -22,9 +22,9 @@ type UseMatchupOptions = {
 };
 
 export const useMatchup = ({ config }: UseMatchupOptions = {}) => {
-  return useQuery<ExtractFnReturnType<QueryFnType>>({
+  return useSuspenseQuery<QueryFnReturnType<QueryFnType>>({
     queryKey: ['matchup'],
-    queryFn: () => getMatchup(),
+    queryFn: getMatchup,
     ...config,
   });
 };

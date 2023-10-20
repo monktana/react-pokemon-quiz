@@ -53,7 +53,7 @@ export function Menu() {
           data-cy="start-game-button"
           size="lg"
           variant="primary"
-          mt="8"
+          marginTop="8"
           onClick={() => {
             resetScore();
             startGame();

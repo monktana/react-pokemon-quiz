@@ -1,10 +1,8 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import * as Sentry from "@sentry/react";
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import * as React from 'react';
-import { QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 
-import { Error, Loading } from '@/components';
 import { queryClient } from '@/lib/react-query';
 import theme from '@/theme';
 
@@ -15,14 +13,10 @@ type AppProviderProps = {
 export const AppProvider = ({ children }: AppProviderProps) => {
   return (
     <ChakraProvider theme={theme}>
-      <Sentry.ErrorBoundary fallback={<Error />}>
-        <React.Suspense fallback={<Loading />}>
-          <QueryClientProvider client={queryClient}>
-            {children}
-            <ReactQueryDevtools />
-          </QueryClientProvider>
-        </React.Suspense>
-      </Sentry.ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        {children}
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </ChakraProvider>
   );
 };
