@@ -2,10 +2,7 @@ import { QueryClient, UseQueryOptions, DefaultOptions } from '@tanstack/react-qu
 import { PromiseValue } from 'type-fest';
 
 const queryConfig: DefaultOptions = {
-  queries: {
-    refetchOnWindowFocus: false,
-    suspense: true,
-  },
+  queries: {},
 };
 
 export const queryClient = new QueryClient({ defaultOptions: queryConfig });

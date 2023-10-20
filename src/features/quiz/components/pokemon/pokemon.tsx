@@ -9,7 +9,9 @@ import {
   Text,
   useMultiStyleConfig,
 } from '@chakra-ui/react';
+import { Suspense } from 'react';
 
+import { Loading } from '@/components';
 import { useLanguageStore } from '@/stores';
 
 import { Pokemon } from '../../types';
@@ -30,20 +32,22 @@ export function Pokemon({ pokemon, variant }: PokemonProps) {
 
   return (
     <Box __css={styles.container} data-cy={`${variant}-pokemon`}>
-      <Image __css={styles.image} src={sprite} alt={pokemon.name} data-cy={`${variant}-sprite`} />
-      <Box __css={styles.infoContainer}>
-        <Text fontWeight="bold" fontSize="2xl" data-cy={`${variant}-name`} >
-          {getRessourceName(pokemon.names, language)}
-        </Text>
-        <Flex gap={1}>
-          {pokemon.types.map((type) => (
-            <Tag key={type.id} colorScheme={type.name} borderRadius="md" data-cy={`${variant}-type-tag`}>
-              <TagLeftIcon as={TypeIcon} type={type.name} />
-              <TagLabel>{getRessourceName(type.names, language)}</TagLabel>
-            </Tag>
-          ))}
-        </Flex>
-      </Box>
+      <Suspense fallback={<Loading />}>
+        <Image __css={styles.image} src={sprite} alt={pokemon.name} data-cy={`${variant}-sprite`} />
+        <Box __css={styles.infoContainer}>
+          <Text fontWeight="bold" fontSize="2xl" data-cy={`${variant}-name`} >
+            {getRessourceName(pokemon.names, language)}
+          </Text>
+          <Flex gap={1}>
+            {pokemon.types.map((type) => (
+              <Tag key={type.id} colorScheme={type.name} borderRadius="md" data-cy={`${variant}-type-tag`}>
+                <TagLeftIcon as={TypeIcon} type={type.name} />
+                <TagLabel>{getRessourceName(type.names, language)}</TagLabel>
+              </Tag>
+            ))}
+          </Flex>
+        </Box>
+      </Suspense>
     </Box>
   );
 }

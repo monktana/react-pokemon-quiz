@@ -1,11 +1,12 @@
 import { Container } from '@chakra-ui/react';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
+import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { Menu, Navbar, GameOver } from '@/features/menu';
 import { Game } from '@/features/quiz';
 
-import { Error } from './components';
+import { Error, Loading } from './components';
 import { useAppStateStore } from './stores';
 
 function App(): JSX.Element | null {
@@ -20,12 +21,14 @@ function App(): JSX.Element | null {
         <Error reset={resetErrorBoundary}/>
       )}
     >
-      <Navbar />
-      <Container display="flex" alignItems="center" justifyContent="center" height="100vh">
-        {appState === 'menu' && <Menu />}
-        {appState === 'quiz' && <Game />}
-        {appState === 'gameover' && <GameOver />}
-      </Container>
+      <Suspense fallback={<Loading />}>
+        <Navbar />
+        <Container display="flex" alignItems="center" justifyContent="center" height="100vh">
+          {appState === 'menu' && <Menu />}
+          {appState === 'quiz' && <Game />}
+          {appState === 'gameover' && <GameOver />}
+        </Container>
+      </Suspense>
     </ErrorBoundary>
   );
 }

@@ -1,8 +1,11 @@
 import { Box, Button, Center, VStack, keyframes } from '@chakra-ui/react';
+import { useQueryClient } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
+import { useTransition } from 'react';
 
+import { getMatchup } from '@/features/quiz/api';
 import { useLocalization } from '@/hooks/useLocalization';
-import { useAppStateStore, useLanguageStore, useScoreStore } from '@/stores';
+import { useAppStateStore, useLanguageStore } from '@/stores';
 
 const animationKeyframes = keyframes`
   0% { transform: rotate(0) }
@@ -17,10 +20,24 @@ const animationKeyframes = keyframes`
 const animation = `${animationKeyframes} 4s ease-in-out infinite`;
 
 export function Menu() {
+  const [, startTransition] = useTransition();
+  const queryClient = useQueryClient();
+
   const startGame = useAppStateStore((state) => state.startQuiz);
-  const resetScore = useScoreStore((state) => state.reset);
+  // const resetScore = useScoreStore((state) => state.reset);
   const language = useLanguageStore((state) => state.language);
   const { getText } = useLocalization();
+
+  const handleClick = () => {
+    startTransition(() => {
+      queryClient.prefetchQuery({
+        queryKey: ['matchup'],
+        queryFn: getMatchup
+      })
+      // resetScore();
+      startGame();
+    })
+  }
 
   return (
     <VStack spacing={2}>
@@ -53,11 +70,8 @@ export function Menu() {
           data-cy="start-game-button"
           size="lg"
           variant="primary"
-          marginTop="8"
-          onClick={() => {
-            resetScore();
-            startGame();
-          }}
+          marginTop={8}
+          onClick={handleClick}
         >
           {getText(language, 'mainmenu.button.newgame').toUpperCase()}
         </Button>
