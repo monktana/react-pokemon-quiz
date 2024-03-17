@@ -3,24 +3,16 @@ import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import { Menu, Navbar, GameOver } from '@/features/menu';
-import { Game } from '@/features/quiz';
-
-import { Error, Loading } from './components';
-import { useAppStateStore } from './stores';
+import { Error, Loading, Menu, Navbar, GameOver, Game } from '@/components';
+import { useAppStateStore } from '@/stores';
 
 function App(): JSX.Element | null {
   const { reset } = useQueryErrorResetBoundary();
-  
+
   const appState = useAppStateStore((state) => state.appState);
 
   return (
-    <ErrorBoundary
-      onReset={reset}
-      fallbackRender={({ resetErrorBoundary }) => (
-        <Error reset={resetErrorBoundary}/>
-      )}
-    >
+    <ErrorBoundary onReset={reset} FallbackComponent={Error}>
       <Suspense fallback={<Loading />}>
         <Navbar />
         <Container display="flex" alignItems="center" justifyContent="center" height="100vh">
