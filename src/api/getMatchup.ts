@@ -1,20 +1,13 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
+import endpoints from '@/api/endpoints';
+import queryKeys from '@/api/query-keys';
+import { Matchup } from '@/api/schema';
 import { axios } from '@/lib/axios';
 import { QueryFnReturnType, QueryConfig } from '@/lib/react-query';
-import { Pokemon, Move, TypeEffectiveness } from '@/types';
 
-import endpoints from './endpoints';
-import queryKeys from './query-keys';
 
-type PokemonMatchup = {
-  attacker: Pokemon;
-  defender: Pokemon;
-  move: Move;
-  effectiveness: TypeEffectiveness;
-};
-
-export const getMatchup = (): Promise<PokemonMatchup> => {
+export const getMatchup = (): Promise<Matchup> => {
   return axios.get(endpoints.matchup);
 };
 
