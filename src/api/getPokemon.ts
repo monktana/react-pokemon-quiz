@@ -1,11 +1,10 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
+import endpoints from '@/api/endpoints';
+import queryKeys from '@/api/query-keys';
+import { Pokemon } from '@/api/schema';
 import { axios } from '@/lib/axios';
 import { QueryFnReturnType, QueryConfig } from '@/lib/react-query';
-import { Pokemon } from '@/types';
-
-import endpoints from './endpoints';
-import queryKeys from './query-keys';
 
 export const getPokemon = (): Promise<Pokemon> => {
   return axios.get(endpoints.pokemon);

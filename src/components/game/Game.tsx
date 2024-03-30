@@ -7,7 +7,6 @@ import { Pokemon } from '@/components/pokemon';
 import { Score } from '@/components/score';
 import { useLocalization } from '@/hooks/useLocalization';
 import { useLanguageStore } from '@/stores';
-import { TypeEffectiveness } from '@/types';
 
 export function Game() {
   const { data: matchup, refetch } = useMatchup();

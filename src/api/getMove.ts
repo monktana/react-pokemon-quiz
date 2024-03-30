@@ -1,11 +1,10 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
+import endpoints from '@/api/endpoints';
+import queryKeys from '@/api/query-keys';
+import { Move } from '@/api/schema';
 import { axios } from '@/lib/axios';
 import { QueryFnReturnType, QueryConfig } from '@/lib/react-query';
-import { Move } from '@/types';
-
-import endpoints from './endpoints';
-import queryKeys from './query-keys';
 
 export const getMove = (): Promise<Move> => {
   return axios.get(endpoints.move);
