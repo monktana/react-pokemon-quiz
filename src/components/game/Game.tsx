@@ -2,6 +2,7 @@ import { Button, Grid, VStack, useColorModeValue } from '@chakra-ui/react';
 import { Suspense, useCallback } from 'react';
 
 import { useMatchup } from '@/api';
+import { TypeEffectiveness } from '@/api/schema';
 import { Loading, Question } from '@/components';
 import { Pokemon } from '@/components/pokemon';
 import { Score } from '@/components/score';
@@ -45,7 +46,7 @@ export function Game() {
             data-cy="no-effect-button"
             variant="primary"
             color="fire.300"
-            onClick={() => guess(TypeEffectiveness.NoEffect)}
+            onClick={() => guess(TypeEffectiveness.Value0)}
           >
             {getText(language, 'types.effectiveness.noeffect')}
           </Button>
@@ -53,7 +54,7 @@ export function Game() {
             data-cy="not-effective-button"
             variant="primary"
             color="electric.300"
-            onClick={() => guess(TypeEffectiveness.NotVeryEffective)}
+            onClick={() => guess(TypeEffectiveness.Value1)}
           >
             {getText(language, 'types.effectiveness.noteffective')}
           </Button>
@@ -61,7 +62,7 @@ export function Game() {
             data-cy="effective-button"
             variant="primary"
             color="grass.300"
-            onClick={() => guess(TypeEffectiveness.Effective)}
+            onClick={() => guess(TypeEffectiveness.Value2)}
           >
             {getText(language, 'types.effectiveness.effective')}
           </Button>
@@ -69,7 +70,7 @@ export function Game() {
             data-cy="super-effective-button"
             variant="primary"
             color="water.300"
-            onClick={() => guess(TypeEffectiveness.SuperEffective)}
+            onClick={() => guess(TypeEffectiveness.Value3)}
           >
             {getText(language, 'types.effectiveness.supereffective')}
           </Button>

@@ -1,8 +1,8 @@
 import { Flex, Tag, TagLeftIcon, TagLabel, Text, useColorModeValue } from '@chakra-ui/react';
 
+import { Move, Pokemon } from '@/api/schema';
 import { useLanguageStore } from '@/stores';
 
-import { Move, Pokemon } from '../../types';
 import { TypeIcon } from '../icons';
 import { getRessourceName } from '../pokemon/util';
 
@@ -31,12 +31,12 @@ export function Question({ pokemon: attacker, move }: AttackProps) {
       backgroundColor={backgroundColor}
     >
       <Text fontSize="3xl" data-cy="pokemon-name">
-        {getRessourceName(attacker.names, language)}
+        {getRessourceName(attacker.species!.names!, language)}
       </Text>
       <Text fontSize="2xl"> used </Text>
-      <Tag borderRadius="md" colorScheme={move.type.name} data-cy="attack-tag">
-        <TagLeftIcon as={TypeIcon} type={move.type.name} data-cy="attack-tag-icon" />
-        <TagLabel data-cy="attack-tag-name">{getRessourceName(move.names, language)}</TagLabel>
+      <Tag borderRadius="md" colorScheme={move.type!.name!} data-cy="attack-tag">
+        <TagLeftIcon as={TypeIcon} type={move.type!.name!} data-cy="attack-tag-icon" />
+        <TagLabel data-cy="attack-tag-name">{getRessourceName(move.names!, language)}</TagLabel>
       </Tag>
     </Flex>
   );

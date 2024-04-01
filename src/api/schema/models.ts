@@ -18,6 +18,7 @@ export interface Matchup {
   attacker?: Pokemon;
   defender?: Pokemon;
   move?: Move;
+  effectiveness?: TypeEffectiveness;
 }
 
 export interface Move {
@@ -63,4 +64,12 @@ export interface Type {
   id?: number;
   name?: string | null;
   names?: InternationalName[] | null;
+}
+
+/** @format int32 */
+export enum TypeEffectiveness {
+  Value0 = 0,
+  Value1 = 1,
+  Value2 = 2,
+  Value3 = 3,
 }
