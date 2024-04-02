@@ -4,20 +4,20 @@ import endpoints from '@/api/endpoints';
 import queryKeys from '@/api/query-keys';
 import { Move } from '@/api/schema';
 import { axios } from '@/lib/axios';
-import { QueryFnReturnType, QueryConfig } from '@/lib/react-query';
+import { QueryConfig, QueryFunctionReturnType } from '@/lib/react-query';
 
 export const getMove = (): Promise<Move> => {
   return axios.get(endpoints.move);
 };
 
-type QueryFnType = typeof getMove;
+type QueryFunctionType = typeof getMove;
 
 type UseMoveOptions = {
-  config?: QueryConfig<QueryFnType>;
+  config?: QueryConfig<QueryFunctionType>;
 };
 
 export const useMove = ({ config }: UseMoveOptions = {}) => {
-  return useSuspenseQuery<QueryFnReturnType<QueryFnType>>({
+  return useSuspenseQuery<QueryFunctionReturnType<QueryFunctionType>>({
     queryKey: [queryKeys.move],
     queryFn: getMove,
     ...config,

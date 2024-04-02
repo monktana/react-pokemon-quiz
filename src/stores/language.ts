@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 
-import { LanguageKey } from '@/hooks/i18n';
+import { Language } from '@/hooks/i18n';
 
 type LanguageStore = {
-  language: LanguageKey;
-  setLanguage: (language: LanguageKey) => void;
+  language: Language;
+  setLanguage: (language: Language) => void;
 };
 
 export const useLanguageStore = create<LanguageStore>()((set) => ({

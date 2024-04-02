@@ -4,20 +4,20 @@ import endpoints from '@/api/endpoints';
 import queryKeys from '@/api/query-keys';
 import { Pokemon } from '@/api/schema';
 import { axios } from '@/lib/axios';
-import { QueryFnReturnType, QueryConfig } from '@/lib/react-query';
+import { QueryConfig, QueryFunctionReturnType } from '@/lib/react-query';
 
 export const getPokemon = (): Promise<Pokemon> => {
   return axios.get(endpoints.pokemon);
 };
 
-type QueryFnType = typeof getPokemon;
+type QueryFunctionType = typeof getPokemon;
 
 type UsePokemonOptions = {
-  config?: QueryConfig<QueryFnType>;
+  config?: QueryConfig<QueryFunctionType>;
 };
 
 export const usePokemon = ({ config }: UsePokemonOptions = {}) => {
-  return useSuspenseQuery<QueryFnReturnType<QueryFnType>>({
+  return useSuspenseQuery<QueryFunctionReturnType<QueryFunctionType>>({
     queryKey: [queryKeys.pokemon],
     queryFn: getPokemon,
     ...config,

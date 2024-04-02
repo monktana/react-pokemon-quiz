@@ -1,4 +1,4 @@
-import { Button, Grid, VStack, useColorModeValue } from '@chakra-ui/react';
+import { Button, Grid, useColorModeValue, VStack } from '@chakra-ui/react';
 import { Suspense, useCallback } from 'react';
 
 import { useMatchup } from '@/api';
@@ -10,7 +10,8 @@ import { useLocalization } from '@/hooks/useLocalization';
 import { useLanguageStore } from '@/stores';
 
 export function Game() {
-  const { data: matchup, refetch } = useMatchup();
+  const { data: matchup, refetch } = useMatchup({ notifyOnChangeProps: [] });
+
   const language = useLanguageStore((state) => state.language);
 
   const backgroundColor = useColorModeValue('background.200', 'background.800');
@@ -18,19 +19,23 @@ export function Game() {
 
   const { getText } = useLocalization();
 
-  const guess = useCallback((guess: TypeEffectiveness) => {
-    if (guess === matchup.effectiveness) {
+  const guess = useCallback(
+    (guess: TypeEffectiveness) => {
+      if (guess !== matchup.effectiveness) {
+        return;
+      }
       refetch();
-    }
-  }, [matchup.effectiveness, refetch]);
+    },
+    [matchup.effectiveness, refetch]
+  );
 
   return (
     <Suspense fallback={<Loading />}>
       <VStack align="start">
         <Score />
-        <Pokemon pokemon={matchup.defender} variant="defend" />
-        <Pokemon pokemon={matchup.attacker} variant="attack" />
-        <Question pokemon={matchup.attacker} move={matchup.move} />
+        <Pokemon pokemon={matchup.defender!} variant="defend" />
+        <Pokemon pokemon={matchup.attacker!} variant="attack" />
+        <Question pokemon={matchup.attacker!} move={matchup.move!} />
         <Grid
           data-cy="decision-buttons"
           gap={2}

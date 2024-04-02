@@ -1,11 +1,9 @@
-import { Box, Button, Center, VStack, keyframes } from '@chakra-ui/react';
-import { useQueryClient } from '@tanstack/react-query';
+import { Box, Button, Center, keyframes, VStack } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { useTransition } from 'react';
 
-import { getMatchup } from '@/api';
+import { usePrefetchMatchup } from '@/api';
 import { useLocalization } from '@/hooks/useLocalization';
-import { useAppStateStore, useLanguageStore } from '@/stores';
+import { useAppStateStore, useLanguageStore, useScoreStore } from '@/stores';
 
 const animationKeyframes = keyframes`
   0% { transform: rotate(0) }
@@ -20,23 +18,16 @@ const animationKeyframes = keyframes`
 const animation = `${animationKeyframes} 4s ease-in-out infinite`;
 
 export function Menu() {
-  const [, startTransition] = useTransition();
-  const queryClient = useQueryClient();
+  usePrefetchMatchup();
 
   const startGame = useAppStateStore((state) => state.startQuiz);
-  // const resetScore = useScoreStore((state) => state.reset);
+  const resetScore = useScoreStore((state) => state.reset);
   const language = useLanguageStore((state) => state.language);
   const { getText } = useLocalization();
 
   const handleClick = () => {
-    startTransition(() => {
-      queryClient.prefetchQuery({
-        queryKey: ['matchup'],
-        queryFn: getMatchup,
-      });
-      // resetScore();
-      startGame();
-    });
+    resetScore();
+    startGame();
   };
 
   return (
