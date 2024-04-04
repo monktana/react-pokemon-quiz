@@ -1,18 +1,23 @@
 import { Button, Grid, useColorModeValue, VStack } from '@chakra-ui/react';
-import { Suspense, useCallback } from 'react';
+import { Suspense, useCallback, useState } from 'react';
 
 import { useMatchup } from '@/api';
-import { TypeEffectiveness } from '@/api/schema';
+import { Matchup, TypeEffectiveness } from '@/api/schema';
 import { Loading, Question } from '@/components';
 import { Pokemon } from '@/components/pokemon';
 import { Score } from '@/components/score';
-import { useLocalization } from '@/hooks/useLocalization';
-import { useLanguageStore } from '@/stores';
+import { useLocalization } from '@/hooks';
+import { useLanguageStore, useScoreStore } from '@/stores';
 
 export function Game() {
-  const { data: matchup, refetch } = useMatchup({ notifyOnChangeProps: [] });
+  const { data, refetch } = useMatchup();
+  const [matchup, setMatchup] = useState<Matchup>(data);
 
   const language = useLanguageStore((state) => state.language);
+  const { increase, decrease } = useScoreStore((state) => ({
+    increase: state.increase,
+    decrease: state.decrease,
+  }));
 
   const backgroundColor = useColorModeValue('background.200', 'background.800');
   const borderColor = useColorModeValue('border.500', 'border.100');
@@ -22,11 +27,14 @@ export function Game() {
   const guess = useCallback(
     (guess: TypeEffectiveness) => {
       if (guess !== matchup.effectiveness) {
+        decrease();
         return;
       }
+      increase();
       refetch();
+      setMatchup(data);
     },
-    [matchup.effectiveness, refetch]
+    [data, decrease, increase, matchup.effectiveness, refetch]
   );
 
   return (
