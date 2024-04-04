@@ -6,14 +6,14 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  MenuOptionGroup,
   Text,
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
 
-import { TypeIcon, LanguageIcon } from '@/components/icons';
-import { languages } from '@/hooks/i18n';
-import { useLocalization } from '@/hooks/useLocalization';
+import { LanguageIcon, TypeIcon } from '@/components/icons';
+import { languages, useLocalization } from '@/hooks';
 import { useLanguageStore } from '@/stores';
 
 export function Navbar() {
@@ -23,9 +23,16 @@ export function Navbar() {
   const { toggleColorMode } = useColorMode();
 
   const iconName = useColorModeValue('dark', 'psychic');
+  const backgroundColor = useColorModeValue('background.200', 'background.800');
+  const hoverColor = useColorModeValue('background.300', 'background.700');
 
   return (
-    <Box position="fixed" zIndex="overlay" width="full" background="background.500">
+    <Box
+      position="fixed"
+      zIndex="overlay"
+      width="full"
+      backgroundColor={{ dark: 'background.900', light: 'background.100' }}
+    >
       <HStack align="center" justify="end" px={4} spacing={2}>
         <Menu>
           <MenuButton
@@ -34,19 +41,25 @@ export function Navbar() {
             as={IconButton}
             icon={<LanguageIcon type={language} aria-label={language} />}
           />
-          <MenuList>
-            {languages.map((language) => {
-              return (
-                <MenuItem
-                  key={language}
-                  data-cy={`${language}-language`}
-                  icon={<LanguageIcon type={language} />}
-                  onClick={() => setLanguage(language)}
-                >
-                  <Text>{getText(language, 'language')}</Text>
-                </MenuItem>
-              );
-            })}
+          <MenuList backgroundColor={backgroundColor}>
+            <MenuOptionGroup defaultValue={language} type="radio">
+              {languages.map((language) => {
+                return (
+                  <MenuItem
+                    key={language}
+                    data-cy={`${language}-language`}
+                    backgroundColor={backgroundColor}
+                    icon={<LanguageIcon type={language} />}
+                    onClick={() => setLanguage(language)}
+                    _hover={{
+                      backgroundColor: hoverColor,
+                    }}
+                  >
+                    <Text>{getText(language, 'language')}</Text>
+                  </MenuItem>
+                );
+              })}
+            </MenuOptionGroup>
           </MenuList>
         </Menu>
         <IconButton
