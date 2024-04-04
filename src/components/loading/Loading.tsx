@@ -1,6 +1,6 @@
 import { Center, Container, Text, useColorModeValue } from '@chakra-ui/react';
 
-import { useLocalization } from '@/hooks/useLocalization';
+import { useLocalization } from '@/hooks';
 import { useLanguageStore } from '@/stores';
 
 const Loading = () => {

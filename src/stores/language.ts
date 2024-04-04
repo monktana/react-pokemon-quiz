@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { Language } from '@/hooks/i18n';
+import { Language } from '@/hooks/Localization/i18n';
 
 type LanguageStore = {
   language: Language;

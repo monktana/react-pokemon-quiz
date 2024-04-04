@@ -1,13 +1,13 @@
 import {
   HStack,
   Stat,
-  StatProps,
   StatLabel,
   StatNumber,
+  StatProps,
   useColorModeValue,
 } from '@chakra-ui/react';
 
-import { useLocalization } from '@/hooks/useLocalization';
+import { useLocalization } from '@/hooks';
 import { useLanguageStore, useScoreStore } from '@/stores';
 
 export function Score(props: StatProps) {

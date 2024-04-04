@@ -1,6 +1,6 @@
 import { Button, Text, VStack } from '@chakra-ui/react';
 
-import { useLocalization } from '@/hooks/useLocalization';
+import { useLocalization } from '@/hooks';
 import { useAppStateStore, useLanguageStore, useScoreStore } from '@/stores';
 
 export function GameOver() {

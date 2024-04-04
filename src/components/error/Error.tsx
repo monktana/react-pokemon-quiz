@@ -2,7 +2,7 @@ import { Button, Container, Flex, Heading, Text, useColorModeValue } from '@chak
 import { FallbackProps } from 'react-error-boundary';
 
 import { GhostIcon } from '@/components/icons';
-import { useLocalization } from '@/hooks/useLocalization';
+import { useLocalization } from '@/hooks';
 import { useLanguageStore } from '@/stores';
 
 const Error = ({ resetErrorBoundary }: FallbackProps) => {

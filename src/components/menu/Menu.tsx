@@ -2,7 +2,7 @@ import { Box, Button, Center, keyframes, VStack } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 
 import { usePrefetchMatchup } from '@/api';
-import { useLocalization } from '@/hooks/useLocalization';
+import { useLocalization } from '@/hooks';
 import { useAppStateStore, useLanguageStore, useScoreStore } from '@/stores';
 
 const animationKeyframes = keyframes`
