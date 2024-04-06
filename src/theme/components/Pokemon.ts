@@ -69,20 +69,20 @@ const sizes = {
   }),
 };
 
-const variantAttack = definePartsStyle({
+const variantAttacker = definePartsStyle({
   container: {
     flexDir: 'row',
   },
 });
-const variantDefend = definePartsStyle({
+const variantDefender = definePartsStyle({
   container: {
     flexDir: 'row-reverse',
   },
 });
 
 const variants = {
-  attack: variantAttack,
-  defend: variantDefend,
+  attacker: variantAttacker,
+  defender: variantDefender,
 };
 
 export const Pokemon = defineMultiStyleConfig({
@@ -91,6 +91,6 @@ export const Pokemon = defineMultiStyleConfig({
   variants,
   defaultProps: {
     size: 'md',
-    variant: 'attack',
+    variant: 'attacker',
   },
 });

@@ -21,19 +21,24 @@ import { getRessourceName } from './util';
 
 type PokemonProps = {
   pokemon: Pokemon;
-  variant: ResponsiveValue<'attack' | 'defend'>;
+  variant: ResponsiveValue<'attacker' | 'defender'>;
 };
 
 export function Pokemon({ pokemon, variant }: PokemonProps) {
   const styles = useMultiStyleConfig('Pokemon', { variant });
   const language = useLanguageStore((state) => state.language);
   const sprite =
-    variant === 'attack' ? pokemon.sprites?.back_default : pokemon.sprites?.front_default;
+    variant === 'attacker' ? pokemon.sprites?.back_default : pokemon.sprites?.front_default;
 
   return (
     <Box __css={styles.container} data-cy={`${variant}-pokemon`}>
       <Suspense fallback={<Loading />}>
-        <Image __css={styles.image} src={sprite!} alt={pokemon.name!} data-cy={`${variant}-sprite`} />
+        <Image
+          __css={styles.image}
+          src={sprite!}
+          alt={pokemon.name!}
+          data-cy={`${variant}-sprite`}
+        />
         <Box __css={styles.infoContainer}>
           <Text fontWeight="bold" fontSize="2xl" data-cy={`${variant}-name`}>
             {getRessourceName(pokemon.species!.names!, language)}
