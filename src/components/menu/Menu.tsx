@@ -57,13 +57,7 @@ export function Menu() {
         />
       </Box>
       <Center>
-        <Button
-          data-cy="start-game-button"
-          size="lg"
-          variant="primary"
-          marginTop={8}
-          onClick={handleClick}
-        >
+        <Button data-cy="start-game-button" size="lg" marginTop={8} onClick={handleClick}>
           {getText(language, 'mainmenu.button.newgame').toUpperCase()}
         </Button>
       </Center>

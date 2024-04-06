@@ -1,4 +1,4 @@
-export default {
+export const colors = {
   border: {
     100: '#484848',
     500: '#bbbbbb',

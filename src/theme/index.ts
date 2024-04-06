@@ -1,10 +1,10 @@
 // theme/index.js
-import { ThemeConfig, extendTheme } from '@chakra-ui/react';
+import { extendTheme, ThemeConfig } from '@chakra-ui/react';
 
-import { Button } from './components/Button';
-import { Pokemon } from './components/Pokemon';
+import { Button, Pokemon, Skeleton } from '@/theme/components';
+import { colors } from '@/theme/foundations';
+
 // Global style overrides
-import colors from './foundations/colors';
 import styles from './styles';
 
 const config: ThemeConfig = {
@@ -21,6 +21,7 @@ const overrides = {
   components: {
     Button,
     Pokemon,
+    Skeleton,
   },
 };
 
