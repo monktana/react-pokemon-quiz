@@ -1,38 +1,22 @@
 import { Button, Grid, Skeleton, useColorModeValue, VStack } from '@chakra-ui/react';
-import { useCallback } from 'react';
 
 import { useMatchup } from '@/api';
 import { TypeEffectiveness } from '@/api/schema';
 import { Question } from '@/components';
+import { useGuess } from '@/components/game/useGuess';
 import { Pokemon } from '@/components/pokemon';
 import { Score } from '@/components/score';
 import { useLocalization } from '@/hooks';
-import { useLanguageStore, useScoreStore } from '@/stores';
+import { useLanguageStore } from '@/stores';
 
 export function Game() {
   const { data, refetch, isRefetching } = useMatchup();
+  const { getText } = useLocalization();
+  const { makeGuess } = useGuess(data, refetch);
   const language = useLanguageStore((state) => state.language);
-  const { increase, decrease } = useScoreStore((state) => ({
-    increase: state.increase,
-    decrease: state.decrease,
-  }));
 
   const backgroundColor = useColorModeValue('background.200', 'background.800');
   const borderColor = useColorModeValue('border.500', 'border.100');
-
-  const { getText } = useLocalization();
-
-  const guess = useCallback(
-    (guess: TypeEffectiveness) => {
-      if (guess !== data.effectiveness) {
-        decrease();
-        return;
-      }
-      increase();
-      refetch();
-    },
-    [data, decrease, increase, refetch]
-  );
 
   return (
     <VStack align="start">
@@ -61,7 +45,7 @@ export function Game() {
           data-cy="no-effect-button"
           color="fire.500"
           isDisabled={isRefetching}
-          onClick={() => guess(TypeEffectiveness.Value0)}
+          onClick={() => makeGuess(TypeEffectiveness.Value0)}
         >
           {getText(language, 'types.effectiveness.noeffect')}
         </Button>
@@ -69,14 +53,14 @@ export function Game() {
           data-cy="not-effective-button"
           color="electric.500"
           isDisabled={isRefetching}
-          onClick={() => guess(TypeEffectiveness.Value1)}
+          onClick={() => makeGuess(TypeEffectiveness.Value1)}
         >
           {getText(language, 'types.effectiveness.noteffective')}
         </Button>
         <Button
           data-cy="effective-button"
           isDisabled={isRefetching}
-          onClick={() => guess(TypeEffectiveness.Value2)}
+          onClick={() => makeGuess(TypeEffectiveness.Value2)}
         >
           {getText(language, 'types.effectiveness.effective')}
         </Button>
@@ -84,7 +68,7 @@ export function Game() {
           data-cy="super-effective-button"
           color="grass.500"
           isDisabled={isRefetching}
-          onClick={() => guess(TypeEffectiveness.Value3)}
+          onClick={() => makeGuess(TypeEffectiveness.Value3)}
         >
           {getText(language, 'types.effectiveness.supereffective')}
         </Button>
