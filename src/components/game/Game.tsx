@@ -1,4 +1,4 @@
-import { Button, Grid, Skeleton, useColorModeValue, VStack } from '@chakra-ui/react';
+import { Button, Grid, Skeleton, VStack } from '@chakra-ui/react';
 
 import { useMatchup } from '@/api';
 import { TypeEffectiveness } from '@/api/schema';
@@ -15,9 +15,6 @@ export function Game() {
   const { makeGuess } = useGuess(data, refetch);
   const language = useLanguageStore((state) => state.language);
 
-  const backgroundColor = useColorModeValue('background.200', 'background.800');
-  const borderColor = useColorModeValue('border.500', 'border.100');
-
   return (
     <VStack align="start">
       <Score />
@@ -32,18 +29,21 @@ export function Game() {
       </Skeleton>
       <Grid
         data-cy="decision-buttons"
-        gap={2}
         gridTemplateColumns="repeat(2, 1fr)"
+        gap={2}
         padding={2}
         width="full"
         rounded="md"
         border="1px solid"
-        borderColor={borderColor}
-        backgroundColor={backgroundColor}
+        borderColor="border.500"
+        backgroundColor="background.200"
+        _dark={{
+          borderColor: 'border.100',
+          backgroundColor: 'background.800',
+        }}
       >
         <Button
           data-cy="no-effect-button"
-          color="fire.500"
           isDisabled={isRefetching}
           onClick={() => makeGuess(TypeEffectiveness.Value0)}
         >
@@ -51,7 +51,6 @@ export function Game() {
         </Button>
         <Button
           data-cy="not-effective-button"
-          color="electric.500"
           isDisabled={isRefetching}
           onClick={() => makeGuess(TypeEffectiveness.Value1)}
         >
@@ -66,7 +65,6 @@ export function Game() {
         </Button>
         <Button
           data-cy="super-effective-button"
-          color="grass.500"
           isDisabled={isRefetching}
           onClick={() => makeGuess(TypeEffectiveness.Value3)}
         >

@@ -23,8 +23,6 @@ export function Navbar() {
   const { toggleColorMode } = useColorMode();
 
   const iconName = useColorModeValue('dark', 'psychic');
-  const backgroundColor = useColorModeValue('background.200', 'background.800');
-  const hoverColor = useColorModeValue('background.300', 'background.700');
 
   return (
     <Box
@@ -33,7 +31,7 @@ export function Navbar() {
       width="full"
       backgroundColor={{ dark: 'background.900', light: 'background.100' }}
     >
-      <HStack align="center" justify="end" px={4} spacing={2}>
+      <HStack align="center" justify="end" paddingY={2} paddingX={4} spacing={2}>
         <Menu>
           <MenuButton
             data-cy="language-switch"
@@ -41,18 +39,23 @@ export function Navbar() {
             as={IconButton}
             icon={<LanguageIcon type={language} aria-label={language} />}
           />
-          <MenuList backgroundColor={backgroundColor}>
+          <MenuList backgroundColor={{ light: 'background.200', dark: 'background.800' }}>
             <MenuOptionGroup defaultValue={language} type="radio">
               {languages.map((language) => {
                 return (
                   <MenuItem
                     key={language}
                     data-cy={`${language}-language`}
-                    backgroundColor={backgroundColor}
+                    backgroundColor={{ light: 'background.200', dark: 'background.800' }}
                     icon={<LanguageIcon type={language} />}
                     onClick={() => setLanguage(language)}
                     _hover={{
-                      backgroundColor: hoverColor,
+                      backgroundColor: 'background.300',
+                    }}
+                    _dark={{
+                      _hover: {
+                        backgroundColor: 'background.700',
+                      },
                     }}
                   >
                     <Text>{getText(language, 'language')}</Text>
