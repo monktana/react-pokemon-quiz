@@ -1,10 +1,10 @@
 import { Center, Container, Text, useColorModeValue } from '@chakra-ui/react';
 
 import { useLocalization } from '@/hooks';
-import { useLanguageStore } from '@/stores';
+import { useLanguage } from '@/stores';
 
-const Loading = () => {
-  const language = useLanguageStore((state) => state.language);
+export const Loading = () => {
+  const language = useLanguage();
   const { getText } = useLocalization();
 
   const fontColor = useColorModeValue('font.800', 'font.100');
@@ -17,5 +17,3 @@ const Loading = () => {
     </Container>
   );
 };
-
-export default Loading;

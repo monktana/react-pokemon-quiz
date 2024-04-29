@@ -1,10 +1,9 @@
-import { Flex, Text, useColorModeValue } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 
 import { Move, Pokemon } from '@/api/schema';
+import { getRessourceName, TypeTag } from '@/components';
 import { getTemplateText } from '@/hooks';
-import { useLanguageStore } from '@/stores';
-
-import { getRessourceName } from '../pokemon/util';
+import { useLanguage } from '@/stores';
 
 type AttackProps = {
   pokemon: Pokemon;
@@ -12,11 +11,7 @@ type AttackProps = {
 };
 
 export function Question({ pokemon: attacker, move }: AttackProps) {
-  const language = useLanguageStore((state) => state.language);
-
-  const fontColor = useColorModeValue('font.800', 'font.100');
-  const backgroundColor = useColorModeValue('background.200', 'background.800');
-  const borderColor = useColorModeValue('border.500', 'border.100');
+  const language = useLanguage();
 
   return (
     <Flex
@@ -26,19 +21,24 @@ export function Question({ pokemon: attacker, move }: AttackProps) {
       padding={2}
       width="full"
       rounded="md"
-      color={fontColor}
+      color="font.800"
       border="1px solid"
-      borderColor={borderColor}
-      backgroundColor={backgroundColor}
+      borderColor="border.500"
+      backgroundColor="background.200"
+      _dark={{
+        color: 'font.100',
+        borderColor: 'border.100',
+        backgroundColor: 'background.800',
+      }}
     >
-      <Text fontSize="2xl">
+      <Flex gap={2} fontSize="xl">
         {getTemplateText(
           language,
           'game.question.effectiveness',
-          getRessourceName(attacker.species!.names!, language)!,
-          getRessourceName(move.names!, language)!
+          <Text>{getRessourceName(attacker.species!.names!, language)!}</Text>,
+          <TypeTag type={move.type!} borderRadius="md" />
         )}
-      </Text>
+      </Flex>
     </Flex>
   );
 }

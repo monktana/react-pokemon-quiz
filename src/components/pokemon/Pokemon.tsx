@@ -1,9 +1,9 @@
 import { Box, Flex, Image, ResponsiveValue, Text, useMultiStyleConfig } from '@chakra-ui/react';
 
 import type { Pokemon } from '@/api/schema';
-import { TypeTag } from '@/components/pokemon/TypeTag';
-import { useLanguageStore } from '@/stores';
+import { useLanguage } from '@/stores';
 
+import { TypeTag } from './TypeTag';
 import { getRessourceName } from './util';
 
 type PokemonProps = {
@@ -13,7 +13,7 @@ type PokemonProps = {
 
 export function Pokemon({ pokemon, variant }: PokemonProps) {
   const styles = useMultiStyleConfig('Pokemon', { variant });
-  const language = useLanguageStore((state) => state.language);
+  const language = useLanguage();
   const sprite =
     variant === 'attacker' ? pokemon.sprites?.back_default : pokemon.sprites?.front_default;
 

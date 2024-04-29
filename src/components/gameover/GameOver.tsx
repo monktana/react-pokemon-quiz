@@ -1,14 +1,13 @@
 import { Button, Text, VStack } from '@chakra-ui/react';
 
 import { useLocalization } from '@/hooks';
-import { useAppStateStore, useLanguageStore, useScoreStore } from '@/stores';
+import { useAppStateActions, useLanguage, useScore, useScoreActions } from '@/stores';
 
 export function GameOver() {
-  const startGame = useAppStateStore((state) => state.startQuiz);
-  const openMenu = useAppStateStore((state) => state.openMenu);
-  const score = useScoreStore((state) => state.score);
-  const resetScore = useScoreStore((state) => state.reset);
-  const language = useLanguageStore((state) => state.language);
+  const { startQuiz, openMenu } = useAppStateActions();
+  const score = useScore();
+  const { reset } = useScoreActions();
+  const language = useLanguage();
   const { getText } = useLocalization();
 
   return (
@@ -26,8 +25,8 @@ export function GameOver() {
           variant="primary"
           width="full"
           onClick={() => {
-            resetScore();
-            startGame();
+            reset();
+            startQuiz();
           }}
         >
           {getText(language, 'gameover.button.newgame').toUpperCase()}
@@ -38,7 +37,7 @@ export function GameOver() {
           variant="primary"
           width="full"
           onClick={() => {
-            resetScore();
+            reset();
             openMenu();
           }}
         >

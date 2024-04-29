@@ -2,18 +2,16 @@ import { Button, Grid, Skeleton, VStack } from '@chakra-ui/react';
 
 import { useMatchup } from '@/api';
 import { TypeEffectiveness } from '@/api/schema';
-import { Question } from '@/components';
-import { useGuess } from '@/components/game/useGuess';
-import { Pokemon } from '@/components/pokemon';
-import { Score } from '@/components/score';
 import { useLocalization } from '@/hooks';
-import { useLanguageStore } from '@/stores';
+import { useLanguage } from '@/stores';
+
+import { Pokemon, Question, Score, useGuess } from '../';
 
 export function Game() {
   const { data, refetch, isRefetching } = useMatchup();
   const { getText } = useLocalization();
   const { makeGuess } = useGuess(data, refetch);
-  const language = useLanguageStore((state) => state.language);
+  const language = useLanguage();
 
   return (
     <VStack align="start">

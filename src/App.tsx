@@ -1,15 +1,15 @@
 import { Container } from '@chakra-ui/react';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
-import { Suspense } from 'react';
+import { ReactElement, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import { Error, Loading, Menu, Navbar, GameOver, Game } from '@/components';
-import { useAppStateStore } from '@/stores';
+import { Error, Game, GameOver, Loading, Menu, Navbar } from '@/components';
+import { useAppState } from '@/stores';
 
-function App(): JSX.Element | null {
+function App(): ReactElement | null {
   const { reset } = useQueryErrorResetBoundary();
 
-  const appState = useAppStateStore((state) => state.appState);
+  const appState = useAppState();
 
   return (
     <ErrorBoundary onReset={reset} FallbackComponent={Error}>

@@ -4,10 +4,17 @@ import { Language } from '@/hooks/Localization/i18n';
 
 type LanguageStore = {
   language: Language;
-  setLanguage: (language: Language) => void;
+  actions: {
+    setLanguage: (language: Language) => void;
+  };
 };
 
-export const useLanguageStore = create<LanguageStore>()((set) => ({
+const useLanguageStore = create<LanguageStore>()((set) => ({
   language: 'en',
-  setLanguage: (language) => set(() => ({ language })),
+  actions: {
+    setLanguage: (language) => set(() => ({ language })),
+  },
 }));
+
+export const useLanguage = () => useLanguageStore((state) => state.language);
+export const useLanguageActions = () => useLanguageStore((state) => state.actions);

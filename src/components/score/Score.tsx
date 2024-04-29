@@ -8,11 +8,11 @@ import {
 } from '@chakra-ui/react';
 
 import { useLocalization } from '@/hooks';
-import { useLanguageStore, useScoreStore } from '@/stores';
+import { useLanguage, useScore } from '@/stores';
 
 export function Score(props: StatProps) {
-  const score = useScoreStore((state) => state.score);
-  const language = useLanguageStore((state) => state.language);
+  const score = useScore();
+  const language = useLanguage();
   const { getText } = useLocalization();
 
   const fontColor = useColorModeValue('font.800', 'font.100');

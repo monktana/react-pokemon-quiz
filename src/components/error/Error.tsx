@@ -1,12 +1,13 @@
 import { Button, Container, Flex, Heading, Text } from '@chakra-ui/react';
 import { FallbackProps } from 'react-error-boundary';
 
-import { GhostIcon } from '@/components/icons';
 import { useLocalization } from '@/hooks';
-import { useLanguageStore } from '@/stores';
+import { useLanguage } from '@/stores';
 
-const Error = ({ resetErrorBoundary }: FallbackProps) => {
-  const language = useLanguageStore((state) => state.language);
+import { GhostIcon } from '../icons';
+
+export const Error = ({ resetErrorBoundary }: FallbackProps) => {
+  const language = useLanguage();
   const { getText } = useLocalization();
 
   return (
@@ -26,5 +27,3 @@ const Error = ({ resetErrorBoundary }: FallbackProps) => {
     </Container>
   );
 };
-
-export default Error;

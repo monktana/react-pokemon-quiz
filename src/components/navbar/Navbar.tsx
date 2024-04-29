@@ -14,11 +14,11 @@ import {
 
 import { LanguageIcon, TypeIcon } from '@/components/icons';
 import { languages, useLocalization } from '@/hooks';
-import { useLanguageStore } from '@/stores';
+import { useLanguage, useLanguageActions } from '@/stores';
 
 export function Navbar() {
-  const language = useLanguageStore((state) => state.language);
-  const setLanguage = useLanguageStore((state) => state.setLanguage);
+  const language = useLanguage();
+  const { setLanguage } = useLanguageActions();
   const { getText } = useLocalization();
   const { toggleColorMode } = useColorMode();
 

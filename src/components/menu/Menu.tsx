@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 import { usePrefetchMatchup } from '@/api';
 import { useLocalization } from '@/hooks';
-import { useAppStateStore, useLanguageStore, useScoreStore } from '@/stores';
+import { useAppStateActions, useLanguage, useScoreActions } from '@/stores';
 
 const animationKeyframes = keyframes`
   0% { transform: rotate(0) }
@@ -20,14 +20,14 @@ const animation = `${animationKeyframes} 4s ease-in-out infinite`;
 export function Menu() {
   usePrefetchMatchup();
 
-  const startGame = useAppStateStore((state) => state.startQuiz);
-  const resetScore = useScoreStore((state) => state.reset);
-  const language = useLanguageStore((state) => state.language);
+  const { startQuiz } = useAppStateActions();
+  const { reset } = useScoreActions();
+  const language = useLanguage();
   const { getText } = useLocalization();
 
   const handleClick = () => {
-    resetScore();
-    startGame();
+    reset();
+    startQuiz();
   };
 
   return (
