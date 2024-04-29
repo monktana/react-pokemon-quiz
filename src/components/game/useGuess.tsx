@@ -2,13 +2,10 @@ import { UseSuspenseQueryResult } from '@tanstack/react-query';
 import { useCallback } from 'react';
 
 import { Matchup, TypeEffectiveness } from '@/api/schema';
-import { useScoreStore } from '@/stores';
+import { useScoreActions } from '@/stores';
 
 export const useGuess = (matchup: Matchup, refetch: UseSuspenseQueryResult['refetch']) => {
-  const { increase, decrease } = useScoreStore((state) => ({
-    increase: state.increase,
-    decrease: state.decrease,
-  }));
+  const { increase, decrease } = useScoreActions();
 
   const makeGuess = useCallback(
     (guess: TypeEffectiveness) => {
