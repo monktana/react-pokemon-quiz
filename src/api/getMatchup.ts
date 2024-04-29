@@ -3,10 +3,12 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import endpoints from '@/api/endpoints';
 import queryKeys from '@/api/query-keys';
 import { Matchup } from '@/api/schema';
-import { axios, queryClient, QueryConfig, QueryFunctionReturnType } from '@/lib';
+import { apiClient, queryClient, QueryConfig, QueryFunctionReturnType } from '@/lib';
 
-export const getMatchup = (): Promise<Matchup> => {
-  return axios.get(endpoints.matchup);
+export const getMatchup = async (): Promise<Matchup> => {
+  const controller = new AbortController();
+  const { signal } = controller;
+  return apiClient(endpoints.matchup, { signal }).json<Matchup>();
 };
 
 type QueryFunctionType = typeof getMatchup;
