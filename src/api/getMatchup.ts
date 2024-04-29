@@ -3,8 +3,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import endpoints from '@/api/endpoints';
 import queryKeys from '@/api/query-keys';
 import { Matchup } from '@/api/schema';
-import { axios } from '@/lib/axios';
-import { queryClient, QueryConfig, QueryFunctionReturnType } from '@/lib/react-query';
+import { axios, queryClient, QueryConfig, QueryFunctionReturnType } from '@/lib';
 
 export const getMatchup = (): Promise<Matchup> => {
   return axios.get(endpoints.matchup);
@@ -12,9 +11,9 @@ export const getMatchup = (): Promise<Matchup> => {
 
 type QueryFunctionType = typeof getMatchup;
 
-type UseMatchupOptions = QueryConfig<QueryFunctionType>;
+type UseMatchupConfig = QueryConfig<QueryFunctionType>;
 
-export const useMatchup = (config: UseMatchupOptions = {}) => {
+export const useMatchup = (config: UseMatchupConfig = {}) => {
   return useSuspenseQuery<QueryFunctionReturnType<QueryFunctionType>>({
     queryKey: [queryKeys.matchup],
     queryFn: getMatchup,
@@ -22,7 +21,7 @@ export const useMatchup = (config: UseMatchupOptions = {}) => {
   });
 };
 
-export const usePrefetchMatchup = async (config: UseMatchupOptions = {}) => {
+export const usePrefetchMatchup = async (config: UseMatchupConfig = {}) => {
   return await queryClient.prefetchQuery({
     queryKey: [queryKeys.matchup],
     queryFn: getMatchup,

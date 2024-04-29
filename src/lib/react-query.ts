@@ -7,13 +7,15 @@ const queryConfig: DefaultOptions = {
   },
 };
 
+type QueryFunctionType = (...args: any) => any;
+
 export const queryClient = new QueryClient({ defaultOptions: queryConfig });
 
-export type QueryFunctionReturnType<FnType extends (...args: any) => any> = PromiseValue<
-  ReturnType<FnType>
+export type QueryFunctionReturnType<FunctionType extends QueryFunctionType> = PromiseValue<
+  ReturnType<FunctionType>
 >;
 
-export type QueryConfig<QueryFnType extends (...args: any) => any> = Omit<
-  UseQueryOptions<QueryFunctionReturnType<QueryFnType>>,
+export type QueryConfig<FunctionType extends QueryFunctionType> = Omit<
+  UseQueryOptions<QueryFunctionReturnType<FunctionType>>,
   'queryKey' | 'queryFn'
 >;
