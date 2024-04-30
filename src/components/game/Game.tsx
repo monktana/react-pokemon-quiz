@@ -43,28 +43,28 @@ export function Game() {
         <Button
           data-cy="no-effect-button"
           isDisabled={isRefetching}
-          onClick={() => makeGuess(TypeEffectiveness.Value0)}
+          onClick={() => makeGuess(TypeEffectiveness.NoEffect)}
         >
           {getText(language, 'types.effectiveness.noeffect')}
         </Button>
         <Button
           data-cy="not-effective-button"
           isDisabled={isRefetching}
-          onClick={() => makeGuess(TypeEffectiveness.Value1)}
+          onClick={() => makeGuess(TypeEffectiveness.NotVeryEffective)}
         >
           {getText(language, 'types.effectiveness.noteffective')}
         </Button>
         <Button
           data-cy="effective-button"
           isDisabled={isRefetching}
-          onClick={() => makeGuess(TypeEffectiveness.Value2)}
+          onClick={() => makeGuess(TypeEffectiveness.Effective)}
         >
           {getText(language, 'types.effectiveness.effective')}
         </Button>
         <Button
           data-cy="super-effective-button"
           isDisabled={isRefetching}
-          onClick={() => makeGuess(TypeEffectiveness.Value3)}
+          onClick={() => makeGuess(TypeEffectiveness.SuperEffective)}
         >
           {getText(language, 'types.effectiveness.supereffective')}
         </Button>

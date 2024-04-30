@@ -66,10 +66,9 @@ export interface Type {
   names?: InternationalName[] | null;
 }
 
-/** @format int32 */
 export enum TypeEffectiveness {
-  Value0 = 0,
-  Value1 = 1,
-  Value2 = 2,
-  Value3 = 3,
+  NoEffect = 'NoEffect',
+  NotVeryEffective = 'NotVeryEffective',
+  Effective = 'Effective',
+  SuperEffective = 'SuperEffective',
 }
