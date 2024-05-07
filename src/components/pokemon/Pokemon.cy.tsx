@@ -1,51 +1,49 @@
 import React from 'react';
 
-import { Type } from '../../types';
+import { Type } from '@/api';
 
 import { Pokemon } from './Pokemon';
 import { getRessourceName } from './util';
 
 describe('<Pokemon />', () => {
   beforeEach(() => {
-    cy.fixture('pokemon/squirtle').as('squirtle');
+    cy.fixture('pokemon/bulbasaur').as('bulbasaur');
   });
 
   it('renders', function () {
-    cy.mount(<Pokemon pokemon={this.squirtle} variant="attack" />);
+    cy.mount(<Pokemon pokemon={this.bulbasaur} variant="attacker" />);
   });
 
   it('displays the pokemon name', function () {
-    cy.mount(<Pokemon pokemon={this.squirtle} variant="attack" />);
-    cy.get('[data-cy=attack-name]').should(
+    cy.mount(<Pokemon pokemon={this.bulbasaur} variant="attacker" />);
+    cy.get('[data-cy=attacker-name]').should(
       'have.text',
-      getRessourceName(this.squirtle.names, 'en')
+      getRessourceName(this.bulbasaur.species.names, 'en')
     );
   });
 
   it('displays the back sprite when attacking', function () {
-    cy.mount(<Pokemon pokemon={this.squirtle} variant="attack" />);
-    cy.get('[data-cy=attack-sprite]')
+    cy.mount(<Pokemon pokemon={this.bulbasaur} variant="attacker" />);
+    cy.get('[data-cy=attacker-sprite]')
       .should('have.attr', 'src')
-      .and('include', this.squirtle.sprites.back_default);
+      .and('include', this.bulbasaur.sprites.back_default);
   });
 
   it('displays the back sprite when defending', function () {
-    cy.mount(<Pokemon pokemon={this.squirtle} variant="defend" />);
-    cy.get('[data-cy=defend-sprite]')
+    cy.mount(<Pokemon pokemon={this.bulbasaur} variant="defender" />);
+    cy.get('[data-cy=defender-sprite]')
       .should('have.attr', 'src')
-      .and('include', this.squirtle.sprites.front_default);
+      .and('include', this.bulbasaur.sprites.front_default);
   });
 
   it('displays the pokemon types', function () {
-    cy.mount(<Pokemon pokemon={this.squirtle} variant="attack" />);
-    this.squirtle.types.forEach((type: Type, index: number) => {
-      cy.get('[data-cy=attack-type-tag]')
-        .eq(index)
+    cy.mount(<Pokemon pokemon={this.bulbasaur} variant="attacker" />);
+    this.bulbasaur.types.forEach((type: Type) => {
+      cy.get(`[data-cy=${type.name}-type-tag]`)
         .children('span')
-        .should('have.text', getRessourceName(type.names, 'en'));
+        .should('have.text', getRessourceName(type.names!, 'en'));
 
-      cy.get('[data-cy=attack-type-tag]')
-        .eq(index)
+      cy.get(`[data-cy=${type.name}-type-tag]`)
         .children('svg')
         .should('have.attr', 'name')
         .and('include', type.name);

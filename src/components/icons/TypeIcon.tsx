@@ -19,7 +19,7 @@ import { RockIcon } from './Rock';
 import { SteelIcon } from './Steel';
 import { WaterIcon } from './Water';
 
-type TypeName =
+export type types =
   | 'bug'
   | 'dark'
   | 'dragon'
@@ -39,7 +39,7 @@ type TypeName =
   | 'steel'
   | 'water';
 
-export const TypeIcon = ({ type, ...rest }: { type: TypeName } & IconProps) => {
+export const TypeIcon = ({ type, ...rest }: { type: types } & IconProps) => {
   switch (type) {
     case 'bug':
       return <BugIcon name={type} {...rest} />;

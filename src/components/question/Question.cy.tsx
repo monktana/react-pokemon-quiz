@@ -1,30 +1,40 @@
 import React from 'react';
 
-import { getRessourceName } from '../pokemon/util';
+import { getRessourceName } from '@/components';
 
 import { Question } from './Question';
 
 describe('<Question />', () => {
   beforeEach(() => {
-    cy.fixture('matchup/matchup').as('matchup');
+    cy.fixture('pokemon/bulbasaur').as('bulbasaur');
+    cy.fixture('move/round').as('round');
   });
 
-  it('renders', function() {
-    cy.mount(<Question pokemon={this.matchup.attacker} move={this.matchup.move} />);
+  it('renders', function () {
+    cy.mount(<Question pokemon={this.bulbasaur} move={this.round} />);
   });
 
-  it('displays the attacker name', function() {
-    cy.mount(<Question pokemon={this.matchup.attacker} move={this.matchup.move} />);
-    cy.get("[data-cy=pokemon-name]").should("have.text", getRessourceName(this.matchup.attacker.names, 'en'));
+  it('displays the attacker name', function () {
+    cy.mount(<Question pokemon={this.bulbasaur} move={this.round} />);
+    cy.get('[data-cy=question]').should(
+      'contain.text',
+      getRessourceName(this.bulbasaur.species.names, 'en')
+    );
   });
 
-  it('displays the move name', function() {
-    cy.mount(<Question pokemon={this.matchup.attacker} move={this.matchup.move} />);
-    cy.get("[data-cy=attack-tag-name]").should("have.text", getRessourceName(this.matchup.move.names, 'en'));
+  it('displays the moves name', function () {
+    cy.mount(<Question pokemon={this.bulbasaur} move={this.round} />);
+    cy.get(`[data-cy=${this.round.type.name}-type-tag]`).should(
+      'have.text',
+      getRessourceName(this.round.names, 'en')
+    );
   });
 
-  it('displays the move type icon', function() {
-    cy.mount(<Question pokemon={this.matchup.attacker} move={this.matchup.move} />);
-    cy.get("[data-cy=attack-tag-icon]").should("have.attr", "name").and("include", this.matchup.move.type.name);
+  it('displays the icon of the moves type', function () {
+    cy.mount(<Question pokemon={this.bulbasaur} move={this.round} />);
+    cy.get(`[data-cy=${this.round.type.name}-type-tag]`)
+      .children('svg')
+      .should('have.attr', 'name')
+      .and('include', this.round.type.name);
   });
-})
+});

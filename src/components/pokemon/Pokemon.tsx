@@ -1,6 +1,7 @@
 import { Box, Flex, Image, ResponsiveValue, Text, useMultiStyleConfig } from '@chakra-ui/react';
 
 import type { Pokemon } from '@/api/schema';
+import { types } from '@/components';
 import { useLanguage } from '@/stores';
 
 import { TypeTag } from './TypeTag';
@@ -25,7 +26,14 @@ export function Pokemon({ pokemon, variant }: PokemonProps) {
           {getRessourceName(pokemon.species!.names!, language)}
         </Text>
         <Flex gap={1}>
-          {pokemon.types?.map((type) => <TypeTag key={type.id} type={type} borderRadius="md" />)}
+          {pokemon.types?.map((type) => (
+            <TypeTag
+              key={type.id}
+              type={type.name! as types}
+              text={type.names!}
+              borderRadius="md"
+            />
+          ))}
         </Flex>
       </Box>
     </Box>
