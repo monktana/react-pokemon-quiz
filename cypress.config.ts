@@ -1,10 +1,10 @@
-import { defineConfig } from "cypress";
+import { defineConfig } from 'cypress';
 
 export default defineConfig({
   component: {
     devServer: {
-      framework: "react",
-      bundler: "vite",
+      framework: 'react',
+      bundler: 'vite',
     },
   },
   e2e: {
@@ -14,6 +14,6 @@ export default defineConfig({
     },
   },
   env: {
-    api_url: 'http://localhost:3000/matchup'
-  }
+    apiUrl: 'http://localhost:5174',
+  },
 });
