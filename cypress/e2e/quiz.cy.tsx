@@ -60,4 +60,33 @@ describe('Quiz', () => {
 
     cy.get('[data-cy="score-value"]').should('have.text', '2');
   });
+
+  it('enables the player to lose', () => {
+    cy.start();
+
+    cy.get('[data-cy="super-effective-button"]').click();
+
+    cy.contains('you whited out...');
+    cy.contains('your final score is 0');
+
+    cy.get('[data-cy="new-game-button"]').should('be.visible').and('be.enabled');
+    cy.get('[data-cy="main-menu-button"]').should('be.visible').and('be.enabled');
+  });
+
+  it('enables the player to start a new game after losing', () => {
+    cy.start();
+
+    cy.get('[data-cy="super-effective-button"]').click();
+
+    cy.intercept('GET', `${Cypress.env('apiUrl')}/matchup`, {
+      fixture: 'matchup/first.json',
+    }).as('newGame');
+
+    cy.get('[data-cy="new-game-button"]').click();
+
+    cy.get('[data-cy="attacker-pokemon"]').should('be.visible');
+    cy.get('[data-cy="defender-pokemon"]').should('be.visible');
+    cy.get('[data-cy="question"]').should('be.visible');
+    cy.get('[data-cy="decision-buttons"]').should('be.visible');
+  });
 });
