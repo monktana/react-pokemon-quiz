@@ -32,10 +32,10 @@ export function Navbar() {
       backgroundColor={{ dark: 'background.900', light: 'background.100' }}
     >
       <HStack align="center" justify="end" paddingY={2} paddingX={4} spacing={2}>
-        <Menu>
+        <Menu data-cy="language-menu">
           <MenuButton
             data-cy="language-switch"
-            aria-label="change language"
+            aria-label={getText(language, 'navbar.language.label')}
             as={IconButton}
             icon={<LanguageIcon type={language} aria-label={language} />}
           />
@@ -67,7 +67,7 @@ export function Navbar() {
         </Menu>
         <IconButton
           data-cy="color-mode-switch"
-          aria-label="change color mode"
+          aria-label={getText(language, 'navbar.color.label')}
           variant="solid"
           colorScheme={iconName}
           icon={<TypeIcon type={iconName} color="current" />}

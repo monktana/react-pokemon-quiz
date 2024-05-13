@@ -3,6 +3,7 @@ import { ReactElement } from 'react';
 
 import LOCALIZATION_TEXTS from './i18n.json';
 
+//https://datatracker.ietf.org/doc/html/rfc5646
 export const languages = ['en', 'de'] as const;
 export type Language = (typeof languages)[number];
 export type TextKey = keyof (typeof LOCALIZATION_TEXTS)[Language];

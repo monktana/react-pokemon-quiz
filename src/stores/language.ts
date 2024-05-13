@@ -12,7 +12,7 @@ type LanguageStore = {
 const useLanguageStore = create<LanguageStore>()((set) => ({
   language: 'en',
   actions: {
-    setLanguage: (language) => set(() => ({ language })),
+    setLanguage: (language) => set({ language }),
   },
 }));
 
