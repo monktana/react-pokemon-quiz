@@ -4,6 +4,7 @@ describe('Menu', () => {
   it('enables the user to change the language', () => {
     cy.visit('/');
 
+    cy.get('html').should('have.attr', 'lang', 'en');
     cy.get('[data-cy="language-switch"]')
       .should('be.visible')
       .should('be.enabled')
@@ -18,6 +19,7 @@ describe('Menu', () => {
 
     cy.get('[data-cy="de-language"]').click();
 
+    cy.get('html').should('have.attr', 'lang', 'de');
     cy.get('[data-cy="language-switch"]').should('have.attr', 'aria-label', 'Sprache wechseln');
     cy.get('[data-cy="language-switch"] svg').should('have.attr', 'aria-label', 'de');
   });

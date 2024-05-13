@@ -14,11 +14,11 @@ import {
 
 import { LanguageIcon, TypeIcon } from '@/components/icons';
 import { languages, useLocalization } from '@/hooks';
-import { useLanguage, useLanguageActions } from '@/stores';
+import { useChangeLanguage, useLanguage } from '@/stores';
 
 export function Navbar() {
   const language = useLanguage();
-  const { setLanguage } = useLanguageActions();
+  const { changeLanguage } = useChangeLanguage();
   const { getText } = useLocalization();
   const { toggleColorMode } = useColorMode();
 
@@ -48,7 +48,7 @@ export function Navbar() {
                     data-cy={`${language}-language`}
                     backgroundColor={{ light: 'background.200', dark: 'background.800' }}
                     icon={<LanguageIcon type={language} />}
-                    onClick={() => setLanguage(language)}
+                    onClick={() => changeLanguage(language)}
                     _hover={{
                       backgroundColor: 'background.300',
                     }}

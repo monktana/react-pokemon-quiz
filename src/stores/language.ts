@@ -16,5 +16,15 @@ const useLanguageStore = create<LanguageStore>()((set) => ({
   },
 }));
 
+const useLanguageActions = () => useLanguageStore((state) => state.actions);
+
 export const useLanguage = () => useLanguageStore((state) => state.language);
-export const useLanguageActions = () => useLanguageStore((state) => state.actions);
+export const useChangeLanguage = () => {
+  const { setLanguage } = useLanguageActions();
+  const changeLanguage = (language: Language) => {
+    document.documentElement.lang = language;
+    setLanguage(language);
+  };
+
+  return { changeLanguage };
+};
