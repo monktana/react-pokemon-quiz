@@ -6,6 +6,8 @@ import LOCALIZATION_TEXTS from './i18n.json';
 //https://datatracker.ietf.org/doc/html/rfc5646
 export const languages = ['en', 'de'] as const;
 export type Language = (typeof languages)[number];
+export const isSupportedLanguage = (language: string): language is Language =>
+  ['en', 'de'].includes(language);
 export type TextKey = keyof (typeof LOCALIZATION_TEXTS)[Language];
 
 export const getText = (language: Language, key: TextKey) => LOCALIZATION_TEXTS[language][key];

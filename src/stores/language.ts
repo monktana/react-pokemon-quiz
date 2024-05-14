@@ -1,6 +1,7 @@
+import { useCallback } from 'react';
 import { create } from 'zustand';
 
-import { Language } from '@/hooks/Localization/i18n';
+import { isSupportedLanguage, Language } from '@/hooks/Localization/i18n';
 
 type LanguageStore = {
   language: Language;
@@ -9,8 +10,18 @@ type LanguageStore = {
   };
 };
 
+const navigatorLanguageToAppLanguage = (browserLanguage: string): Language => {
+  const languageAbbreviation = browserLanguage.split('-')[0].toLowerCase();
+  return isSupportedLanguage(languageAbbreviation) ? languageAbbreviation : 'en';
+};
+
+const getBrowserLanguage = () => {
+  const browserLanguage = navigator.language ?? navigator.languages[0];
+  return navigatorLanguageToAppLanguage(browserLanguage);
+};
+
 const useLanguageStore = create<LanguageStore>()((set) => ({
-  language: 'en',
+  language: getBrowserLanguage(),
   actions: {
     setLanguage: (language) => set({ language }),
   },
@@ -21,10 +32,13 @@ const useLanguageActions = () => useLanguageStore((state) => state.actions);
 export const useLanguage = () => useLanguageStore((state) => state.language);
 export const useChangeLanguage = () => {
   const { setLanguage } = useLanguageActions();
-  const changeLanguage = (language: Language) => {
-    document.documentElement.lang = language;
-    setLanguage(language);
-  };
+  const changeLanguage = useCallback(
+    (language: Language) => {
+      document.documentElement.lang = language;
+      setLanguage(language);
+    },
+    [setLanguage]
+  );
 
   return { changeLanguage };
 };
