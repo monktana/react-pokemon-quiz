@@ -6,6 +6,6 @@ const navigatorLanguageToAppLanguage = (browserLanguage: string): Language => {
 };
 
 export const getBrowserLanguage = () => {
-  const browserLanguage = navigator.language ?? navigator.languages[0];
+  const browserLanguage = navigator.language;
   return navigatorLanguageToAppLanguage(browserLanguage);
 };
