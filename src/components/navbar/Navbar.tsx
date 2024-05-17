@@ -14,11 +14,11 @@ import {
 
 import { LanguageIcon, TypeIcon } from '@/components/icons';
 import { languages, useLocalization } from '@/hooks';
-import { useChangeLanguage, useLanguage } from '@/stores';
+import { useLanguage, useLanguageActions } from '@/stores';
 
 export function Navbar() {
   const language = useLanguage();
-  const { changeLanguage } = useChangeLanguage();
+  const { setLanguage } = useLanguageActions();
   const { getText } = useLocalization();
   const { toggleColorMode } = useColorMode();
 
@@ -39,20 +39,21 @@ export function Navbar() {
             as={IconButton}
             icon={<LanguageIcon type={language} aria-label={language} />}
           />
-          <MenuList backgroundColor={{ light: 'background.200', dark: 'background.800' }}>
+          <MenuList backgroundColor="background.200" _dark={{ backgroundColor: 'background.800' }}>
             <MenuOptionGroup defaultValue={language} type="radio">
               {languages.map((language) => {
                 return (
                   <MenuItem
                     key={language}
                     data-cy={`${language}-language`}
-                    backgroundColor={{ light: 'background.200', dark: 'background.800' }}
+                    backgroundColor="background.800"
                     icon={<LanguageIcon type={language} />}
-                    onClick={() => changeLanguage(language)}
+                    onClick={() => setLanguage(language)}
                     _hover={{
                       backgroundColor: 'background.300',
                     }}
                     _dark={{
+                      backgroundColor: 'background.800',
                       _hover: {
                         backgroundColor: 'background.700',
                       },
