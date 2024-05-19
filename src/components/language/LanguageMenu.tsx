@@ -31,6 +31,7 @@ export const LanguageMenu = () => {
               <MenuItem
                 key={language}
                 data-cy={`${language}-language`}
+                data-testid={`${language}-language`}
                 backgroundColor="background.800"
                 icon={<LanguageIcon type={language} />}
                 onClick={() => setLanguage(language)}
