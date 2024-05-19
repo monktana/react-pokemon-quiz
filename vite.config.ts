@@ -10,7 +10,7 @@ export default defineConfig((configEnv) => ({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: ['./src/vitest.setup.ts'],
+    setupFiles: './src/vitest.setup.ts',
   },
   build: {
     sourcemap: configEnv.mode === 'development',
