@@ -2,6 +2,7 @@ export * from './error';
 export * from './game';
 export * from './gameover';
 export * from './icons';
+export * from './language';
 export * from './loading';
 export * from './menu';
 export * from './navbar';
