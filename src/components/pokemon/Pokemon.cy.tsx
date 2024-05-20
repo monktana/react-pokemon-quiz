@@ -6,12 +6,12 @@ import { Pokemon } from './Pokemon';
 import { getRessourceName } from './util';
 
 describe('<Pokemon />', () => {
-  beforeEach(() => {
-    cy.fixture('pokemon/bulbasaur').as('bulbasaur');
-  });
-
-  it('renders', function () {
-    cy.mount(<Pokemon pokemon={this.bulbasaur} variant="attacker" />);
+  beforeEach(function () {
+    // "this" points at the test context object
+    cy.fixture('pokemon/bulbasaur').then((bulbasaur) => {
+      // "this" is still the test context object
+      this.bulbasaur = bulbasaur;
+    });
   });
 
   it('displays the pokemon name', function () {
