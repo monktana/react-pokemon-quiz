@@ -1,15 +1,10 @@
 /// <reference types="cypress" />
 
+const matchupUrl = `${Cypress.env('apiUrl')}/matchup`;
+
 describe('Quiz', () => {
   it('enables the player to start a new game', () => {
-    cy.intercept('GET', `${Cypress.env('apiUrl')}/matchup`, {
-      fixture: 'matchup/first.json',
-    }).as('startGame');
-
-    cy.visit('/');
-    cy.get('[data-cy="start-game-button"]').click();
-
-    cy.wait('@startGame');
+    cy.start();
 
     cy.get('[data-cy="score-label"]').should('be.visible').should('have.text', 'Score');
     cy.get('[data-cy="score-value"]').should('be.visible').should('have.text', '0');
@@ -42,7 +37,7 @@ describe('Quiz', () => {
 
     cy.get('[data-cy="score-value"]').should('be.visible').should('have.text', '0');
 
-    cy.intercept('GET', `${Cypress.env('apiUrl')}/matchup`, {
+    cy.intercept('GET', matchupUrl, {
       fixture: 'matchup/second.json',
     }).as('secondRound');
 
@@ -51,7 +46,7 @@ describe('Quiz', () => {
 
     cy.get('[data-cy="score-value"]').should('have.text', '1');
 
-    cy.intercept('GET', `${Cypress.env('apiUrl')}/matchup`, {
+    cy.intercept('GET', matchupUrl, {
       fixture: 'matchup/third.json',
     }).as('thirdRound');
 
@@ -78,7 +73,7 @@ describe('Quiz', () => {
 
     cy.get('[data-cy="super-effective-button"]').click();
 
-    cy.intercept('GET', `${Cypress.env('apiUrl')}/matchup`, {
+    cy.intercept('GET', matchupUrl, {
       fixture: 'matchup/first.json',
     }).as('newGame');
 

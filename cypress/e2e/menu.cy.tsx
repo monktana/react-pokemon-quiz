@@ -2,7 +2,7 @@
 
 describe('Menu', () => {
   it('enables the user to change the language', () => {
-    cy.visit('/');
+    cy.open();
 
     cy.get('html').should('have.attr', 'lang', 'en');
     cy.get('[data-cy="language-switch"]')
@@ -25,7 +25,7 @@ describe('Menu', () => {
   });
 
   it('enables the user to change the color theme', () => {
-    cy.visit('/');
+    cy.open();
 
     cy.get('html')
       .should('have.attr', 'data-theme', 'dark')
