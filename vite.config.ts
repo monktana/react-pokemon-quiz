@@ -11,6 +11,7 @@ export default defineConfig((configEnv) => ({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/vitest.setup.ts',
+    exclude: ['node_modules', 'cypress', 'dist'],
   },
   build: {
     sourcemap: configEnv.mode === 'development',

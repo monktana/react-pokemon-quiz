@@ -1,19 +1,24 @@
 import { defineConfig } from 'cypress';
+import { devServer } from '@cypress/vite-dev-server';
 
 export default defineConfig({
   component: {
-    devServer: {
-      framework: 'react',
-      bundler: 'vite',
+    devServer(devServerConfig) {
+      return devServer({
+        ...devServerConfig,
+        framework: 'react',
+      });
     },
+    specPattern: 'src/**/*.cy.{js,jsx,ts,tsx}',
+    supportFile: 'cypress/support/component.tsx',
   },
   e2e: {
     baseUrl: 'http://localhost:5173',
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+    specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
+    supportFile: 'cypress/support/e2e.ts',
+    setupNodeEvents(on, config) {},
   },
   env: {
-    apiUrl: 'http://localhost:5174',
+    apiUrl: 'http://localhost:5174/api/v1',
   },
 });
