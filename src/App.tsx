@@ -4,7 +4,7 @@ import { ReactElement, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { Error, Game, GameOver, Loading, Menu, Navbar } from '@/components';
-import { getBrowserLanguage, LanguageStoreProvider, useAppState } from '@/stores';
+import { useAppState } from '@/stores';
 
 function App(): ReactElement | null {
   const { reset } = useQueryErrorResetBoundary();
@@ -14,14 +14,12 @@ function App(): ReactElement | null {
   return (
     <ErrorBoundary onReset={reset} FallbackComponent={Error}>
       <Suspense fallback={<Loading />}>
-        <LanguageStoreProvider initialLanguage={getBrowserLanguage()}>
-          <Navbar />
-          <Container display="flex" alignItems="center" justifyContent="center" height="100vh">
-            {appState === 'menu' && <Menu />}
-            {appState === 'quiz' && <Game />}
-            {appState === 'gameover' && <GameOver />}
-          </Container>
-        </LanguageStoreProvider>
+        <Navbar />
+        <Container display="flex" alignItems="center" justifyContent="center" height="100vh">
+          {appState === 'menu' && <Menu />}
+          {appState === 'quiz' && <Game />}
+          {appState === 'gameover' && <GameOver />}
+        </Container>
       </Suspense>
     </ErrorBoundary>
   );

@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import * as React from 'react';
 
 import { queryClient } from '@/lib/react-query';
+import { getBrowserLanguage, LanguageStoreProvider } from '@/stores';
 import theme from '@/theme';
 
 type AppProviderProps = {
@@ -14,8 +15,10 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   return (
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        {children}
-        <ReactQueryDevtools />
+        <LanguageStoreProvider initialLanguage={getBrowserLanguage()}>
+          {children}
+          <ReactQueryDevtools />
+        </LanguageStoreProvider>
       </QueryClientProvider>
     </ChakraProvider>
   );
