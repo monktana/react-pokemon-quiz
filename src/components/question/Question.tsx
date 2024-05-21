@@ -1,7 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react';
 
 import { Move, Pokemon } from '@/api/schema';
-import { getRessourceName, types, TypeTag } from '@/components';
+import { getResourceName, types, TypeTag } from '@/components';
 import { getTemplateText } from '@/hooks';
 import { useLanguage } from '@/stores';
 
@@ -35,7 +35,7 @@ export function Question({ pokemon: attacker, move }: AttackProps) {
         {getTemplateText(
           language,
           'game.question.effectiveness',
-          <Text>{getRessourceName(attacker.species!.names!, language)!}</Text>,
+          <Text>{getResourceName(attacker.species!.names!, language)!}</Text>,
           <TypeTag type={move.type!.name as types} text={move.names!} borderRadius="md" />
         )}
       </Flex>

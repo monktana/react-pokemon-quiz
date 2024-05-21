@@ -5,7 +5,7 @@ import { types } from '@/components';
 import { useLanguage } from '@/stores';
 
 import { TypeTag } from './TypeTag';
-import { getRessourceName } from './util';
+import { getResourceName } from './util';
 
 type PokemonProps = {
   pokemon: Pokemon;
@@ -23,7 +23,7 @@ export function Pokemon({ pokemon, variant }: PokemonProps) {
       <Image __css={styles.image} src={sprite!} alt={pokemon.name!} data-cy={`${variant}-sprite`} />
       <Box __css={styles.infoContainer}>
         <Text data-cy={`${variant}-name`} fontWeight="bold" fontSize="2xl">
-          {getRessourceName(pokemon.species!.names!, language)}
+          {getResourceName(pokemon.species!.names!, language)}
         </Text>
         <Flex gap={1}>
           {pokemon.types?.map((type) => (

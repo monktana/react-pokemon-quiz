@@ -3,7 +3,7 @@ import React from 'react';
 import { Type } from '@/api';
 
 import { Pokemon } from './Pokemon';
-import { getRessourceName } from './util';
+import { getResourceName } from './util';
 
 describe('<Pokemon />', () => {
   beforeEach(function () {
@@ -18,7 +18,7 @@ describe('<Pokemon />', () => {
     cy.mount(<Pokemon pokemon={this.bulbasaur} variant="attacker" />);
     cy.get('[data-cy=attacker-name]').should(
       'have.text',
-      getRessourceName(this.bulbasaur.species.names, 'en')
+      getResourceName(this.bulbasaur.species.names, 'en')
     );
   });
 
@@ -41,7 +41,7 @@ describe('<Pokemon />', () => {
     this.bulbasaur.types.forEach((type: Type) => {
       cy.get(`[data-cy=${type.name}-type-tag]`)
         .children('span')
-        .should('have.text', getRessourceName(type.names!, 'en'));
+        .should('have.text', getResourceName(type.names!, 'en'));
 
       cy.get(`[data-cy=${type.name}-type-tag]`)
         .children('svg')

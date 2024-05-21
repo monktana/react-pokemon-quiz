@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getRessourceName } from '@/components';
+import { getResourceName } from '@/components';
 
 import { Question } from './Question';
 
@@ -18,7 +18,7 @@ describe('<Question />', () => {
     cy.mount(<Question pokemon={this.bulbasaur} move={this.round} />);
     cy.get('[data-cy=question]').should(
       'contain.text',
-      getRessourceName(this.bulbasaur.species.names, 'en')
+      getResourceName(this.bulbasaur.species.names, 'en')
     );
   });
 
@@ -26,7 +26,7 @@ describe('<Question />', () => {
     cy.mount(<Question pokemon={this.bulbasaur} move={this.round} />);
     cy.get(`[data-cy=${this.round.type.name}-type-tag]`).should(
       'have.text',
-      getRessourceName(this.round.names, 'en')
+      getResourceName(this.round.names, 'en')
     );
   });
 

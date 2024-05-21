@@ -2,7 +2,7 @@ import { Tag, TagLabel, TagLeftIcon, TagProps } from '@chakra-ui/react';
 
 import { InternationalName } from '@/api';
 import { TypeIcon, types } from '@/components';
-import { getRessourceName } from '@/components/pokemon/util';
+import { getResourceName } from '@/components/pokemon/util';
 import { useLanguage } from '@/stores';
 
 export interface TypeTag extends TagProps {
@@ -15,7 +15,7 @@ export const TypeTag = ({ type, text, ...tagProps }: TypeTag) => {
   return (
     <Tag data-cy={`${type}-type-tag`} colorScheme={type} {...tagProps}>
       <TagLeftIcon as={TypeIcon} type={type} />
-      <TagLabel>{getRessourceName(text, language)}</TagLabel>
+      <TagLabel>{getResourceName(text, language)}</TagLabel>
     </Tag>
   );
 };
