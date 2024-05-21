@@ -19,25 +19,28 @@ import { RockIcon } from './Rock';
 import { SteelIcon } from './Steel';
 import { WaterIcon } from './Water';
 
-export type types =
-  | 'bug'
-  | 'dark'
-  | 'dragon'
-  | 'electric'
-  | 'fairy'
-  | 'fighting'
-  | 'fire'
-  | 'flying'
-  | 'ghost'
-  | 'grass'
-  | 'ground'
-  | 'ice'
-  | 'normal'
-  | 'poison'
-  | 'psychic'
-  | 'rock'
-  | 'steel'
-  | 'water';
+export const Types = [
+  'bug',
+  'dark',
+  'dragon',
+  'electric',
+  'fairy',
+  'fighting',
+  'fire',
+  'flying',
+  'ghost',
+  'grass',
+  'ground',
+  'ice',
+  'normal',
+  'poison',
+  'psychic',
+  'rock',
+  'steel',
+  'water',
+] as const;
+
+export type types = (typeof Types)[number];
 
 export const TypeIcon = ({ type, ...rest }: { type: types } & IconProps) => {
   switch (type) {
