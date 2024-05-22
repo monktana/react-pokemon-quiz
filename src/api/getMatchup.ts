@@ -7,28 +7,27 @@ const endpoint = 'matchup';
 const queryKey = 'matchup';
 
 const getMatchup = async (): Promise<Matchup> => {
-  const controller = new AbortController();
-  const { signal } = controller;
-  return apiClient(endpoint, { signal }).json<Matchup>();
+  return apiClient(endpoint).json<Matchup>();
 };
 
 type QueryFunctionType = typeof getMatchup;
 
 type UseMatchupConfig = QueryConfig<QueryFunctionType>;
 
-export const useMatchup = (config: UseMatchupConfig = {}) => {
+export const useMatchup = (id: number, config: UseMatchupConfig = {}) => {
   return useSuspenseQuery<QueryFunctionReturnType<QueryFunctionType>>({
-    queryKey: [queryKey],
+    queryKey: [queryKey, id],
     queryFn: getMatchup,
+    staleTime: 100000,
     ...config,
   });
 };
 
-export const usePrefetchMatchup = async (config: UseMatchupConfig = {}) => {
+export const usePrefetchMatchup = async (id: number, config: UseMatchupConfig = {}) => {
   return await queryClient.prefetchQuery({
-    queryKey: [queryKey],
+    queryKey: [queryKey, id],
     queryFn: getMatchup,
-    staleTime: 10000,
+    staleTime: 100000,
     ...config,
   });
 };

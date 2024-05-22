@@ -1,29 +1,47 @@
 import { Button, Grid, Skeleton, VStack } from '@chakra-ui/react';
+import { useCallback, useState } from 'react';
 
-import { useMatchup } from '@/api';
+import { useMatchup, usePrefetchMatchup } from '@/api';
 import { TypeEffectiveness } from '@/api/schema';
 import { useLocalization } from '@/hooks';
-import { useLanguage } from '@/stores';
+import { useAppStateActions, useLanguage, useScoreActions } from '@/stores';
 
 import { Pokemon, Question, Score, useGuess } from '../';
 
 export function Game() {
-  const { data, refetch, isRefetching } = useMatchup();
+  const [round, setRound] = useState<number>(1);
+  const { data: matchup, isFetching } = useMatchup(round);
+  usePrefetchMatchup(round + 1);
+
   const { getText } = useLocalization();
-  const { makeGuess } = useGuess(data, refetch);
   const language = useLanguage();
+  const { endQuiz } = useAppStateActions();
+  const { increase } = useScoreActions();
+  const { makeGuess } = useGuess(matchup);
+
+  const handleGuess = useCallback(
+    (guess: TypeEffectiveness) => {
+      if (!makeGuess(guess)) {
+        return endQuiz();
+      }
+
+      increase();
+      setRound((round) => round + 1);
+    },
+    [endQuiz, increase, makeGuess]
+  );
 
   return (
     <VStack align="start">
       <Score />
-      <Skeleton isLoaded={!isRefetching} variant="quiz" width="full">
-        <Pokemon pokemon={data.defender!} variant="defender" />
+      <Skeleton isLoaded={!isFetching} variant="quiz" width="full">
+        <Pokemon pokemon={matchup.defender!} variant="defender" />
       </Skeleton>
-      <Skeleton isLoaded={!isRefetching} variant="quiz" width="full">
-        <Pokemon pokemon={data.attacker!} variant="attacker" />
+      <Skeleton isLoaded={!isFetching} variant="quiz" width="full">
+        <Pokemon pokemon={matchup.attacker!} variant="attacker" />
       </Skeleton>
-      <Skeleton isLoaded={!isRefetching} variant="quiz" width="full">
-        <Question pokemon={data.attacker!} move={data.move!} />
+      <Skeleton isLoaded={!isFetching} variant="quiz" width="full">
+        <Question pokemon={matchup.attacker!} move={matchup.move!} />
       </Skeleton>
       <Grid
         data-cy="decision-buttons"
@@ -42,29 +60,29 @@ export function Game() {
       >
         <Button
           data-cy="no-effect-button"
-          isDisabled={isRefetching}
-          onClick={() => makeGuess(TypeEffectiveness.NoEffect)}
+          isDisabled={isFetching}
+          onClick={() => handleGuess(TypeEffectiveness.NoEffect)}
         >
           {getText(language, 'types.effectiveness.noeffect')}
         </Button>
         <Button
           data-cy="not-effective-button"
-          isDisabled={isRefetching}
-          onClick={() => makeGuess(TypeEffectiveness.NotVeryEffective)}
+          isDisabled={isFetching}
+          onClick={() => handleGuess(TypeEffectiveness.NotVeryEffective)}
         >
           {getText(language, 'types.effectiveness.noteffective')}
         </Button>
         <Button
           data-cy="effective-button"
-          isDisabled={isRefetching}
-          onClick={() => makeGuess(TypeEffectiveness.Effective)}
+          isDisabled={isFetching}
+          onClick={() => handleGuess(TypeEffectiveness.Effective)}
         >
           {getText(language, 'types.effectiveness.effective')}
         </Button>
         <Button
           data-cy="super-effective-button"
-          isDisabled={isRefetching}
-          onClick={() => makeGuess(TypeEffectiveness.SuperEffective)}
+          isDisabled={isFetching}
+          onClick={() => handleGuess(TypeEffectiveness.SuperEffective)}
         >
           {getText(language, 'types.effectiveness.supereffective')}
         </Button>

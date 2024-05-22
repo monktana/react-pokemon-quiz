@@ -18,14 +18,14 @@ const animationKeyframes = keyframes`
 const animation = `${animationKeyframes} 4s ease-in-out infinite`;
 
 export function Menu() {
-  usePrefetchMatchup();
-
   const { startQuiz } = useAppStateActions();
   const { reset } = useScoreActions();
   const language = useLanguage();
   const { getText } = useLocalization();
 
-  const handleClick = () => {
+  usePrefetchMatchup(1);
+
+  const startGame = () => {
     reset();
     startQuiz();
   };
@@ -57,7 +57,7 @@ export function Menu() {
         />
       </Box>
       <Center>
-        <Button data-cy="start-game-button" size="lg" marginTop={8} onClick={handleClick}>
+        <Button data-cy="start-game-button" size="lg" marginTop={8} onClick={startGame}>
           {getText(language, 'mainmenu.button.newgame').toUpperCase()}
         </Button>
       </Center>
