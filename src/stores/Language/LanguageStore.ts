@@ -1,8 +1,8 @@
 import React from 'react';
 import { useStore } from 'zustand';
 
-import { Language } from '@/hooks';
 import { LanguageStoreContext } from '@/stores';
+import { Language } from '@/util';
 
 export type LanguageStore = {
   language: Language;

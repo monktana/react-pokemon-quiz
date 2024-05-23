@@ -1,22 +1,21 @@
 import { Button, Text, VStack } from '@chakra-ui/react';
 
 import { useLocalization } from '@/hooks';
-import { useAppStateActions, useLanguage, useScore, useScoreActions } from '@/stores';
+import { useAppStateActions, useScore, useScoreActions } from '@/stores';
 
 export function GameOver() {
   const { startQuiz, openMenu } = useAppStateActions();
   const score = useScore();
   const { reset } = useScoreActions();
-  const language = useLanguage();
   const { getText } = useLocalization();
 
   return (
     <VStack spacing={2}>
       <Text my={1} fontSize="2xl" color="font.100">
-        {getText(language, 'gameover.text.blackout')}
+        {getText('gameover.text.blackout')}
       </Text>
       <Text my={2} fontSize="sm" color="gray.300">
-        {getText(language, 'gameover.text.score')} {score}
+        {getText('gameover.text.score')} {score}
       </Text>
       <VStack spacing={4} mt="8">
         <Button
@@ -29,7 +28,7 @@ export function GameOver() {
             startQuiz();
           }}
         >
-          {getText(language, 'gameover.button.newgame').toUpperCase()}
+          {getText('gameover.button.newgame').toUpperCase()}
         </Button>
         <Button
           data-cy="main-menu-button"
@@ -41,7 +40,7 @@ export function GameOver() {
             openMenu();
           }}
         >
-          {getText(language, 'gameover.button.mainmenu').toUpperCase()}
+          {getText('gameover.button.mainmenu').toUpperCase()}
         </Button>
       </VStack>
     </VStack>

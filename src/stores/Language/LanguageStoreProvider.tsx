@@ -1,8 +1,8 @@
 import React, { PropsWithChildren } from 'react';
 import { createStore, StoreApi } from 'zustand';
 
-import { Language } from '@/hooks';
 import { LanguageStore } from '@/stores';
+import { Language } from '@/util';
 
 type LanguageStoreProviderProps = PropsWithChildren<{
   initialLanguage: Language;

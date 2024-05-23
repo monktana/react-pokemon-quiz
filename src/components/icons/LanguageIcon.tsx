@@ -1,6 +1,6 @@
 import { IconProps } from '@chakra-ui/react';
 
-import { Language } from '@/hooks/Localization/i18n';
+import { Language } from '@/util';
 
 import { DEIcon } from './DE';
 import { GBIcon } from './GB';

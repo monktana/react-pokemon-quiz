@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react';
 import { useMatchup, usePrefetchMatchup } from '@/api';
 import { TypeEffectiveness } from '@/api/schema';
 import { useLocalization } from '@/hooks';
-import { useAppStateActions, useLanguage, useScoreActions } from '@/stores';
+import { useAppStateActions, useScoreActions } from '@/stores';
 
 import { Pokemon, Question, Score, useGuess } from '../';
 
@@ -14,7 +14,6 @@ export function Game() {
   usePrefetchMatchup(round + 1);
 
   const { getText } = useLocalization();
-  const language = useLanguage();
   const { endQuiz } = useAppStateActions();
   const { increase } = useScoreActions();
   const { makeGuess } = useGuess(matchup);
@@ -63,28 +62,28 @@ export function Game() {
           isDisabled={isFetching}
           onClick={() => handleGuess(TypeEffectiveness.NoEffect)}
         >
-          {getText(language, 'types.effectiveness.noeffect')}
+          {getText('types.effectiveness.noeffect')}
         </Button>
         <Button
           data-cy="not-effective-button"
           isDisabled={isFetching}
           onClick={() => handleGuess(TypeEffectiveness.NotVeryEffective)}
         >
-          {getText(language, 'types.effectiveness.noteffective')}
+          {getText('types.effectiveness.noteffective')}
         </Button>
         <Button
           data-cy="effective-button"
           isDisabled={isFetching}
           onClick={() => handleGuess(TypeEffectiveness.Effective)}
         >
-          {getText(language, 'types.effectiveness.effective')}
+          {getText('types.effectiveness.effective')}
         </Button>
         <Button
           data-cy="super-effective-button"
           isDisabled={isFetching}
           onClick={() => handleGuess(TypeEffectiveness.SuperEffective)}
         >
-          {getText(language, 'types.effectiveness.supereffective')}
+          {getText('types.effectiveness.supereffective')}
         </Button>
       </Grid>
     </VStack>

@@ -2,10 +2,8 @@ import { Box, HStack, IconButton, useColorMode, useColorModeValue } from '@chakr
 
 import { LanguageMenu, TypeIcon } from '@/components';
 import { useLocalization } from '@/hooks';
-import { useLanguage } from '@/stores';
 
 export function Navbar() {
-  const language = useLanguage();
   const { getText } = useLocalization();
   const { toggleColorMode } = useColorMode();
 
@@ -22,7 +20,7 @@ export function Navbar() {
         <LanguageMenu />
         <IconButton
           data-cy="color-mode-switch"
-          aria-label={getText(language, 'navbar.color.label')}
+          aria-label={getText('navbar.color.label')}
           variant="solid"
           colorScheme={iconName}
           icon={<TypeIcon type={iconName} color="current" />}

@@ -3,9 +3,9 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
 import { LanguageMenu } from '@/components';
-import { languages } from '@/hooks';
 import { render } from '@/lib';
 import { LanguageStoreProvider } from '@/stores';
+import { Languages } from '@/util';
 
 describe('LanguageMenu', () => {
   it('displays the current language on initial render', () => {
@@ -23,7 +23,7 @@ describe('LanguageMenu', () => {
 
     await screen.findByRole('menu');
 
-    languages.forEach((language) => {
+    Languages.forEach((language) => {
       expect(screen.getByTestId(`${language}-language`)).toBeVisible();
       expect(screen.getByTestId(`${language}-language`)).toBeEnabled();
     });

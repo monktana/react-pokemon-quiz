@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 import { usePrefetchMatchup } from '@/api';
 import { useLocalization } from '@/hooks';
-import { useAppStateActions, useLanguage, useScoreActions } from '@/stores';
+import { useAppStateActions, useScoreActions } from '@/stores';
 
 const animationKeyframes = keyframes`
   0% { transform: rotate(0) }
@@ -20,7 +20,6 @@ const animation = `${animationKeyframes} 4s ease-in-out infinite`;
 export function Menu() {
   const { startQuiz } = useAppStateActions();
   const { reset } = useScoreActions();
-  const language = useLanguage();
   const { getText } = useLocalization();
 
   usePrefetchMatchup(1);
@@ -58,7 +57,7 @@ export function Menu() {
       </Box>
       <Center>
         <Button data-cy="start-game-button" size="lg" marginTop={8} onClick={startGame}>
-          {getText(language, 'mainmenu.button.newgame').toUpperCase()}
+          {getText('mainmenu.button.newgame').toUpperCase()}
         </Button>
       </Center>
     </VStack>
