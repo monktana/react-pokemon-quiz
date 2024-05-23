@@ -1,2 +1,2 @@
-export * from './getMatchup';
+export * from './queries';
 export * from './schema';
