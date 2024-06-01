@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import { useStore } from 'zustand';
 
 import { LanguageStoreContext } from '@/stores';
@@ -12,7 +12,7 @@ export type LanguageStore = {
 };
 
 const useLanguageStore = (selector: (state: LanguageStore) => unknown) => {
-  const store = React.useContext(LanguageStoreContext);
+  const store = useContext(LanguageStoreContext);
   if (!store) {
     throw new Error('Missing LanguageStoreProvider');
   }

@@ -4,7 +4,7 @@ import { createStore, StoreApi } from 'zustand';
 import { LanguageStore } from '@/stores';
 import { Language } from '@/util';
 
-type LanguageStoreProviderProps = PropsWithChildren<{
+export type LanguageStoreProviderProps = PropsWithChildren<{
   initialLanguage: Language;
 }>;
 
