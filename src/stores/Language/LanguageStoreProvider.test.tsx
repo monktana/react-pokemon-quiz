@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 import { ReactNode } from 'react';
 import { describe, expect, it } from 'vitest';
 
@@ -21,11 +21,20 @@ describe('LanguageStoreProvider', () => {
   it('provides a hook with a method to set the language', () => {
     const wrapper = createWrapper(LanguageStoreProvider, { initialLanguage: 'en' });
 
-    const { result: actions } = renderHook(() => useLanguageActions(), { wrapper });
-    actions.current.setLanguage('de');
+    const { result, rerender } = renderHook(
+      () => ({
+        language: useLanguage(),
+        actions: useLanguageActions(),
+      }),
+      {
+        wrapper,
+      }
+    );
 
-    const { result: language } = renderHook(() => useLanguage(), { wrapper });
-    expect(language.current, 'de');
+    act(() => result.current.actions.setLanguage('de'));
+    rerender();
+
+    expect(result.current.language, 'de');
   });
 
   it('causes the provided hooks to throw if provider is absent', () => {
