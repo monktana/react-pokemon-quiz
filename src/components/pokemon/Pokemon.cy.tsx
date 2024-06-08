@@ -29,14 +29,14 @@ describe('<Pokemon />', () => {
       .and('include', this.bulbasaur.sprites.back_default);
   });
 
-  it('displays the back sprite when defending', function () {
+  it('displays the front sprite when defending', function () {
     cy.mount(<Pokemon pokemon={this.bulbasaur} variant="defender" />);
     cy.get('[data-cy=defender-sprite]')
       .should('have.attr', 'src')
       .and('include', this.bulbasaur.sprites.front_default);
   });
 
-  it('displays the pokemon types', function () {
+  it('displays the pokemons types', function () {
     cy.mount(<Pokemon pokemon={this.bulbasaur} variant="attacker" />);
     this.bulbasaur.types.forEach((type: Type) => {
       cy.get(`[data-cy=${type.name}-type-tag]`)

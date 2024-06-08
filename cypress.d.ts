@@ -1,4 +1,6 @@
-import { mount } from 'cypress/react';
+import { MountOptions, MountReturn } from 'cypress/react';
+
+import { LanguageStoreProviderProps, ScoreStoreProviderProps } from '@/stores';
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -7,7 +9,18 @@ import { mount } from 'cypress/react';
 declare global {
   namespace Cypress {
     interface Chainable {
-      mount: typeof mount;
+      /**
+       * Mounts a React node
+       * @param component React Node to mount
+       * @param options Additional options to pass into mount
+       */
+      mount(
+        component: React.ReactNode,
+        options?: MountOptions & {
+          scoreProviderOptions?: Omit<ScoreStoreProviderProps, 'children'>;
+          languageProviderOptions?: Omit<LanguageStoreProviderProps, 'children'>;
+        }
+      ): Cypress.Chainable<MountReturn>;
     }
   }
 }

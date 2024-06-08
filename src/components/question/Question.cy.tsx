@@ -10,10 +10,6 @@ describe('<Question />', () => {
     cy.fixture('move/round').as('round');
   });
 
-  it('renders', function () {
-    cy.mount(<Question pokemon={this.bulbasaur} move={this.round} />);
-  });
-
   it('displays the attacker name', function () {
     cy.mount(<Question pokemon={this.bulbasaur} move={this.round} />);
     cy.get('[data-cy=question]').should(
