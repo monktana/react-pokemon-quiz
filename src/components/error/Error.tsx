@@ -16,7 +16,7 @@ export const Error = ({ resetErrorBoundary }: FallbackProps) => {
           {getText('error.title')}
         </Heading>
         <Text color={{ light: 'font.800', dark: 'font.100' }}>{getText('error.info')}</Text>
-        <Button variant="primary" marginTop="8" onClick={resetErrorBoundary}>
+        <Button data-cy="reset-button" variant="primary" marginTop="8" onClick={resetErrorBoundary}>
           {getText('error.button')}
         </Button>
       </Flex>

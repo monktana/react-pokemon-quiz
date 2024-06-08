@@ -2,8 +2,10 @@
 
 declare namespace Cypress {
   interface Chainable {
-    open(): Chainable<void>;
+    open(): Cypress.Chainable<void>;
 
-    start(): Chainable<void>;
+    start(): Cypress.Chainable<void>;
+
+    error(): Cypress.Chainable<void>;
   }
 }
