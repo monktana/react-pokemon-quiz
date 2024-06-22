@@ -2,9 +2,9 @@
 
 declare namespace Cypress {
   interface Chainable {
-    open(): Cypress.Chainable<void>;
+    open(fixture?: string): Cypress.Chainable<void>;
 
-    start(): Cypress.Chainable<void>;
+    start(fixture?: string): Cypress.Chainable<void>;
 
     error(): Cypress.Chainable<void>;
   }
