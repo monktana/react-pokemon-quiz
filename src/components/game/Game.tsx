@@ -31,7 +31,7 @@ export function Game() {
   );
 
   return (
-    <VStack align="start">
+    <VStack data-cy="game-container" align="start">
       <Score />
       <Skeleton isLoaded={!isFetching} variant="quiz" width="full">
         <Pokemon pokemon={matchup.defender!} variant="defender" />

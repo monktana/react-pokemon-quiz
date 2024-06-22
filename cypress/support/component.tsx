@@ -2,9 +2,11 @@
 
 import './commands';
 
+import { ChakraProvider } from '@chakra-ui/react';
 import { mount } from 'cypress/react18';
 
-import { LanguageStoreProvider, ScoreStoreProvider } from '../../src/stores';
+import { LanguageStoreProvider, ScoreStoreProvider } from '@/stores';
+import theme from '@/theme';
 
 Cypress.Commands.add('mount', (component, options = {}) => {
   const {
@@ -14,9 +16,11 @@ Cypress.Commands.add('mount', (component, options = {}) => {
   } = options;
 
   return mount(
-    <LanguageStoreProvider {...languageProviderOptions}>
-      <ScoreStoreProvider {...scoreProviderOptions}>{component}</ScoreStoreProvider>
-    </LanguageStoreProvider>,
+    <ChakraProvider theme={theme}>
+      <LanguageStoreProvider {...languageProviderOptions}>
+        <ScoreStoreProvider {...scoreProviderOptions}>{component}</ScoreStoreProvider>
+      </LanguageStoreProvider>
+    </ChakraProvider>,
     mountOptions
   );
 });
