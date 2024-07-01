@@ -19,6 +19,6 @@ export default defineConfig({
     setupNodeEvents(on, config) {},
   },
   env: {
-    apiUrl: 'http://localhost:5174/api/v1',
+    apiUrl: 'https://api.pokequiz.me/api/v1',
   },
 });
