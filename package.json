@@ -6,14 +6,19 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage",
+    "test": "yarn cypress:open",
+    "test:headless": "yarn cypress:run",
+    "test:unit": "vitest",
+    "test:unit:ci": "vitest --run",
     "gen:api": "npx swagger-typescript-api --no-client --route-types -p http://localhost:5190/swagger/v1/swagger.json -o ./src/api/schema -n models.tsxx",
     "gen:theme": "chakra-cli tokens ./src/theme/index.ts",
     "lint": "eslint --fix --ext .js,.ts,.tsx ./src --ignore-path .gitignore",
     "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
-    "format": "npm run prettier -- --write",
-    "cy:open": "cypress open --browser electron"
+    "prettier:write": "npm run prettier -- --write",
+    "cypress:open": "cypress open",
+    "cypress:open:mobile": "cypress open --config '{\"e2e\":{\"viewportWidth\":375,\"viewportHeight\":667}}'",
+    "cypress:run": "cypress run",
+    "cypress:run:component": "cypress run --component"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.0",
