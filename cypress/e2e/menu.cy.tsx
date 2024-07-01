@@ -43,27 +43,34 @@ describe('Menu', () => {
       .should('have.attr', 'style', 'color-scheme: light;');
   });
 
-  it('displays a fallback to the player when an error occurs', () => {
+  it('displays an error fallback and enables the player to retry', () => {
     cy.on('uncaught:exception', () => false);
-    cy.open();
-
-    cy.intercept('GET', `${Cypress.env('apiUrl')}/matchup`, {
-      statusCode: 500,
-      body: {
-        status: 500,
-        title: 'Internal Server Error',
-        type: 'https://tools.ietf.org/html/rfc9110#section-15.6.1',
+    cy.intercept(
+      {
+        method: 'GET',
+        url: `${Cypress.env('apiUrl')}/matchup`,
+        times: 1,
       },
-    }).as('internalError');
+      {
+        statusCode: 500,
+        fixture: 'error/500.json',
+      }
+    ).as('startGame');
+
+    cy.visit('/', {
+      onBeforeLoad(win) {
+        // set the browser language to english
+        Object.defineProperty(win.navigator, 'language', {
+          value: 'en',
+        });
+      },
+    });
+    cy.wait('@startGame');
 
     cy.get('[data-cy="start-game-button"]').click();
 
     cy.get('h2').contains('Something went wrong');
     cy.get('p').contains('An error occured. Please reload the site and try again.');
-  });
-
-  it('enables the player to retry on error', () => {
-    cy.error();
 
     cy.get('[data-cy="reset-button"]')
       .should('be.visible')
@@ -71,11 +78,11 @@ describe('Menu', () => {
       .should('have.text', 'Try Again');
 
     cy.intercept('GET', `${Cypress.env('apiUrl')}/matchup`, {
-      fixture: 'matchup/second.json',
-    }).as('retry');
+      fixture: 'matchup/first.json',
+    }).as('resetGame');
 
     cy.get('[data-cy="reset-button"]').click();
-    cy.wait('@retry');
+    cy.wait('@resetGame');
 
     cy.get('[data-cy="attacker-pokemon"]').should('be.visible');
     cy.get('[data-cy="defender-pokemon"]').should('be.visible');
