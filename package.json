@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "test": "yarn cypress:open",
-    "test:headless": "yarn cypress:run",
+    "test": "npm run cypress:open",
+    "test:headless": "npm run cypress:run",
     "test:unit": "vitest",
     "test:unit:ci": "vitest --run",
     "gen:api": "npx swagger-typescript-api --no-client --route-types -p http://localhost:5190/swagger/v1/swagger.json -o ./src/api/schema -n models.tsxx",
