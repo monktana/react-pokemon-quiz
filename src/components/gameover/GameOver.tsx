@@ -1,5 +1,6 @@
 import { Button, Text, VStack } from '@chakra-ui/react';
 
+import { useCancelMatchup, usePrefetchMatchup } from '@/api';
 import { useLocalization } from '@/hooks';
 import { useAppStateActions, useScore, useScoreActions } from '@/stores';
 
@@ -8,6 +9,9 @@ export function GameOver() {
   const score = useScore();
   const { reset } = useScoreActions();
   const { getText } = useLocalization();
+
+  useCancelMatchup();
+  usePrefetchMatchup(1);
 
   return (
     <VStack spacing={2}>

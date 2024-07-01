@@ -1,7 +1,7 @@
 import { Button, Grid, Skeleton, VStack } from '@chakra-ui/react';
 import { useCallback, useState } from 'react';
 
-import { useMatchup, usePrefetchMatchup } from '@/api';
+import { useInvalidateMatchup, useMatchup, usePrefetchMatchup } from '@/api';
 import { TypeEffectiveness } from '@/api/schema';
 import { useLocalization } from '@/hooks';
 import { useAppStateActions, useScoreActions } from '@/stores';
@@ -12,6 +12,7 @@ export function Game() {
   const [round, setRound] = useState<number>(1);
   const { data: matchup, isFetching } = useMatchup(round);
   usePrefetchMatchup(round + 1);
+  useInvalidateMatchup(round - 1);
 
   const { getText } = useLocalization();
   const { endQuiz } = useAppStateActions();
