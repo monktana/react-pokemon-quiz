@@ -34,7 +34,7 @@ export const LanguageMenu = () => {
                 key={language}
                 data-cy={`${language}-language`}
                 data-testid={`${language}-language`}
-                backgroundColor="background.800"
+                backgroundColor="background.200"
                 icon={<LanguageIcon type={language} />}
                 onClick={() => setLanguage(language)}
                 _hover={{
@@ -47,7 +47,7 @@ export const LanguageMenu = () => {
                   },
                 }}
               >
-                <Text>{getText('language')}</Text>
+                <Text>{getText(language)}</Text>
               </MenuItem>
             );
           })}
