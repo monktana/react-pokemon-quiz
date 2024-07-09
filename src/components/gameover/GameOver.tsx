@@ -15,10 +15,10 @@ export function GameOver() {
 
   return (
     <VStack spacing={2}>
-      <Text my={1} fontSize="2xl" color="font.100">
+      <Text my={1} fontSize="2xl" color="font.800" _dark={{ color: 'font.100' }}>
         {getText('gameover.text.blackout')}
       </Text>
-      <Text my={2} fontSize="sm" color="gray.300">
+      <Text my={2} fontSize="sm" color="font.500" _dark={{ color: 'font.300' }}>
         {getText('gameover.text.score')} {score}
       </Text>
       <VStack spacing={4} mt="8">

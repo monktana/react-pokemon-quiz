@@ -1,5 +1,4 @@
 import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/styled-system';
-import { mode } from '@chakra-ui/theme-tools';
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers([
   'container',
@@ -7,31 +6,38 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
   'infoContainer',
 ]);
 
-const baseStyleContainer = defineStyle((props) => ({
+const baseStyleContainer = defineStyle({
   display: 'flex',
   alignItems: 'center',
   width: 'full',
   borderRadius: 'md',
   borderWidth: '1px',
-  borderColor: mode('border.500', 'border.100')(props),
-  backgroundColor: mode('background.200', 'background.800')(props),
-}));
+  borderColor: 'border.500',
+  backgroundColor: 'background.200',
+  _dark: {
+    borderColor: 'border.100',
+    backgroundColor: 'background.800',
+  },
+});
 const baseStyleImage = defineStyle({
   boxSize: '200px',
 });
-const baseStyleInfoContainer = defineStyle((props) => ({
+const baseStyleInfoContainer = defineStyle({
   display: 'flex',
   flexDir: 'column',
   alignItems: 'flex-start',
   width: 'full',
-  color: mode('font.800', 'font.100')(props),
-}));
+  color: 'font.800',
+  _dark: {
+    color: 'font.100',
+  },
+});
 
-const baseStyle = definePartsStyle((props) => ({
-  container: baseStyleContainer(props),
+const baseStyle = definePartsStyle({
+  container: baseStyleContainer,
   image: baseStyleImage,
-  infoContainer: baseStyleInfoContainer(props),
-}));
+  infoContainer: baseStyleInfoContainer,
+});
 
 const sizes = {
   sm: definePartsStyle({
