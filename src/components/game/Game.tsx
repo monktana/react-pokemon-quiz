@@ -1,4 +1,4 @@
-import { Button, Grid, Skeleton, VStack } from '@chakra-ui/react';
+import { Button, Grid, VStack } from '@chakra-ui/react';
 import { useCallback, useState } from 'react';
 
 import { useInvalidateMatchup, useMatchup, usePrefetchMatchup } from '@/api';
@@ -34,15 +34,9 @@ export function Game() {
   return (
     <VStack data-cy="game-container" align="start">
       <Score />
-      <Skeleton isLoaded={!isFetching} variant="quiz" width="full">
-        <Pokemon pokemon={matchup.defender!} variant="defender" />
-      </Skeleton>
-      <Skeleton isLoaded={!isFetching} variant="quiz" width="full">
-        <Pokemon pokemon={matchup.attacker!} variant="attacker" />
-      </Skeleton>
-      <Skeleton isLoaded={!isFetching} variant="quiz" width="full">
-        <Question pokemon={matchup.attacker!} move={matchup.move!} />
-      </Skeleton>
+      <Pokemon pokemon={matchup.defender!} variant="defender" />
+      <Pokemon pokemon={matchup.attacker!} variant="attacker" />
+      <Question pokemon={matchup.attacker!} move={matchup.move!} />
       <Grid
         data-cy="decision-buttons"
         gridTemplateColumns="repeat(2, 1fr)"
