@@ -3,6 +3,7 @@ import { render, RenderOptions } from '@testing-library/react';
 import React, { ReactElement, ReactNode } from 'react';
 
 import { AppProvider } from '@/providers';
+import { LanguageStoreProvider } from '@/stores';
 
 type WithProviderProps = {
   children?: ReactNode;
@@ -12,7 +13,7 @@ const WithProviders = ({ children }: WithProviderProps) => {
   return (
     <AppProvider>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      {children}
+      <LanguageStoreProvider initialLanguage="en">{children}</LanguageStoreProvider>
     </AppProvider>
   );
 };

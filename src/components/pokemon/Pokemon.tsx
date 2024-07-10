@@ -7,7 +7,7 @@ import { useLanguage } from '@/stores';
 import { TypeTag } from './TypeTag';
 import { getResourceName } from './util';
 
-type PokemonProps = {
+export type PokemonProps = {
   pokemon: Pokemon;
   variant: ResponsiveValue<'attacker' | 'defender'>;
 };
@@ -19,10 +19,15 @@ export function Pokemon({ pokemon, variant }: PokemonProps) {
     variant === 'attacker' ? pokemon.sprites?.back_default : pokemon.sprites?.front_default;
 
   return (
-    <Box __css={styles.container} data-cy={`${variant}-pokemon`}>
-      <Image __css={styles.image} src={sprite!} alt={pokemon.name!} data-cy={`${variant}-sprite`} />
+    <Box __css={styles.container} data-testid={`${variant}-pokemon`}>
+      <Image
+        __css={styles.image}
+        src={sprite!}
+        alt={pokemon.name!}
+        data-testid={`${variant}-sprite`}
+      />
       <Box __css={styles.infoContainer}>
-        <Text data-cy={`${variant}-name`} fontWeight="bold" fontSize="2xl">
+        <Text data-testid={`${variant}-name`} fontWeight="bold" fontSize="2xl">
           {getResourceName(pokemon.species!.names!, language)}
         </Text>
         <Flex gap={1}>

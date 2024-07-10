@@ -7,7 +7,7 @@ import { render } from '@/lib';
 import { LanguageStoreProvider } from '@/stores';
 import { Languages } from '@/util';
 
-describe('LanguageMenu', () => {
+describe('<LanguageMenu />', () => {
   it('displays the current language on initial render', () => {
     renderLanguageMenu();
 
