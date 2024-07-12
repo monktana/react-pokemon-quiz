@@ -10,8 +10,8 @@ export function Score(props: StatProps) {
   return (
     <Stat {...props}>
       <HStack color="font.800" _dark={{ color: 'font.100' }}>
-        <StatLabel data-cy="score-label">{getText('score.label')}</StatLabel>
-        <StatNumber data-cy="score-value">{score}</StatNumber>
+        <StatLabel data-testid="score-label">{getText('score.label')}</StatLabel>
+        <StatNumber data-testid="score-value">{score}</StatNumber>
       </HStack>
     </Stat>
   );
