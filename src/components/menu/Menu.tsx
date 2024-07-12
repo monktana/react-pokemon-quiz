@@ -32,6 +32,7 @@ export function Menu() {
   return (
     <VStack spacing={2}>
       <Box
+        data-testid="pokeball"
         as={motion.div}
         animation={animation}
         position="relative"
