@@ -16,7 +16,7 @@ export function Question({ pokemon: attacker, move }: AttackProps) {
 
   return (
     <Flex
-      data-cy="question"
+      data-testid="question"
       gap={1}
       alignItems="center"
       padding={2}
