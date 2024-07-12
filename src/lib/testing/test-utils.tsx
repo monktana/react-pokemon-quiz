@@ -1,4 +1,3 @@
-import { ColorModeScript, theme } from '@chakra-ui/react';
 import { render, RenderOptions } from '@testing-library/react';
 import React, { ReactElement, ReactNode } from 'react';
 
@@ -11,8 +10,7 @@ type WithProviderProps = {
 
 const WithProviders = ({ children }: WithProviderProps) => {
   return (
-    <AppProvider>
-      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+    <AppProvider initialLanguage="en">
       <LanguageStoreProvider initialLanguage="en">{children}</LanguageStoreProvider>
     </AppProvider>
   );
