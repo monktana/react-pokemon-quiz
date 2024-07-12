@@ -43,7 +43,7 @@ describe('<Pokemon />', () => {
     );
   });
 
-  it('displays the pokemons types', ({ pokemon }) => {
+  it('displays the types of the pokemon', ({ pokemon }) => {
     render(<Pokemon pokemon={pokemon} variant="attacker" />);
 
     pokemon.types?.forEach((type) => {

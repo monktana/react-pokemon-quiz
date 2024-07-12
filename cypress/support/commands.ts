@@ -39,7 +39,7 @@ Cypress.Commands.add('start', (fixture: string = 'matchup/second.json') => {
     }
   ).as('secondRound');
 
-  cy.get('[data-cy="start-game-button"]').click();
+  cy.get('[data-testid="start-game-button"]').click();
   cy.wait('@secondRound');
 });
 
@@ -67,5 +67,5 @@ Cypress.Commands.add('error', () => {
   });
   cy.wait('@internalError');
 
-  cy.get('[data-cy="start-game-button"]').click();
+  cy.get('[data-testid="start-game-button"]').click();
 });

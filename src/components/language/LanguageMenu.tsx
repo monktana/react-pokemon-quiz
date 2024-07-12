@@ -19,9 +19,9 @@ export const LanguageMenu = () => {
   const { setLanguage } = useLanguageActions();
 
   return (
-    <Menu data-cy="language-menu">
+    <Menu data-testid="language-menu">
       <MenuButton
-        data-cy="language-switch"
+        data-testid="language-switch"
         aria-label={getText('navbar.language.label')}
         as={IconButton}
         icon={<LanguageIcon type={language} aria-label={language} />}
@@ -32,7 +32,7 @@ export const LanguageMenu = () => {
             return (
               <MenuItem
                 key={language}
-                data-cy={`${language}-language`}
+                data-testid={`${language}-language`}
                 data-testid={`${language}-language`}
                 backgroundColor="background.200"
                 icon={<LanguageIcon type={language} />}

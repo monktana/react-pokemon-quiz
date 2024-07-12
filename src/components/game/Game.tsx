@@ -32,13 +32,13 @@ export function Game() {
   );
 
   return (
-    <VStack data-cy="game-container" align="start">
+    <VStack data-testid="game-container" align="start">
       <Score />
       <Pokemon pokemon={matchup.defender!} variant="defender" />
       <Pokemon pokemon={matchup.attacker!} variant="attacker" />
       <Question pokemon={matchup.attacker!} move={matchup.move!} />
       <Grid
-        data-cy="decision-buttons"
+        data-testid="decision-buttons"
         gridTemplateColumns="repeat(2, 1fr)"
         gap={2}
         padding={2}
@@ -53,28 +53,28 @@ export function Game() {
         }}
       >
         <Button
-          data-cy="no-effect-button"
+          data-testid="no-effect-button"
           isDisabled={isFetching}
           onClick={() => handleGuess(TypeEffectiveness.NoEffect)}
         >
           {getText('types.effectiveness.noeffect')}
         </Button>
         <Button
-          data-cy="not-effective-button"
+          data-testid="not-effective-button"
           isDisabled={isFetching}
           onClick={() => handleGuess(TypeEffectiveness.NotVeryEffective)}
         >
           {getText('types.effectiveness.noteffective')}
         </Button>
         <Button
-          data-cy="effective-button"
+          data-testid="effective-button"
           isDisabled={isFetching}
           onClick={() => handleGuess(TypeEffectiveness.Effective)}
         >
           {getText('types.effectiveness.effective')}
         </Button>
         <Button
-          data-cy="super-effective-button"
+          data-testid="super-effective-button"
           isDisabled={isFetching}
           onClick={() => handleGuess(TypeEffectiveness.SuperEffective)}
         >

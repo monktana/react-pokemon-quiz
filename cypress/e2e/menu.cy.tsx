@@ -5,23 +5,23 @@ describe('Menu', () => {
     cy.open();
 
     cy.get('html').should('have.attr', 'lang', 'en');
-    cy.get('[data-cy="language-switch"]')
+    cy.get('[data-testid="language-switch"]')
       .should('be.visible')
       .should('be.enabled')
       .should('have.attr', 'aria-label', 'Change language');
 
-    cy.get('[data-cy="language-switch"] svg').should('have.attr', 'aria-label', 'en');
+    cy.get('[data-testid="language-switch"] svg').should('have.attr', 'aria-label', 'en');
 
-    cy.get('[data-cy="language-switch"]').click();
+    cy.get('[data-testid="language-switch"]').click();
     cy.wrap(['en', 'de']).each((language) => {
-      cy.get(`[data-cy="${language}-language"]`).should('be.visible');
+      cy.get(`[data-testid="${language}-language"]`).should('be.visible');
     });
 
-    cy.get('[data-cy="de-language"]').click();
+    cy.get('[data-testid="de-language"]').click();
 
     cy.get('html').should('have.attr', 'lang', 'de');
-    cy.get('[data-cy="language-switch"]').should('have.attr', 'aria-label', 'Sprache wechseln');
-    cy.get('[data-cy="language-switch"] svg').should('have.attr', 'aria-label', 'de');
+    cy.get('[data-testid="language-switch"]').should('have.attr', 'aria-label', 'Sprache wechseln');
+    cy.get('[data-testid="language-switch"] svg').should('have.attr', 'aria-label', 'de');
   });
 
   it('enables the player to change the color theme', () => {
@@ -31,12 +31,12 @@ describe('Menu', () => {
       .should('have.attr', 'data-theme', 'dark')
       .should('have.attr', 'style', 'color-scheme: dark;');
 
-    cy.get('[data-cy="color-mode-switch"]')
+    cy.get('[data-testid="color-mode-switch"]')
       .should('be.visible')
       .should('be.enabled')
       .should('have.attr', 'aria-label', 'Change color scheme');
 
-    cy.get('[data-cy="color-mode-switch"]').click();
+    cy.get('[data-testid="color-mode-switch"]').click();
 
     cy.get('html')
       .should('have.attr', 'data-theme', 'light')
@@ -67,12 +67,12 @@ describe('Menu', () => {
     });
     cy.wait('@startGame');
 
-    cy.get('[data-cy="start-game-button"]').click();
+    cy.get('[data-testid="start-game-button"]').click();
 
     cy.get('h2').contains('Something went wrong');
     cy.get('p').contains('An error occured. Please reload the site and try again.');
 
-    cy.get('[data-cy="reset-button"]')
+    cy.get('[data-testid="reset-button"]')
       .should('be.visible')
       .should('be.enabled')
       .should('have.text', 'Try Again');
@@ -81,10 +81,10 @@ describe('Menu', () => {
       fixture: 'matchup/first.json',
     }).as('resetGame');
 
-    cy.get('[data-cy="reset-button"]').click();
+    cy.get('[data-testid="reset-button"]').click();
     cy.wait('@resetGame');
 
-    cy.get('[data-cy="attacker-pokemon"]').should('be.visible');
-    cy.get('[data-cy="defender-pokemon"]').should('be.visible');
+    cy.get('[data-testid="attacker-pokemon"]').should('be.visible');
+    cy.get('[data-testid="defender-pokemon"]').should('be.visible');
   });
 });

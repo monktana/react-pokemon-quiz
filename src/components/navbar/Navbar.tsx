@@ -19,7 +19,7 @@ export function Navbar() {
       <HStack align="center" justify="end" paddingY={2} paddingX={4} spacing={2}>
         <LanguageMenu />
         <IconButton
-          data-cy="color-mode-switch"
+          data-testid="color-mode-switch"
           aria-label={getText('navbar.color.label')}
           variant="solid"
           colorScheme={iconName}
