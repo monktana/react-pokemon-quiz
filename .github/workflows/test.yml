@@ -22,4 +22,7 @@ jobs:
         run: npm run test:unit:ci
 
       - name: Run E2E Tests
-        run: npm run test:headless
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run dev
+          run: npm run test:headless
