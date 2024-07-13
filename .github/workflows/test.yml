@@ -5,7 +5,8 @@ on: [ push ]
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    env:
+      VITE_POKE_API_URL: https://api.pokequiz.me/api/v1
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
