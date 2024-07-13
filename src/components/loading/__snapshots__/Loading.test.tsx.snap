@@ -1,0 +1,48 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Loading > matches the snapshot 1`] = `
+<DocumentFragment>
+  <script
+    id="chakra-script"
+  >
+    !(function(){try{var a=function(c){var v="(prefers-color-scheme: dark)",h=window.matchMedia(v).matches?"dark":"light",r=c==="system"?h:c,o=document.documentElement,s=document.body,l="chakra-ui-light",d="chakra-ui-dark",i=r==="dark";return s.classList.add(i?d:l),s.classList.remove(i?l:d),o.style.colorScheme=r,o.dataset.theme=r,r},n=a,m="system",e="chakra-ui-color-mode",t=localStorage.getItem(e);t?a(t):localStorage.setItem(e,a(m))}catch(a){}})();
+  </script>
+  <div
+    class="chakra-stack css-bfgy4l"
+    data-testid="loading-container"
+  >
+    <div
+      class="chakra-skeleton css-1eh6o9k"
+    />
+    <div
+      class="chakra-skeleton css-11jpbuw"
+    />
+    <div
+      class="chakra-skeleton css-11jpbuw"
+    />
+    <div
+      class="chakra-skeleton css-1eh6o9k"
+    />
+    <div
+      class="css-zudvrz"
+    >
+      <div
+        class="chakra-skeleton css-10yr3u1"
+      />
+      <div
+        class="chakra-skeleton css-10yr3u1"
+      />
+      <div
+        class="chakra-skeleton css-10yr3u1"
+      />
+      <div
+        class="chakra-skeleton css-10yr3u1"
+      />
+    </div>
+  </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</DocumentFragment>
+`;

@@ -1,7 +1,6 @@
-import { Grid, Skeleton, useColorModeValue, VStack } from '@chakra-ui/react';
+import { Grid, Skeleton, VStack } from '@chakra-ui/react';
 
 export const Loading = () => {
-  useColorModeValue('font.800', 'font.100');
   return (
     <VStack data-testid="loading-container" width="360px">
       <Skeleton variant="quiz" height={12} width="full" />
