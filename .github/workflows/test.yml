@@ -9,10 +9,10 @@ jobs:
       VITE_POKE_API_URL: https://api.pokequiz.me/api/v1
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Use Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
 
@@ -27,3 +27,9 @@ jobs:
         with:
           start: npm run dev
           run: npm run test:headless
+
+      - name: Archive E2E Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: cypress/screenshots
