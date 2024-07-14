@@ -25,7 +25,6 @@ jobs:
       - name: Run E2E Tests
         uses: cypress-io/github-action@v6
         with:
-          record: true
           start: npm run dev
 
       - name: Archive E2E Results
