@@ -25,14 +25,16 @@ jobs:
       - name: Run E2E Tests - Chrome
         uses: cypress-io/github-action@v6
         with:
-          start: npm run dev
           browser: chrome
+          start: npm run dev
+          command: npm run cypress:run
 
       - name: Run E2E Tests - Electron
         uses: cypress-io/github-action@v6
         with:
-          start: npm run dev
           browser: electron
+          start: npm run dev
+          command: npm run cypress:run
 
       - name: Archive E2E Results
         uses: actions/upload-artifact@v4
