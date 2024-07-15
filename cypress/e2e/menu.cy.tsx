@@ -2,7 +2,19 @@
 
 describe('Menu', () => {
   it('enables the player to change the language', () => {
-    cy.open();
+    cy.intercept(
+      {
+        method: 'GET',
+        url: `${Cypress.env('apiUrl')}/matchup`,
+        times: 1,
+      },
+      {
+        statusCode: 200,
+        fixture: 'matchup/first.json',
+      }
+    ).as('firstRound');
+
+    cy.visit('/');
 
     cy.get('html').should('have.attr', 'lang', 'en');
     cy.get('[data-testid="language-switch"]')
@@ -25,7 +37,19 @@ describe('Menu', () => {
   });
 
   it('enables the player to change the color theme', () => {
-    cy.open();
+    cy.intercept(
+      {
+        method: 'GET',
+        url: `${Cypress.env('apiUrl')}/matchup`,
+        times: 1,
+      },
+      {
+        statusCode: 200,
+        fixture: 'matchup/first.json',
+      }
+    ).as('firstRound');
+
+    cy.visit('/');
 
     cy.get('html')
       .should('have.attr', 'data-theme', 'dark')
@@ -45,6 +69,7 @@ describe('Menu', () => {
 
   it('displays an error fallback and enables the player to retry', () => {
     cy.on('uncaught:exception', () => false);
+
     cy.intercept(
       {
         method: 'GET',
@@ -55,18 +80,11 @@ describe('Menu', () => {
         statusCode: 500,
         fixture: 'error/500.json',
       }
-    ).as('startGame');
+    ).as('internalError');
 
-    cy.visit('/', {
-      onBeforeLoad(win) {
-        // set the browser language to english
-        Object.defineProperty(win.navigator, 'language', {
-          value: 'en',
-        });
-      },
-    });
-    cy.wait('@startGame');
+    cy.visit('/', {});
 
+    cy.wait('@internalError');
     cy.get('[data-testid="start-game-button"]').click();
 
     cy.get('h2').contains('Something went wrong');
