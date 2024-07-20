@@ -36,6 +36,7 @@
   "devDependencies": {
     "@chakra-ui/cli": "^2.4.1",
     "@cypress/vite-dev-server": "^5.0.7",
+    "@playwright/test": "^1.45.2",
     "@tanstack/eslint-plugin-query": "^5.0.0",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^16.0.0",

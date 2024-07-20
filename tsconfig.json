@@ -9,7 +9,8 @@
     ],
     "useDefineForClassFields": true,
     "types": [
-      "cypress"
+      "cypress",
+      "node"
     ],
     "allowJs": false,
     "skipLibCheck": true,
