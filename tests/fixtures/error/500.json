@@ -1,0 +1,5 @@
+{
+  "status": 500,
+  "title": "Internal Server Error",
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.6.1"
+}

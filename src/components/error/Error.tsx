@@ -12,10 +12,12 @@ export const Error = ({ resetErrorBoundary }: FallbackProps) => {
     <Container height="100vh">
       <Flex flexDirection="column" height="full" alignItems="center" justifyContent="center">
         <GhostIcon width="12" height="12" marginBottom={4} />
-        <Heading as="h2" marginBottom={2} size="xl">
+        <Heading data-testid="error-header" as="h2" marginBottom={2} size="xl">
           {getText('error.title')}
         </Heading>
-        <Text color={{ light: 'font.800', dark: 'font.100' }}>{getText('error.info')}</Text>
+        <Text data-testid="error-message" color={{ light: 'font.800', dark: 'font.100' }}>
+          {getText('error.info')}
+        </Text>
         <Button
           data-testid="reset-button"
           variant="primary"
