@@ -56,7 +56,7 @@ describe('preferred (browser) language', () => {
 describe('localized texts', () => {
   Languages.forEach((language) => {
     it(`reads a ${language} localized text`, () => {
-      expect(geti18nText(language, 'language')).toBe(LOCALIZATION_TEXTS[language]['language']);
+      expect(geti18nText(language, language)).toBe(LOCALIZATION_TEXTS[language][language]);
     });
   });
 });
