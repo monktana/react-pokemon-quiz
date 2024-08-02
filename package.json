@@ -46,7 +46,6 @@
     "@vitejs/plugin-react-swc": "^3.2.0",
     "@vitest/coverage-v8": "^2.0.0",
     "autoprefixer": "^10.4.14",
-    "cypress": "^13.1.0",
     "eslint": "^8.57.0",
     "eslint-import-resolver-typescript": "^3.5.3",
     "eslint-plugin-cypress": "^3.0.2",
