@@ -9,8 +9,8 @@
     ],
     "useDefineForClassFields": true,
     "types": [
-      "cypress",
-      "node"
+      "node",
+      "vitest/globals"
     ],
     "allowJs": false,
     "skipLibCheck": true,
@@ -31,9 +31,7 @@
     }
   },
   "include": [
-    "./src/**/*",
-    "cypress",
-    "cypress.d.ts"
+    "./src/**/*"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
