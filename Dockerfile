@@ -6,7 +6,7 @@ COPY . /app
 RUN npm install
 RUN npm run build
 
-FROM ubuntu
+FROM ubuntu:latest
 RUN apt-get update
 RUN apt-get install nginx -y
 ENV VITE_POKE_API_URL='https://api.pokequiz.me/api/v1'
