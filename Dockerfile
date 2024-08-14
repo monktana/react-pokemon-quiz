@@ -1,4 +1,4 @@
-FROM ubuntu:latest as build
+FROM node:latest as build
 
 WORKDIR /app
 COPY . /app
