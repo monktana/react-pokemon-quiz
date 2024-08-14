@@ -15,13 +15,13 @@ test.describe('Error', () => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
-    await page.locator('[data-testid="start-game-button"]').click();
+    await page.getByTestId('start-game-button').click();
 
-    await expect(page.locator('[data-testid="error-header"]')).toBeVisible();
-    await expect(page.locator('[data-testid="error-header"]')).toHaveText('Something went wrong');
+    await expect(page.getByTestId('error-header')).toBeVisible();
+    await expect(page.getByTestId('error-header')).toHaveText('Something went wrong');
 
-    await expect(page.locator('[data-testid="error-message"]')).toBeVisible();
-    await expect(page.locator('[data-testid="error-message"]')).toHaveText(
+    await expect(page.getByTestId('error-message')).toBeVisible();
+    await expect(page.getByTestId('error-message')).toHaveText(
       'An error occured. Please reload the site and try again.'
     );
   });
@@ -47,19 +47,19 @@ test.describe('Error', () => {
     await page.locator('[data-testid="start-game-button"]').click();
 
     if (matchup.effectiveness === 'NoEffect') {
-      await page.locator('[data-testid="no-effective-button"]').click();
+      await page.getByTestId('no-effect-button').click();
     } else if (matchup.effectiveness === 'SuperEffective') {
-      await page.locator('[data-testid="super-effective-button"]').click();
+      await page.getByTestId('super-effective-button').click();
     } else if (matchup.effectiveness === 'NotVeryEffective') {
-      await page.locator('[data-testid="not-effective-button"]').click();
+      await page.getByTestId('not-effective-button').click();
     } else {
-      await page.locator('[data-testid="effective-button"]').click();
+      await page.getByTestId('effective-button').click();
     }
 
     await errorPromise;
 
-    await expect(page.locator('[data-testid="error-header"]')).toBeVisible();
-    await expect(page.locator('[data-testid="error-message"]')).toBeVisible();
+    await expect(page.getByTestId('error-header')).toBeVisible();
+    await expect(page.getByTestId('error-message')).toBeVisible();
   });
 
   test('it keeps the score when retrying after an error', async ({ page }) => {
@@ -71,7 +71,7 @@ test.describe('Error', () => {
     await page.waitForLoadState('domcontentloaded');
 
     const secondRoundPromise = page.waitForResponse('**/api/v1/matchup');
-    await page.locator('[data-testid="start-game-button"]').click();
+    await page.getByTestId('start-game-button').click();
     await page.waitForLoadState('domcontentloaded');
 
     const errorPromise = page.route(
@@ -85,40 +85,40 @@ test.describe('Error', () => {
     );
 
     if (firstMatchup.effectiveness === 'NoEffect') {
-      await page.locator('[data-testid="no-effective-button"]').click();
+      await page.getByTestId('no-effect-button').click();
     } else if (firstMatchup.effectiveness === 'SuperEffective') {
-      await page.locator('[data-testid="super-effective-button"]').click();
+      await page.getByTestId('super-effective-button').click();
     } else if (firstMatchup.effectiveness === 'NotVeryEffective') {
-      await page.locator('[data-testid="not-effective-button"]').click();
+      await page.getByTestId('not-effective-button').click();
     } else {
-      await page.locator('[data-testid="effective-button"]').click();
+      await page.getByTestId('effective-button').click();
     }
 
     const secondMatchupResponse = await secondRoundPromise;
     const secondMatchup = await secondMatchupResponse.json();
     await page.waitForLoadState('domcontentloaded');
 
-    await expect(page.locator('[data-testid="score-value"]')).toHaveText('1');
+    await expect(page.getByTestId('score-value')).toHaveText('1');
 
     if (secondMatchup.effectiveness === 'NoEffect') {
-      await page.locator('[data-testid="no-effective-button"]').click();
+      await page.getByTestId('no-effect-button').click();
     } else if (secondMatchup.effectiveness === 'SuperEffective') {
-      await page.locator('[data-testid="super-effective-button"]').click();
+      await page.getByTestId('super-effective-button').click();
     } else if (secondMatchup.effectiveness === 'NotVeryEffective') {
-      await page.locator('[data-testid="not-effective-button"]').click();
+      await page.getByTestId('not-effective-button').click();
     } else {
-      await page.locator('[data-testid="effective-button"]').click();
+      await page.getByTestId('effective-button').click();
     }
 
     await errorPromise;
 
-    await expect(page.locator('[data-testid="reset-button"]')).toBeVisible();
-    await expect(page.locator('[data-testid="reset-button"]')).toBeEnabled();
+    await expect(page.getByTestId('reset-button')).toBeVisible();
+    await expect(page.getByTestId('reset-button')).toBeEnabled();
 
     await page.locator('[data-testid="reset-button"]').click();
     await page.waitForLoadState('domcontentloaded');
 
-    await expect(page.locator('[data-testid="score-value"]')).toHaveText('2');
+    await expect(page.getByTestId('score-value')).toHaveText('2');
   });
 });
 
@@ -134,38 +134,36 @@ test.describe('Game', () => {
     await page.locator('[data-testid="start-game-button"]').click();
     await page.waitForLoadState('domcontentloaded');
 
-    await expect(page.locator('[data-testid="score-label"]')).toHaveText('Score');
-    await expect(page.locator('[data-testid="score-value"]')).toHaveText('0');
+    await expect(page.getByTestId('score-label')).toHaveText('Score');
+    await expect(page.getByTestId('score-value')).toHaveText('0');
 
-    await expect(page.locator('[data-testid="game-container"]')).toBeVisible();
+    await expect(page.getByTestId('game-container')).toBeVisible();
 
-    await expect(page.locator('[data-testid="attacker-pokemon"]')).toBeVisible();
-    await expect(page.locator('[data-testid="attacker-pokemon"]')).toContainText(
-      firstMatchup.attacker!.name!,
-      { ignoreCase: true }
-    );
+    await expect(page.getByTestId('attacker-pokemon')).toBeVisible();
+    await expect(page.getByTestId('attacker-pokemon')).toContainText(firstMatchup.attacker!.name!, {
+      ignoreCase: true,
+    });
 
-    await expect(page.locator('[data-testid="defender-pokemon"]')).toBeVisible();
-    await expect(page.locator('[data-testid="defender-pokemon"]')).toContainText(
-      firstMatchup.defender!.name!,
-      { ignoreCase: true }
-    );
+    await expect(page.getByTestId('defender-pokemon')).toBeVisible();
+    await expect(page.getByTestId('defender-pokemon')).toContainText(firstMatchup.defender!.name!, {
+      ignoreCase: true,
+    });
 
-    await expect(page.locator('[data-testid="question"]')).toBeVisible();
+    await expect(page.getByTestId('question')).toBeVisible();
 
-    await expect(page.locator('[data-testid="decision-buttons"]')).toBeVisible();
+    await expect(page.getByTestId('decision-buttons')).toBeVisible();
 
-    await expect(page.locator('[data-testid="no-effect-button"]')).toBeVisible();
-    await expect(page.locator('[data-testid="no-effect-button"]')).toBeEnabled();
+    await expect(page.getByTestId('no-effect-button')).toBeVisible();
+    await expect(page.getByTestId('no-effect-button')).toBeEnabled();
 
-    await expect(page.locator('[data-testid="not-effective-button"]')).toBeVisible();
-    await expect(page.locator('[data-testid="not-effective-button"]')).toBeEnabled();
+    await expect(page.getByTestId('not-effective-button')).toBeVisible();
+    await expect(page.getByTestId('not-effective-button')).toBeEnabled();
 
-    await expect(page.locator('[data-testid="effective-button"]')).toBeVisible();
-    await expect(page.locator('[data-testid="effective-button"]')).toBeEnabled();
+    await expect(page.getByTestId('effective-button')).toBeVisible();
+    await expect(page.getByTestId('effective-button')).toBeEnabled();
 
-    await expect(page.locator('[data-testid="super-effective-button"]')).toBeVisible();
-    await expect(page.locator('[data-testid="super-effective-button"]')).toBeEnabled();
+    await expect(page.getByTestId('super-effective-button')).toBeVisible();
+    await expect(page.getByTestId('super-effective-button')).toBeEnabled();
   });
 
   test('it increases the score when the guess is correct', async ({ page }) => {
@@ -176,22 +174,22 @@ test.describe('Game', () => {
     const firstMatchup = await firstMatchupResponse.json();
     await page.waitForLoadState('domcontentloaded');
 
-    await page.locator('[data-testid="start-game-button"]').click();
+    await page.getByTestId('start-game-button').click();
     await page.waitForLoadState('domcontentloaded');
 
     if (firstMatchup.effectiveness === 'NoEffect') {
-      await page.locator('[data-testid="no-effective-button"]').click();
+      await page.getByTestId('no-effect-button').click();
     } else if (firstMatchup.effectiveness === 'SuperEffective') {
-      await page.locator('[data-testid="super-effective-button"]').click();
+      await page.getByTestId('super-effective-button').click();
     } else if (firstMatchup.effectiveness === 'NotVeryEffective') {
-      await page.locator('[data-testid="not-effective-button"]').click();
+      await page.getByTestId('not-effective-button').click();
     } else {
-      await page.locator('[data-testid="effective-button"]').click();
+      await page.getByTestId('effective-button').click();
     }
 
     await page.waitForLoadState('domcontentloaded');
 
-    await expect(page.getByTestId('[data-testid="score-value"]')).toHaveText('1');
+    await expect(page.getByTestId('score-value')).toHaveText('1');
   });
 
   test('it ends the game when the guess is incorrect', async ({ page }) => {
@@ -304,13 +302,13 @@ test.describe('Game', () => {
     const secondMatchupPromise = page.waitForResponse('**/api/v1/matchup', { timeout: 2000 });
 
     if (firstMatchup.effectiveness === 'NoEffect') {
-      await page.locator('[data-testid="no-effective-button"]').click();
+      await page.getByTestId('no-effect-button').click();
     } else if (firstMatchup.effectiveness === 'SuperEffective') {
-      await page.locator('[data-testid="super-effective-button"]').click();
+      await page.getByTestId('super-effective-button').click();
     } else if (firstMatchup.effectiveness === 'NotVeryEffective') {
-      await page.locator('[data-testid="not-effective-button"]').click();
+      await page.getByTestId('not-effective-button').click();
     } else {
-      await page.locator('[data-testid="effective-button"]').click();
+      await page.getByTestId('effective-button').click();
     }
 
     await page.waitForLoadState('domcontentloaded');

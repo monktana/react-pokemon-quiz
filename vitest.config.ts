@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 
-import { coverageConfigDefaults, defineConfig, mergeConfig } from 'vitest/config';
+import { coverageConfigDefaults, defaultExclude, defineConfig, mergeConfig } from 'vitest/config';
 import viteConfig from './vite.config';
 
 // https://vitest.dev/config/
@@ -12,8 +12,9 @@ export default defineConfig((configEnv) =>
         globals: true,
         environment: 'jsdom',
         setupFiles: './src/vitest.setup.ts',
+        exclude: [...defaultExclude, './tests/**'],
         coverage: {
-          exclude: [...coverageConfigDefaults.exclude, '**/*.cy.tsx'],
+          exclude: [...coverageConfigDefaults.exclude, './tests/**'],
         },
       },
     })
