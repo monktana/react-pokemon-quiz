@@ -1,7 +1,7 @@
+import React from 'react';
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import React from 'react';
 
 import { queryClient } from '@/lib';
 import { LanguageStoreProvider, ScoreStoreProvider } from '@/stores';

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Container, Flex, Heading, Text } from '@chakra-ui/react';
 import { FallbackProps } from 'react-error-boundary';
 

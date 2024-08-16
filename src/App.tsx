@@ -1,3 +1,4 @@
+import React from 'react';
 import { Container } from '@chakra-ui/react';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { ReactElement, Suspense } from 'react';

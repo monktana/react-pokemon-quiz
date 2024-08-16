@@ -1,3 +1,4 @@
+import React from 'react';
 import { Grid, Skeleton, VStack } from '@chakra-ui/react';
 
 export const Loading = () => {

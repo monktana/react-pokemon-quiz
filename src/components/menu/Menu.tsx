@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Button, Center, keyframes, VStack } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 

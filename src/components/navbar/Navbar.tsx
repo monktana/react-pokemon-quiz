@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, HStack, IconButton, useColorMode, useColorModeValue } from '@chakra-ui/react';
 
 import { LanguageMenu, TypeIcon } from '@/components';

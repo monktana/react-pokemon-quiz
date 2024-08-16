@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Text, VStack } from '@chakra-ui/react';
 
 import { useCancelMatchup, usePrefetchMatchup } from '@/api';

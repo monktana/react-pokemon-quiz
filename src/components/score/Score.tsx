@@ -1,3 +1,4 @@
+import React from 'react';
 import { HStack, Stat, StatLabel, StatNumber, StatProps } from '@chakra-ui/react';
 
 import { useLocalization } from '@/hooks';

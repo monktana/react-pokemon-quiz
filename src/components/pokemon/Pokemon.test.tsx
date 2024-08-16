@@ -1,5 +1,5 @@
-import { screen, within } from '@testing-library/react';
 import React from 'react';
+import { screen, within } from '@testing-library/react';
 import { describe, expect, it as base } from 'vitest';
 
 import { getResourceName, types } from '@/components';
@@ -65,7 +65,6 @@ describe('<TypeTag />', () => {
         getResourceName(type.names!, 'en')!
       );
       expect(screen.getByTestId(`${key}-type-tag`)).toContainElement(
-        // eslint-disable-next-line testing-library/no-node-access
         screen.getByTestId(`${key}-type-tag`).querySelector('svg')
       );
     });

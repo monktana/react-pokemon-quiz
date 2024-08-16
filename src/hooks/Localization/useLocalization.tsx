@@ -1,5 +1,5 @@
+import React, { ReactElement, useCallback } from 'react';
 import { Text } from '@chakra-ui/react';
-import { ReactElement, useCallback } from 'react';
 
 import { useLanguage } from '@/stores';
 import { geti18nText, TextKey } from '@/util';

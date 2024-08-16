@@ -1,3 +1,4 @@
+import React from 'react';
 import { Tag, TagLabel, TagLeftIcon, TagProps } from '@chakra-ui/react';
 
 import { InternationalName } from '@/api';

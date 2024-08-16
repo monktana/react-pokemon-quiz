@@ -1,5 +1,5 @@
-import { screen } from '@testing-library/react';
 import React from 'react';
+import { screen } from '@testing-library/react';
 import { describe, expect, it as base } from 'vitest';
 
 import { getResourceName, Question } from '@/components';
@@ -34,7 +34,6 @@ describe('<Question />', () => {
 
     expect(screen.getByTestId(`${move.type!.name}-type-tag`)).toBeVisible();
     expect(screen.getByTestId(`${move.type!.name}-type-tag`)).toContainElement(
-      // eslint-disable-next-line testing-library/no-node-access
       screen.getByTestId(`${move.type!.name}-type-tag`).querySelector('svg')
     );
   });

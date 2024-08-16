@@ -1,3 +1,4 @@
+import React from 'react';
 import { IconProps } from '@chakra-ui/react';
 
 import { Language } from '@/util';
