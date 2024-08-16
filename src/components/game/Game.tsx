@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Grid, VStack } from '@chakra-ui/react';
+import { Button, Flex, Grid, VStack } from '@chakra-ui/react';
 import { useCallback, useState } from 'react';
 
 import { useInvalidateMatchup, useMatchup, usePrefetchMatchup } from '@/api';
@@ -7,7 +7,7 @@ import { TypeEffectiveness } from '@/api/schema';
 import { useLocalization } from '@/hooks';
 import { useAppStateActions, useScoreActions } from '@/stores';
 
-import { Pokemon, Question, Score, useGuess } from '../';
+import { Pokemon, PokemonName, PokemonSprite, PokemonTags, Question, Score, useGuess } from '../';
 
 export function Game() {
   const [round, setRound] = useState<number>(1);
@@ -35,8 +35,20 @@ export function Game() {
   return (
     <VStack data-testid="game-container" align="start">
       <Score />
-      <Pokemon pokemon={matchup.defender!} variant="defender" />
-      <Pokemon pokemon={matchup.attacker!} variant="attacker" />
+      <Pokemon pokemon={matchup.defender!} flexDirection="row-reverse" data-testid="defender-pokemon">
+        <PokemonSprite data-testid="defender-sprite" src={matchup.defender!.sprites?.front_default ?? ""} />
+        <Flex flexDirection="column" alignItems="flex-start" width="full" color="font.800" _dark={{color: "font.100"}}>
+          <PokemonName data-testid="defender-name" />
+          <PokemonTags />
+        </Flex>
+      </Pokemon>
+      <Pokemon pokemon={matchup.attacker!} flexDirection="row" data-testid="attacker-pokemon">
+        <PokemonSprite data-testid="attacker-sprite" src={matchup.attacker!.sprites?.back_default ?? ""} />
+        <Flex flexDirection="column" alignItems="flex-start" width="full" color="font.800" _dark={{color: "font.100"}}>
+          <PokemonName data-testid="attacker-name" />
+          <PokemonTags />
+        </Flex>
+      </Pokemon>
       <Question pokemon={matchup.attacker!} move={matchup.move!} />
       <Grid
         data-testid="decision-buttons"

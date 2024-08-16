@@ -2,12 +2,13 @@ import React from 'react';
 import { screen, within } from '@testing-library/react';
 import { describe, expect, it as base } from 'vitest';
 
-import { getResourceName, types } from '@/components';
+import { getResourceName, PokemonName, PokemonSprite, PokemonTags, types } from '@/components';
 import { bulbasaur, render } from '@/lib';
 import * as TypeFixtures from '@/lib/testing/fixtures/type';
 
 import { Pokemon } from './Pokemon';
 import { TypeTag } from './TypeTag';
+import { Flex } from '@chakra-ui/react';
 
 const it = base.extend({
   pokemon: bulbasaur,
@@ -16,7 +17,15 @@ const it = base.extend({
 
 describe('<Pokemon />', () => {
   it('displays the pokemon name', ({ pokemon }) => {
-    render(<Pokemon pokemon={pokemon} variant="attacker" />);
+    render(
+      <Pokemon pokemon={pokemon} flexDirection="row-reverse" data-testid="attacker-pokemon">
+        <PokemonSprite data-testid="attacker-sprite" src={pokemon.sprites?.back_default ?? ""} />
+        <Flex flexDirection="column" alignItems="flex-start" width="full" color="font.800" _dark={{color: "font.100"}}>
+          <PokemonName data-testid="attacker-name" />
+          <PokemonTags />
+        </Flex>
+      </Pokemon>
+    );
     expect(screen.getByTestId('attacker-name')).toBeVisible();
 
     const { getByText } = within(screen.getByTestId('attacker-name'));
@@ -24,7 +33,15 @@ describe('<Pokemon />', () => {
   });
 
   it('displays the back sprite when attacking', ({ pokemon }) => {
-    render(<Pokemon pokemon={pokemon} variant="attacker" />);
+    render(
+      <Pokemon pokemon={pokemon} flexDirection="row-reverse" data-testid="attacker-pokemon">
+        <PokemonSprite data-testid="attacker-sprite" src={pokemon.sprites?.back_default ?? ""} />
+        <Flex flexDirection="column" alignItems="flex-start" width="full" color="font.800" _dark={{color: "font.100"}}>
+          <PokemonName data-testid="attacker-name" />
+          <PokemonTags />
+        </Flex>
+      </Pokemon>
+    );
 
     expect(screen.getByTestId('attacker-sprite')).toBeVisible();
     expect(screen.getByTestId('attacker-sprite')).toHaveAttribute(
@@ -34,7 +51,15 @@ describe('<Pokemon />', () => {
   });
 
   it('displays the front sprite when defending', ({ pokemon }) => {
-    render(<Pokemon pokemon={pokemon} variant="defender" />);
+    render(
+      <Pokemon pokemon={pokemon} flexDirection="row-reverse" data-testid="defender-pokemon">
+        <PokemonSprite data-testid="defender-sprite" src={pokemon.sprites?.front_default ?? ""} />
+        <Flex flexDirection="column" alignItems="flex-start" width="full" color="font.800" _dark={{color: "font.100"}}>
+          <PokemonName data-testid="defender-name" />
+          <PokemonTags />
+        </Flex>
+      </Pokemon>
+    );
 
     expect(screen.getByTestId('defender-sprite')).toBeVisible();
     expect(screen.getByTestId('defender-sprite')).toHaveAttribute(
@@ -44,7 +69,15 @@ describe('<Pokemon />', () => {
   });
 
   it('displays the types of the pokemon', ({ pokemon }) => {
-    render(<Pokemon pokemon={pokemon} variant="attacker" />);
+    render(
+      <Pokemon pokemon={pokemon} flexDirection="row-reverse" data-testid="attacker-pokemon">
+        <PokemonSprite data-testid="attacker-sprite" src={pokemon.sprites?.back_default ?? ""} />
+        <Flex flexDirection="column" alignItems="flex-start" width="full" color="font.800" _dark={{color: "font.100"}}>
+          <PokemonName data-testid="attacker-name" />
+          <PokemonTags />
+        </Flex>
+      </Pokemon>
+    );
 
     pokemon.types?.forEach((type) => {
       expect(screen.getByTestId(`${type.name}-type-tag`)).toBeVisible();
