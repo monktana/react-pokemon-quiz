@@ -1,12 +1,15 @@
 import React from 'react';
 import { Button, Container, Flex, Heading, Text } from '@chakra-ui/react';
-import { FallbackProps } from 'react-error-boundary';
 
 import { useLocalization } from '@/hooks';
 
 import { GhostIcon } from '../icons';
 
-export const Error = ({ resetErrorBoundary }: FallbackProps) => {
+type ErrorProps = {
+  reset: () => void;
+};
+
+export const Error = ({ reset }: ErrorProps) => {
   const { getText } = useLocalization();
 
   return (
@@ -19,12 +22,7 @@ export const Error = ({ resetErrorBoundary }: FallbackProps) => {
         <Text data-testid="error-message" color={{ light: 'font.800', dark: 'font.100' }}>
           {getText('error.info')}
         </Text>
-        <Button
-          data-testid="reset-button"
-          variant="primary"
-          marginTop="8"
-          onClick={resetErrorBoundary}
-        >
+        <Button data-testid="reset-button" variant="primary" marginTop="8" onClick={reset}>
           {getText('error.button')}
         </Button>
       </Flex>

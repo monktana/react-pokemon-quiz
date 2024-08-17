@@ -1,5 +1,6 @@
 import React from 'react';
 import { IconProps } from '@chakra-ui/react';
+import * as Sentry from '@sentry/react';
 
 import { Language } from '@/util';
 
@@ -13,7 +14,7 @@ export const LanguageIcon = ({ type, ...rest }: { type: Language } & IconProps) 
     case 'en':
       return <GBIcon name={type} {...rest} />;
     default:
-      console.log(`no icon for type: ${type}`);
+      Sentry.captureException(new Error(`no icon for type: ${type}`));
       break;
   }
 };

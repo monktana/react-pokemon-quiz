@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Sentry from '@sentry/react';
 import { IconProps } from '@chakra-ui/react';
 
 import { BugIcon } from './Bug';
@@ -82,7 +83,7 @@ export const TypeIcon = ({ type, ...rest }: { type: types } & IconProps) => {
     case 'water':
       return <WaterIcon name={type} {...rest} />;
     default:
-      console.log(`no icon for type: ${type}`);
+      Sentry.captureException(new Error(`no icon for type: ${type}`));
       break;
   }
 };

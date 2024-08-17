@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import * as Sentry from '@sentry/react';
 import { Container } from '@chakra-ui/react';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
-import { ReactElement, Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
 
 import { Error, Game, GameOver, Loading, Menu, Navbar } from '@/components';
 import { useAppState } from '@/stores';
 
-function App(): ReactElement | null {
+export const App = () => {
   const { reset } = useQueryErrorResetBoundary();
 
   const appState = useAppState();
 
   return (
-    <ErrorBoundary onReset={reset} FallbackComponent={Error}>
+    <Sentry.ErrorBoundary
+      onReset={reset}
+      fallback={({ resetError }) => <Error reset={resetError} />}
+    >
       <Suspense fallback={<Loading />}>
         <Navbar />
         <Container display="flex" alignItems="center" justifyContent="center" height="100vh">
@@ -22,8 +24,6 @@ function App(): ReactElement | null {
           {appState === 'gameover' && <GameOver />}
         </Container>
       </Suspense>
-    </ErrorBoundary>
+    </Sentry.ErrorBoundary>
   );
-}
-
-export default App;
+};

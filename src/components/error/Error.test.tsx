@@ -8,15 +8,14 @@ import { geti18nText } from '@/util';
 
 describe('Error', () => {
   it('displays the error texts', () => {
-    render(<Error resetErrorBoundary={vi.fn()} error={null} />);
+    render(<Error reset={vi.fn()} />);
 
     expect(screen.getByText(geti18nText('en', 'error.title'))).toBeInTheDocument();
     expect(screen.getByText(geti18nText('en', 'error.info'))).toBeInTheDocument();
   });
 
   it('displays the reset button', () => {
-    const resetErrorBoundary = vi.fn();
-    render(<Error resetErrorBoundary={resetErrorBoundary} error={null} />);
+    render(<Error reset={vi.fn()} />);
 
     const button = screen.getByRole('button');
     expect(button).toBeEnabled();
@@ -25,7 +24,7 @@ describe('Error', () => {
 
   it('calls the resetErrorBoundary when the button is clicked', () => {
     const resetErrorBoundary = vi.fn();
-    render(<Error resetErrorBoundary={resetErrorBoundary} error={null} />);
+    render(<Error reset={resetErrorBoundary} />);
 
     const button = screen.getByRole('button');
     button.click();
