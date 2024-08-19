@@ -38,3 +38,21 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [test]
+
+    steps:
+      - name: Deploy on Coolify
+        id: deployRequest
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: ${{ secrets.COOLIFY_WEBHOOK }}
+          method: 'GET'
+          customHeaders: '{"Authorization": "Bearer ${{ secrets.COOLIFY_TOKEN }}"}'
+
+      - name: Show Response
+        run: |
+          echo ${{ steps.deployRequest.outputs.response }}
+          echo ${{ steps.deployRequest.outputs.headers }}
+          echo ${{ steps.deployRequest.outputs.status }}
