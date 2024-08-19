@@ -1,3 +1,5 @@
+import * as Sentry from '@sentry/react';
+
 import LOCALIZATION_TEXTS from './i18n.json';
 
 //https://datatracker.ietf.org/doc/html/rfc5646
@@ -7,7 +9,16 @@ export const isSupportedLanguage = (language: string): language is Language =>
   ['en', 'de'].includes(language);
 
 export type TextKey = keyof (typeof LOCALIZATION_TEXTS)[Language];
-export const geti18nText = (language: Language, key: TextKey) => LOCALIZATION_TEXTS[language][key];
+export const geti18nText = (language: Language, key: TextKey): string => {
+  if (!isSupportedLanguage(language)) throw new Error(`Localization access with unsupported language: ${language}`);
+
+  const text = LOCALIZATION_TEXTS[language][key];
+  if (!text) {
+    Sentry.captureMessage(`unknown message key: ${key}`);
+    return `unknown message key: ${key}`;
+  }
+  return text
+};
 
 /**
  * Maps the given browser language to a supported abbreviation.

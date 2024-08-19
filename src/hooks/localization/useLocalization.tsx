@@ -8,9 +8,7 @@ export const useLocalization = () => {
   const language = useLanguage();
 
   const getText = useCallback(
-    (key: TextKey) => {
-      return geti18nText(language, key);
-    },
+    (key: TextKey) => geti18nText(language, key),
     [language]
   );
 

@@ -14,7 +14,7 @@ export const LanguageIcon = ({ type, ...rest }: { type: Language } & IconProps) 
     case 'en':
       return <GBIcon name={type} {...rest} />;
     default:
-      Sentry.captureException(new Error(`no icon for type: ${type}`));
+      Sentry.captureException(new Error(`no language icon found for: ${type}`));
       break;
   }
 };

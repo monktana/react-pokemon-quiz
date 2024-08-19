@@ -83,7 +83,7 @@ export const TypeIcon = ({ type, ...rest }: { type: types } & IconProps) => {
     case 'water':
       return <WaterIcon name={type} {...rest} />;
     default:
-      Sentry.captureException(new Error(`no icon for type: ${type}`));
+      Sentry.captureException(new Error(`no type icon found for: ${type}`));
       break;
   }
 };
