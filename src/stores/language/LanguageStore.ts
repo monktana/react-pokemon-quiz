@@ -21,5 +21,6 @@ const useLanguageStore = (selector: (state: LanguageStore) => unknown) => {
 
 export const useLanguage = () =>
   useLanguageStore((state) => state.language) as LanguageStore['language'];
-export const useLanguageActions = (): LanguageStore['actions'] =>
+
+export const useLanguageActions = () =>
   useLanguageStore((state) => state.actions) as LanguageStore['actions'];

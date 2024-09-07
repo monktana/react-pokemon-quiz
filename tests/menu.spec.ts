@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
   await page.waitForLoadState('domcontentloaded');
 });
 
-test.describe('Language Select', () => {
+test.describe('language Select', () => {
   test('enables the player to change the language', async ({ page }) => {
     // await expect(page).toHaveAttribute('html', 'lang', 'en');
     await expect(page.getByTestId('language-switch')).toBeVisible();

@@ -1,40 +1,51 @@
-import * as Sentry from '@sentry/react';
-
-import LOCALIZATION_TEXTS from './i18n.json';
+import { texts } from './texts';
 
 //https://datatracker.ietf.org/doc/html/rfc5646
 export const Languages = ['en', 'de'] as const;
 export type Language = (typeof Languages)[number];
 export const isSupportedLanguage = (language: string): language is Language =>
-  ['en', 'de'].includes(language);
+  Languages.includes(language as Language);
 
-export type TextKey = keyof (typeof LOCALIZATION_TEXTS)[Language];
+export type TextKey = keyof (typeof texts)[Language];
+
+/**
+ * Reads the localized text of the given language and key.
+ *
+ * @param language - the language of the text
+ * @param key - the key of the text
+ *
+ * @throws Error - thrown if language or key are unknown
+ */
 export const geti18nText = (language: Language, key: TextKey): string => {
-  if (!isSupportedLanguage(language)) throw new Error(`Localization access with unsupported language: ${language}`);
-
-  const text = LOCALIZATION_TEXTS[language][key];
-  if (!text) {
-    Sentry.captureMessage(`unknown message key: ${key}`);
-    return `unknown message key: ${key}`;
+  const languageTexts = texts[language];
+  if (!languageTexts) {
+    throw new Error(`access to localization with unknown language: ${language}`);
   }
-  return text
+
+  const text = languageTexts[key];
+  if (!text) {
+    throw new Error(`access to language texts ${language} with unknown key: ${key}`);
+  }
+  return text;
 };
 
 /**
- * Maps the given browser language to a supported abbreviation.
+ * Maps the given browser language to a supported game language key.
  * Will default to 'en'.
  *
- * @param browserLanguage - The language abbreviation read from the browser.
+ * @param browserLanguage - language tag according to [RFC 5646: Tags for Identifying Languages (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646)
  */
-const navigatorLanguageToAppLanguage = (browserLanguage: string): Language => {
+export const getAppLanguage = (browserLanguage: string): Language => {
   const languageAbbreviation = browserLanguage.split('-')[0].toLowerCase();
   return isSupportedLanguage(languageAbbreviation) ? languageAbbreviation : 'en';
 };
 
 /**
- * Reads the language set in the browser.
+ * Reads the users preferred language using navigator.language(s)
+ *
+ * @returns browserLanguage - language tag according to [RFC 5646: Tags for Identifying Languages (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646)
  */
-export const getBrowserLanguage = () => {
-  const browserLanguage = navigator.language;
-  return navigatorLanguageToAppLanguage(browserLanguage);
+export const getBrowserLanguage = (): string => {
+  if (navigator.languages) return navigator.languages[0];
+  return navigator.language;
 };
