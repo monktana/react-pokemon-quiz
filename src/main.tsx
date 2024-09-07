@@ -9,7 +9,7 @@ import { App } from './App';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <AppProvider initialLanguage={getBrowserLanguage()}>
+    <AppProvider browserLanguage={getBrowserLanguage()}>
       <App />
     </AppProvider>
   </React.StrictMode>

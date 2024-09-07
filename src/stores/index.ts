@@ -1,3 +1,3 @@
 export * from './appState';
-export * from './Language';
+export * from './language';
 export * from './Score';

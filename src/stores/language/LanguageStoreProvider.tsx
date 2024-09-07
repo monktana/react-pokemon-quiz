@@ -2,10 +2,10 @@ import React, { PropsWithChildren } from 'react';
 import { createStore, StoreApi } from 'zustand';
 
 import { LanguageStore } from '@/stores';
-import { Language } from '@/util';
+import { getAppLanguage } from '@/util';
 
 export type LanguageStoreProviderProps = PropsWithChildren<{
-  initialLanguage: Language;
+  initialLanguage: string;
 }>;
 
 export const LanguageStoreContext = React.createContext<StoreApi<LanguageStore> | null>(null);
@@ -14,9 +14,10 @@ export const LanguageStoreProvider = ({
   children,
   initialLanguage,
 }: LanguageStoreProviderProps) => {
+  const appLanguage = getAppLanguage(initialLanguage);
   const [store] = React.useState(() =>
     createStore<LanguageStore>()((set) => ({
-      language: initialLanguage,
+      language: appLanguage,
       actions: {
         setLanguage: (language) => {
           document.documentElement.lang = language;

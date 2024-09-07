@@ -6,18 +6,18 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { queryClient } from '@/lib';
 import { LanguageStoreProvider, ScoreStoreProvider } from '@/stores';
 import theme from '@/theme';
-import { Language } from '@/util';
+import { getBrowserLanguage } from '@/util';
 
 type AppProviderProps = {
   children: React.ReactNode;
-  initialLanguage: Language;
+  browserLanguage: ReturnType<typeof getBrowserLanguage>;
 };
 
-export const AppProvider = ({ children, initialLanguage }: AppProviderProps) => {
+export const AppProvider = ({ children, browserLanguage }: AppProviderProps) => {
   return (
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <LanguageStoreProvider initialLanguage={initialLanguage}>
+        <LanguageStoreProvider initialLanguage={browserLanguage}>
           <ScoreStoreProvider initialScore={0}>
             <ColorModeScript initialColorMode={theme.config.initialColorMode} />
             {children}
