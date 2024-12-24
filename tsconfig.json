@@ -2,6 +2,8 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
     "lib": [
       "dom",
       "dom.iterable",
@@ -18,8 +20,6 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -33,5 +33,5 @@
   "include": [
     "./src/**/*"
   ],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.app.json"}]
 }
