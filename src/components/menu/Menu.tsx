@@ -1,22 +1,21 @@
 import React from 'react';
-import { Box, Button, Center, keyframes, VStack } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
 
 import { usePrefetchMatchup } from '@/api';
 import { useLocalization } from '@/hooks';
 import { useAppStateActions, useScoreActions } from '@/stores';
+import { Button } from '@/lib/shadcn/ui/button';
 
-const animationKeyframes = keyframes`
-  0% { transform: rotate(0) }
-  10% { transform: rotate(-25deg) }
-  30% { transform: rotate(17deg) }
-  60% { transform: rotate(-10deg) }
-  80% { transform: rotate(5deg) }
-  90% { transform: rotate(0) }
-  100% { transform: rotate(0) }
-`;
-
-const animation = `${animationKeyframes} 4s ease-in-out infinite`;
+// const animationKeyframes = frames`
+//   0% { transform: rotate(0) }
+//   10% { transform: rotate(-25deg) }
+//   30% { transform: rotate(17deg) }
+//   60% { transform: rotate(-10deg) }
+//   80% { transform: rotate(5deg) }
+//   90% { transform: rotate(0) }
+//   100% { transform: rotate(0) }
+// `;
+//
+// const animation = `${animationKeyframes} 4s ease-in-out infinite`;
 
 export function Menu() {
   const { startQuiz } = useAppStateActions();
@@ -31,37 +30,22 @@ export function Menu() {
   };
 
   return (
-    <VStack spacing={2}>
-      <Box
+    <div className="flex flex-row gap-2">
+      <div
         data-testid="pokeball"
-        as={motion.div}
-        animation={animation}
-        position="relative"
-        width="xs"
-        height="xs"
-        rounded="full"
-        borderWidth="6px"
-        borderColor="black"
-        bgGradient="linear(red.500 0%, red.500 50%, white 50%)"
+        className="relative w-12 h-12 rounded-full border-4 border-black bg-gradient-to-r from-red-500 to-red-500"
       >
-        <Box
-          position="absolute"
-          top="50%"
-          left="50%"
-          transform={'translate(-50%, -50%)'}
-          width="4rem"
-          height="4rem"
-          bg="white"
-          rounded="full"
-          borderWidth="6px"
-          borderColor="black"
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white border-4 border-black"
         />
-      </Box>
-      <Center>
-        <Button data-testid="start-game-button" size="lg" marginTop={8} onClick={startGame}>
-          {getText('mainmenu.button.newgame').toUpperCase()}
-        </Button>
-      </Center>
-    </VStack>
+      </div>
+      <Button
+        data-testid="start-game-button"
+        className="mt-8"
+        onClick={startGame}
+      >
+        {getText('mainmenu.button.newgame').toUpperCase()}
+      </Button>
+    </div>
   );
 }
