@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button, Flex, Grid, VStack } from '@chakra-ui/react';
 import { useCallback, useState } from 'react';
 
 import { useInvalidateMatchup, useMatchup, usePrefetchMatchup } from '@/api';
@@ -8,6 +7,7 @@ import { useLocalization } from '@/hooks';
 import { useAppStateActions, useScoreActions } from '@/stores';
 
 import { Pokemon, PokemonName, PokemonSprite, PokemonTags, Question, Score, useGuess } from '../';
+import { Button } from '@/lib/shadcn/ui';
 
 export function Game() {
   const [round, setRound] = useState<number>(1);
@@ -33,67 +33,62 @@ export function Game() {
   );
 
   return (
-    <VStack data-testid="game-container" align="start">
+    <div data-testid="game-container" className="flex-start flex items-start">
       <Score />
-      <Pokemon pokemon={matchup.defender!} flexDirection="row-reverse" data-testid="defender-pokemon">
-        <PokemonSprite data-testid="defender-sprite" src={matchup.defender!.sprites?.front_default ?? ""} />
-        <Flex flexDirection="column" alignItems="flex-start" width="full" color="font.800" _dark={{color: "font.100"}}>
+      <Pokemon pokemon={matchup.defender!} data-testid="defender-pokemon">
+        <PokemonSprite
+          data-testid="defender-sprite"
+          src={matchup.defender!.sprites?.front_default ?? ''}
+        />
+        <div className="flex w-full items-start text-font-800 dark:text-font-100">
           <PokemonName data-testid="defender-name" />
           <PokemonTags />
-        </Flex>
+        </div>
       </Pokemon>
-      <Pokemon pokemon={matchup.attacker!} flexDirection="row" data-testid="attacker-pokemon">
-        <PokemonSprite data-testid="attacker-sprite" src={matchup.attacker!.sprites?.back_default ?? ""} />
-        <Flex flexDirection="column" alignItems="flex-start" width="full" color="font.800" _dark={{color: "font.100"}}>
+      <Pokemon pokemon={matchup.attacker!} data-testid="attacker-pokemon">
+        <div className="flex w-full flex-col items-start text-font-800 dark:text-font-100">
           <PokemonName data-testid="attacker-name" />
           <PokemonTags />
-        </Flex>
+        </div>
+        <PokemonSprite
+          data-testid="attacker-sprite"
+          src={matchup.attacker!.sprites?.back_default ?? ''}
+        />
       </Pokemon>
       <Question pokemon={matchup.attacker!} move={matchup.move!} />
-      <Grid
+      <div
         data-testid="decision-buttons"
-        gridTemplateColumns="repeat(2, 1fr)"
-        gap={2}
-        padding={2}
-        width="full"
-        rounded="md"
-        border="1px solid"
-        borderColor="border.500"
-        backgroundColor="background.200"
-        _dark={{
-          borderColor: 'border.100',
-          backgroundColor: 'background.800',
-        }}
+        className="grid w-full grid-cols-2 gap-2 rounded-md border border-border-500 bg-background-200 p-2 dark:border-border-100 dark:bg-background-800"
       >
         <Button
           data-testid="no-effect-button"
-          isDisabled={isFetching}
+          disabled={isFetching}
           onClick={() => handleGuess(TypeEffectiveness.NoEffect)}
         >
           {getText('types.effectiveness.noeffect')}
         </Button>
         <Button
           data-testid="not-effective-button"
-          isDisabled={isFetching}
+          disabled={isFetching}
           onClick={() => handleGuess(TypeEffectiveness.NotVeryEffective)}
         >
           {getText('types.effectiveness.noteffective')}
         </Button>
         <Button
           data-testid="effective-button"
-          isDisabled={isFetching}
+          disabled={isFetching}
           onClick={() => handleGuess(TypeEffectiveness.Effective)}
         >
           {getText('types.effectiveness.effective')}
         </Button>
         <Button
           data-testid="super-effective-button"
-          isDisabled={isFetching}
+          disabled={isFetching}
           onClick={() => handleGuess(TypeEffectiveness.SuperEffective)}
         >
           {getText('types.effectiveness.supereffective')}
         </Button>
-      </Grid>
-    </VStack>
+      </div>
+    </div>
   );
 }

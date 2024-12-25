@@ -1,10 +1,10 @@
 import React from 'react';
-import { Flex, Text } from '@chakra-ui/react';
 
 import { Move, Pokemon } from '@/api/schema';
-import { getResourceName, types, TypeTag } from '@/components';
+import { getResourceName } from '@/components';
 import { useLocalization } from '@/hooks';
 import { useLanguage } from '@/stores';
+import { Tag } from '@/components/tag';
 
 type AttackProps = {
   pokemon: Pokemon;
@@ -16,37 +16,21 @@ export function Question({ pokemon: attacker, move }: AttackProps) {
   const { getTemplatedText } = useLocalization();
 
   return (
-    <Flex
+    <div
       data-testid="question"
-      gap={1}
-      alignItems="center"
-      padding={2}
-      width="full"
-      rounded="md"
-      color="font.800"
-      border="1px solid"
-      borderColor="border.500"
-      backgroundColor="background.200"
-      _dark={{
-        color: 'font.100',
-        borderColor: 'border.100',
-        backgroundColor: 'background.800',
-      }}
+      className={`flex flex-col gap-1 items-center p-2 w-full rounded-md text-font-800 border-1 border-border-500 bg-background-200 dark:text-font-100 dark:border-border-100 dark:bg-background-800`}
     >
-      <Flex gap={2} fontSize="xl">
+      <div className="flex gap-2 text-xl">
         {getTemplatedText(
           'game.question.effectiveness',
-          <Text key={attacker.species!.name}>
+          <p key={attacker.species!.name}>
             {getResourceName(attacker.species!.names!, language)!}
-          </Text>,
-          <TypeTag
-            key={move.type!.name}
-            type={move.type!.name as types}
-            text={move.names!}
-            borderRadius="md"
-          />
+          </p>,
+          <Tag key={move.type!.name}>
+            {getResourceName(move.type!.names!, language)}
+          </Tag>
         )}
-      </Flex>
-    </Flex>
+      </div>
+    </div>
   );
 }

@@ -1,19 +1,16 @@
 import React from 'react';
-import { HStack, Stat, StatLabel, StatNumber, StatProps } from '@chakra-ui/react';
 
 import { useLocalization } from '@/hooks';
 import { useScore } from '@/stores';
 
-export function Score(props: StatProps) {
+export function Score() {
   const score = useScore();
   const { getText } = useLocalization();
 
   return (
-    <Stat {...props}>
-      <HStack color="font.800" _dark={{ color: 'font.100' }}>
-        <StatLabel data-testid="score-label">{getText('score.label')}</StatLabel>
-        <StatNumber data-testid="score-value">{score}</StatNumber>
-      </HStack>
-    </Stat>
+    <div className="flex text-font-800 dark:text-font-100">
+      <p data-testid="score-label" className="font-bold text-lg">{getText('score.label')}</p>
+      <p data-testid="score-value">{score}</p>
+    </div>
   );
 }

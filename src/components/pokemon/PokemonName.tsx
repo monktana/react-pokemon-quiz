@@ -1,17 +1,17 @@
 import React from 'react';
-import { Text, TextProps } from '@chakra-ui/react';
 import { getResourceName, usePokemonContext } from '@/components';
 import { useLanguage } from '@/stores';
+import { cn } from '@/lib/shadcn/utils';
 
-type PokemonNameProps = TextProps
+type PokemonNameProps = React.HTMLAttributes<HTMLParagraphElement>;
 
-export const PokemonName = ({...props}: PokemonNameProps) => {
+export const PokemonName = ({className, ...props}: PokemonNameProps) => {
   const language = useLanguage();
   const pokemon = usePokemonContext();
 
   return (
-    <Text {...props} fontWeight="bold" fontSize="2xl">
+    <p className={cn('text-2xl font-bold', className)} {...props}>
       {getResourceName(pokemon.species!.names!, language)}
-    </Text>
-  )
+    </p>
+  );
 }
