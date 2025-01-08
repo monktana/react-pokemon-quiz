@@ -27,7 +27,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "ky": "^1.2.4",
-    "lucide-react": "^0.469.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "swagger-typescript-api": "^13.0.3",
@@ -37,6 +36,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@iconify/react": "^5.2.0",
     "@playwright/test": "^1.45.2",
     "@sentry/vite-plugin": "^2.22.2",
     "@tanstack/eslint-plugin-query": "^5.0.0",
