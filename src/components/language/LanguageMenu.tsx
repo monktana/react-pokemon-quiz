@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { LanguageIcon } from '@/components';
 import { useLocalization } from '@/hooks';
 import { useLanguage, useLanguageActions } from '@/stores';
 import { Language, Languages } from '@/util';
-import { Select, SelectItem } from '@/lib/shadcn/ui';
+import { Select, SelectContent, SelectItem } from '@/lib/shadcn/ui';
+import { Icon } from '@iconify/react';
 
 export const LanguageMenu = () => {
   const language = useLanguage();
@@ -13,18 +13,20 @@ export const LanguageMenu = () => {
 
   return (
     <Select onValueChange={(newLanguage) => setLanguage(newLanguage as Language)} defaultValue={language}>
-      {Languages.map((language) => {
-        return (
-          <SelectItem
-            key={language}
-            value={language}
-            data-testid={`${language}-language`}
-            onClick={() => setLanguage(language)}
-          >
-            <LanguageIcon type={language} /> {getText(language)}
-          </SelectItem>
-        );
-      })}
+      <SelectContent>
+        {Languages.map((language) => {
+          return (
+            <SelectItem
+              key={language}
+              value={language}
+              data-testid={`${language}-language`}
+              onClick={() => setLanguage(language)}
+            >
+              <Icon icon={language} /> {getText(language)}
+            </SelectItem>
+          );
+        })}
+      </SelectContent>
     </Select>
   );
 };

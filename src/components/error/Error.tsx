@@ -1,9 +1,8 @@
 import React from 'react';
-import { Button, Container, Flex, Heading, Text } from '@chakra-ui/react';
 
 import { useLocalization } from '@/hooks';
-
-import { GhostIcon } from '../icons';
+import { Icon } from '@iconify/react';
+import { Button } from '@/lib/shadcn/ui';
 
 type ErrorProps = {
   reset: () => void;
@@ -13,19 +12,19 @@ export const Error = ({ reset }: ErrorProps) => {
   const { getText } = useLocalization();
 
   return (
-    <Container height="100vh">
-      <Flex flexDirection="column" height="full" alignItems="center" justifyContent="center">
-        <GhostIcon width="12" height="12" marginBottom={4} />
-        <Heading data-testid="error-header" as="h2" marginBottom={2} size="xl">
+    <div className="h-100vh" >
+      <div className="flex flex-col h-full items-center justify-center">
+        <Icon icon="ghost" />
+        <h2 data-testid="error-header" className="mb-2 text-xl">
           {getText('error.title')}
-        </Heading>
-        <Text data-testid="error-message" color={{ light: 'font.800', dark: 'font.100' }}>
+        </h2>
+        <p data-testid="error-message" className="text-font-800 dark:text-font-100">
           {getText('error.info')}
-        </Text>
-        <Button data-testid="reset-button" variant="primary" marginTop="8" onClick={reset}>
+        </p>
+        <Button data-testid="reset-button" className="mt-8" onClick={reset}>
           {getText('error.button')}
         </Button>
-      </Flex>
-    </Container>
+      </div>
+    </div>
   );
 };

@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { LanguageMenu, TypeIcon } from '@/components';
+import { LanguageMenu } from '@/components';
 import { useLocalization } from '@/hooks';
 import { Button } from '@/lib/shadcn/ui';
+import { Icon } from '@iconify/react';
 
 export function Navbar() {
   const { getText } = useLocalization();
@@ -16,7 +17,7 @@ export function Navbar() {
           aria-label={getText('navbar.color.label')}
           variant="outline"
         >
-          <TypeIcon type="psychic" color="current" />
+          <Icon icon="pokemon:psychic" />
         </Button>
       </div>
     </div>

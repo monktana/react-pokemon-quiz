@@ -17,5 +17,5 @@
     "lib": "@/lib/shadcn/lib",
     "hooks": "@/lib/shadcn/hooks"
   },
-  "iconLibrary": "lucide"
+  "iconLibrary": "iconify"
 }
