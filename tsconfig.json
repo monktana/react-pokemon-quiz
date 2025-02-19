@@ -3,7 +3,7 @@
     "baseUrl": "./src",
     "target": "esnext",
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "lib": [
       "dom",
       "dom.iterable",
@@ -33,6 +33,5 @@
   "include": [
     "./src/**/*.ts",
     "./src/**/*.tsx"
-  ],
-  "references": [{ "path": "./tsconfig.app.json"}]
+  ]
 }

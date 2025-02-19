@@ -3,6 +3,7 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { sentryVitePlugin } from '@sentry/vite-plugin';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -12,6 +13,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       tsconfigPaths(),
+      tailwindcss(),
       sentryVitePlugin({
         org: process.env.VITE_SENTRY_ORG,
         project: process.env.VITE_SENTRY_PROJECT,
@@ -19,7 +21,7 @@ export default defineConfig(({ mode }) => {
         // Auth tokens can be obtained from https://sentry.io/orgredirect/organizations/:orgslug/settings/auth-tokens/
         authToken: process.env.VITE_SENTRY_AUTH_TOKEN,
         reactComponentAnnotation: { enabled: true },
-      }),
+      })
     ],
     resolve: {
       alias: {
