@@ -9,6 +9,7 @@ import {
   calculateEffectivenessMultiplier,
 } from '@/lib/calculateEffectiveness';
 import { cn } from '@/lib/cn';
+import { resetMatchupHistory } from '@/lib/matchupHistory';
 import { shouldAskStab } from '@/lib/roundChance';
 import {
   useAppStateActions,
@@ -84,6 +85,13 @@ export function Battle({ team }: BattleProps) {
   const [switchMessage, setSwitchMessage] = useState<React.ReactNode>(null);
   const [isGameOverPending, setIsGameOverPending] = useState(false);
   const { activeId, koIds, faintActive, maybeSwitchActive, switchActiveTo } = useTeam(team);
+
+  // One Battle mount = one game (see App.tsx, which only renders Game while
+  // appState is 'quiz'), so this is the right place to start the repeat
+  // penalty tracking fresh instead of carrying it over from a prior game.
+  useEffect(() => {
+    resetMatchupHistory();
+  }, []);
 
   const { data: matchup, isFetching } = useMatchup(round, activeId);
   usePrefetchMatchup(round + 1, activeId);

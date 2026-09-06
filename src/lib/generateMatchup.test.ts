@@ -1,7 +1,8 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { calculateEffectiveness, calculateEffectivenessMultiplier } from '@/lib/calculateEffectiveness';
 import { generateMatchup } from '@/lib/generateMatchup';
+import { resetMatchupHistory } from '@/lib/matchupHistory';
 import { getPokemonDataset, type PokemonDataset } from '@/lib/pokemonData';
 
 const pokemonRecords = [
@@ -57,6 +58,10 @@ vi.mock('@/lib/pokemonData', async () => {
 const attackerId = 1;
 
 describe('generateMatchup', () => {
+  beforeEach(() => {
+    resetMatchupHistory();
+  });
+
   it('never picks the same Pokemon as attacker and defender', async () => {
     for (let i = 0; i < 50; i++) {
       const matchup = await generateMatchup(attackerId);
@@ -132,5 +137,116 @@ describe('generateMatchup', () => {
     // Attacker (fire) knows move-two, a water move -> no STAB.
     const matchup = await generateMatchup(1);
     expect(matchup.stabEligible).toBe(false);
+  });
+});
+
+describe('generateMatchup type variation', () => {
+  beforeEach(() => {
+    resetMatchupHistory();
+  });
+
+  afterEach(() => {
+    vi.mocked(getPokemonDataset).mockResolvedValue(fakeDataset);
+  });
+
+  it('gives an under-represented type a real shot, not one proportional to its move count', async () => {
+    // 9 fire moves vs. 1 water move - naively proportional selection would
+    // pick water only ~10% of the time, since it's outnumbered 9 to 1.
+    const unevenPoolRecords = [
+      {
+        id: 1,
+        name: 'attacker',
+        species: { id: 1, names: [] },
+        sprites: {},
+        typeIds: [1],
+        moveIds: [1, 2, 3, 4, 5, 6, 7, 8, 20],
+      },
+      {
+        id: 2,
+        name: 'defender',
+        species: { id: 2, names: [] },
+        sprites: {},
+        typeIds: [4],
+        moveIds: [],
+      },
+    ];
+    const unevenPoolDataset: PokemonDataset = {
+      pokemon: unevenPoolRecords,
+      pokemonById: new Map(unevenPoolRecords.map((record) => [record.id, record])),
+      movesById: new Map<number, { id: number; name: string; names: []; power: number; typeId: number }>([
+        [1, { id: 1, name: 'fire-move-1', names: [], power: 50, typeId: 1 }],
+        [2, { id: 2, name: 'fire-move-2', names: [], power: 50, typeId: 1 }],
+        [3, { id: 3, name: 'fire-move-3', names: [], power: 50, typeId: 1 }],
+        [4, { id: 4, name: 'fire-move-4', names: [], power: 50, typeId: 1 }],
+        [5, { id: 5, name: 'fire-move-5', names: [], power: 50, typeId: 1 }],
+        [6, { id: 6, name: 'fire-move-6', names: [], power: 50, typeId: 1 }],
+        [7, { id: 7, name: 'fire-move-7', names: [], power: 50, typeId: 1 }],
+        [8, { id: 8, name: 'fire-move-8', names: [], power: 50, typeId: 1 }],
+        [20, { id: 20, name: 'water-move', names: [], power: 50, typeId: 2 }],
+      ]),
+      typesById: new Map([
+        [1, { id: 1, name: 'fire', names: [] }],
+        [2, { id: 2, name: 'water', names: [] }],
+        [4, { id: 4, name: 'rock', names: [] }],
+      ]),
+    } as unknown as PokemonDataset;
+    vi.mocked(getPokemonDataset).mockResolvedValue(unevenPoolDataset);
+
+    const sampleSize = 300;
+    let waterPicks = 0;
+    for (let i = 0; i < sampleSize; i++) {
+      const matchup = await generateMatchup(1);
+      if (matchup.move!.type!.id === 2) waterPicks++;
+    }
+
+    expect(waterPicks / sampleSize).toBeGreaterThan(0.25);
+  });
+
+  it('picks the same attack type again less often than a fresh 50/50 draw would', async () => {
+    const balancedPoolRecords = [
+      {
+        id: 1,
+        name: 'attacker',
+        species: { id: 1, names: [] },
+        sprites: {},
+        typeIds: [1],
+        moveIds: [1, 2],
+      },
+      {
+        id: 2,
+        name: 'defender',
+        species: { id: 2, names: [] },
+        sprites: {},
+        typeIds: [4],
+        moveIds: [],
+      },
+    ];
+    const balancedPoolDataset: PokemonDataset = {
+      pokemon: balancedPoolRecords,
+      pokemonById: new Map(balancedPoolRecords.map((record) => [record.id, record])),
+      movesById: new Map([
+        [1, { id: 1, name: 'fire-move', names: [], power: 50, typeId: 1 }],
+        [2, { id: 2, name: 'water-move', names: [], power: 50, typeId: 2 }],
+      ]),
+      typesById: new Map([
+        [1, { id: 1, name: 'fire', names: [] }],
+        [2, { id: 2, name: 'water', names: [] }],
+        [4, { id: 4, name: 'rock', names: [] }],
+      ]),
+    } as unknown as PokemonDataset;
+    vi.mocked(getPokemonDataset).mockResolvedValue(balancedPoolDataset);
+
+    const sampleSize = 300;
+    let repeats = 0;
+    let previousTypeId: number | null = null;
+    for (let i = 0; i < sampleSize; i++) {
+      const matchup = await generateMatchup(1);
+      const typeId = matchup.move!.type!.id;
+      if (typeId === previousTypeId) repeats++;
+      previousTypeId = typeId!;
+    }
+
+    // With no penalty, a 2-type pool would repeat ~50% of the time.
+    expect(repeats / sampleSize).toBeLessThan(0.4);
   });
 });

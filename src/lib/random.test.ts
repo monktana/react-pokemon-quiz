@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { chance, randomItem, shuffle } from '@/lib/random';
+import { chance, randomItem, shuffle, weightedRandomItem } from '@/lib/random';
 
 describe('chance', () => {
   it('returns true when the roll lands below the probability', () => {
@@ -26,6 +26,38 @@ describe('randomItem', () => {
   it('always picks the only item in a single-element array', () => {
     const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.9);
     expect(randomItem(['only'])).toBe('only');
+    randomSpy.mockRestore();
+  });
+});
+
+describe('weightedRandomItem', () => {
+  it('picks the entry whose cumulative weight range contains the roll', () => {
+    const entries = [
+      { item: 'a', weight: 1 },
+      { item: 'b', weight: 3 },
+      { item: 'c', weight: 1 },
+    ];
+    // Total weight 5, so roll (0.5 * 5 = 2.5) falls inside b's [1, 4) range.
+    const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.5);
+    expect(weightedRandomItem(entries)).toBe('b');
+    randomSpy.mockRestore();
+  });
+
+  it('always picks the only entry regardless of its weight', () => {
+    const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.9);
+    expect(weightedRandomItem([{ item: 'only', weight: 0.001 }])).toBe('only');
+    randomSpy.mockRestore();
+  });
+
+  it('falls back to a uniform pick when every weight is zero', () => {
+    const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.5);
+    const entries = [
+      { item: 'a', weight: 0 },
+      { item: 'b', weight: 0 },
+      { item: 'c', weight: 0 },
+      { item: 'd', weight: 0 },
+    ];
+    expect(weightedRandomItem(entries)).toBe('c');
     randomSpy.mockRestore();
   });
 });
