@@ -83,6 +83,5 @@ export const generateMatchup = async (attackerId: number): Promise<Matchup> => {
     move,
     multiplier: chosenType.multiplier,
     effectiveness: chosenType.effectiveness,
-    stabEligible: attacker.types!.some((type) => type.id === move.type!.id),
   };
 };

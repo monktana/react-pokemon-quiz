@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from 'react';
+import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
 
 import { useMatchup, usePrefetchMatchup } from '@/api';
 import { TypeEffectiveness, type Matchup, type Pokemon } from '@/api/schema';
@@ -10,14 +10,7 @@ import {
 } from '@/lib/calculateEffectiveness';
 import { cn } from '@/lib/cn';
 import { recordMatchupHistory, resetMatchupHistory } from '@/lib/matchupHistory';
-import { shouldAskStab } from '@/lib/roundChance';
-import {
-  useAppStateActions,
-  useDifficultyMode,
-  useIncludeStab,
-  useLanguage,
-  useScoreActions,
-} from '@/stores';
+import { useAppStateActions, useDifficultyMode, useLanguage, useScoreActions } from '@/stores';
 import { type TextKey } from '@/util';
 
 import {
@@ -69,7 +62,6 @@ type Feedback = { guess: Guess; correct: boolean };
 // Bundles "what kind of question this round asks" with its correct answer,
 // so consumers read `kind` off one value instead of re-deriving it.
 type RoundQuestion =
-  | { kind: 'stab'; correctAnswer: boolean }
   | { kind: 'multiplier'; correctAnswer: number }
   | { kind: 'bucket'; correctAnswer: TypeEffectiveness };
 
@@ -134,28 +126,14 @@ export function Battle({ team }: BattleProps) {
   const { endQuiz } = useAppStateActions();
   const { increase } = useScoreActions();
   const mode = useDifficultyMode();
-  const includeStab = useIncludeStab();
-
-  // Decided once per round (not per render) so it stays stable while the
-  // round is in progress. Only ever a STAB round when the player opted in
-  // and is in expert mode - STAB is an expert-only bonus layer, not a
-  // simple-mode concept. Keyed on `round`, not `matchup`, so the question
-  // type is picked before the round's data arrives and stays fixed for the
-  // round's duration.
-  const questionType = useMemo<'effectiveness' | 'stab'>(() => {
-    if (!includeStab || mode !== 'expert') return 'effectiveness';
-    return shouldAskStab() ? 'stab' : 'effectiveness';
-  }, [round, includeStab, mode]);
 
   // Single source of truth for "what kind of question is this round", so the
   // answer-correctness check and the answer buttons below can't drift apart
-  // by independently re-deriving it from questionType/mode.
+  // by independently re-deriving it from mode.
   const question: RoundQuestion =
-    questionType === 'stab'
-      ? { kind: 'stab', correctAnswer: matchup.stabEligible! }
-      : mode === 'expert'
-        ? { kind: 'multiplier', correctAnswer: matchup.multiplier! }
-        : { kind: 'bucket', correctAnswer: matchup.effectiveness! };
+    mode === 'expert'
+      ? { kind: 'multiplier', correctAnswer: matchup.multiplier! }
+      : { kind: 'bucket', correctAnswer: matchup.effectiveness! };
   const { makeGuess } = useGuess(question.correctAnswer);
 
   useEffect(() => {
@@ -390,20 +368,7 @@ export function Battle({ team }: BattleProps) {
         ) : (
           <Question pokemon={matchup.attacker!} move={matchup.move!} />
         )}
-        {question.kind === 'stab' && !faintMessage && !switchMessage ? (
-          <div
-            data-testid="stab-prompt"
-            className="text-foreground text-center text-sm font-semibold tracking-[0.03em] uppercase"
-          >
-            {getText('game.question.stab')}
-          </div>
-        ) : null}
-        {question.kind === 'stab' ? (
-          <div data-testid="decision-buttons" className="grid w-full grid-cols-2 gap-2">
-            {answerButton(true, 'stab-yes-button', getText('game.answer.yes'))}
-            {answerButton(false, 'stab-no-button', getText('game.answer.no'))}
-          </div>
-        ) : question.kind === 'multiplier' ? (
+        {question.kind === 'multiplier' ? (
           <div data-testid="decision-buttons" className="grid w-full grid-cols-3 gap-2">
             {MULTIPLIER_VALUES.map((value) =>
               answerButton(value, `multiplier-${value}-button`, MULTIPLIER_LABELS[value])

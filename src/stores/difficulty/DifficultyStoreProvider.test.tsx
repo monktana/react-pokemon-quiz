@@ -7,38 +7,32 @@ import {
   DifficultyStoreProviderProps,
   useDifficultyActions,
   useDifficultyMode,
-  useIncludeStab,
 } from '@/stores';
 
 describe('DifficultyStoreProvider', () => {
-  it('defaults to simple mode and STAB questions disabled', () => {
-    const { result } = renderHook(
-      () => ({ mode: useDifficultyMode(), includeStab: useIncludeStab() }),
-      { wrapper: createWrapper(DifficultyStoreProvider, {}) }
-    );
+  it('defaults to simple mode', () => {
+    const { result } = renderHook(() => ({ mode: useDifficultyMode() }), {
+      wrapper: createWrapper(DifficultyStoreProvider, {}),
+    });
 
     expect(result.current.mode).toBe('simple');
-    expect(result.current.includeStab).toBe(false);
   });
 
-  it('provides a hook with methods to change mode and STAB questions', () => {
+  it('provides a hook with a method to change mode', () => {
     const wrapper = createWrapper(DifficultyStoreProvider, {});
 
     const { result, rerender } = renderHook(
       () => ({
         mode: useDifficultyMode(),
-        includeStab: useIncludeStab(),
         actions: useDifficultyActions(),
       }),
       { wrapper }
     );
 
     act(() => result.current.actions.setMode('expert'));
-    act(() => result.current.actions.setIncludeStab(true));
     rerender();
 
     expect(result.current.mode).toBe('expert');
-    expect(result.current.includeStab).toBe(true);
   });
 
   it('causes the provided hooks to throw if provider is absent', () => {
