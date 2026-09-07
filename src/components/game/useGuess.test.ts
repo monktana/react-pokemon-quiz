@@ -28,16 +28,4 @@ describe('useGuess', () => {
 
     expect(result.current.makeGuess(2)).toBe(false);
   });
-
-  it('returns true when the guess matches a STAB (boolean) answer', () => {
-    const { result } = renderHook(() => useGuess(true));
-
-    expect(result.current.makeGuess(true)).toBe(true);
-  });
-
-  it('returns false when the STAB guess does not match', () => {
-    const { result } = renderHook(() => useGuess(true));
-
-    expect(result.current.makeGuess(false)).toBe(false);
-  });
 });

@@ -59,7 +59,6 @@ const { teamMemberOne, teamMemberTwo, spritelessAttacker, generateMatchupMock } 
         move,
         effectiveness: 'SuperEffective' as const,
         multiplier: 2,
-        stabEligible: true,
       };
     }
     return {
@@ -67,11 +66,10 @@ const { teamMemberOne, teamMemberTwo, spritelessAttacker, generateMatchupMock } 
       defender: enemy,
       move,
       // Constant across rounds/attackers: 'super-effective-button' /
-      // 'multiplier-2-button' / 'stab-yes-button' are always the correct
-      // guess, everything else is always wrong.
+      // 'multiplier-2-button' are always the correct guess, everything else
+      // is always wrong.
       effectiveness: 'SuperEffective' as const,
       multiplier: 2,
-      stabEligible: true,
     };
   };
 
@@ -230,56 +228,6 @@ describe('<Battle />', () => {
     expect(screen.getByTestId('score-value')).toHaveTextContent('1');
 
     switchSpy.mockRestore();
-  });
-
-  it('asks a STAB question with Yes/No buttons when STAB questions are enabled in expert mode', async () => {
-    function StabBattle(props: BattleProps) {
-      const { setMode, setIncludeStab } = useDifficultyActions();
-      useEffect(() => {
-        setMode('expert');
-        setIncludeStab(true);
-      }, [setMode, setIncludeStab]);
-      return <Battle {...props} />;
-    }
-    // Force the round's chance roll into the STAB branch, and the switch
-    // chance below its threshold so the correct guess doesn't incidentally
-    // trigger an unawaited attacker switch - each is mocked independently
-    // and can't affect the other, unlike sharing the global Math.random.
-    const stabSpy = vi.spyOn(roundChance, 'shouldAskStab').mockReturnValue(true);
-    const switchSpy = vi.spyOn(roundChance, 'shouldSwitchAttacker').mockReturnValue(false);
-
-    const user = userEvent.setup();
-    render(<StabBattle team={[teamMemberOne, teamMemberTwo]} />);
-
-    expect(await screen.findByTestId('stab-prompt')).toBeVisible();
-    expect(screen.getByTestId('stab-yes-button')).toBeEnabled();
-    expect(screen.getByTestId('stab-no-button')).toBeEnabled();
-
-    await user.click(screen.getByTestId('stab-yes-button'));
-
-    expect(screen.getByTestId('score-value')).toHaveTextContent('1');
-
-    stabSpy.mockRestore();
-    switchSpy.mockRestore();
-  });
-
-  it('never asks a STAB question outside expert mode, even when STAB questions are enabled', async () => {
-    function StabSimpleBattle(props: BattleProps) {
-      const { setIncludeStab } = useDifficultyActions();
-      useEffect(() => setIncludeStab(true), [setIncludeStab]);
-      return <Battle {...props} />;
-    }
-    // Would force the STAB branch if the mode gate didn't short-circuit
-    // before ever calling shouldAskStab.
-    const stabSpy = vi.spyOn(roundChance, 'shouldAskStab').mockReturnValue(true);
-
-    render(<StabSimpleBattle team={[teamMemberOne, teamMemberTwo]} />);
-
-    await screen.findByTestId('defender-name');
-    expect(screen.queryByTestId('stab-prompt')).not.toBeInTheDocument();
-    expect(screen.getByTestId('effective-button')).toBeEnabled();
-
-    stabSpy.mockRestore();
   });
 
   it('highlights the correct answer button when a wrong guess is made', async () => {

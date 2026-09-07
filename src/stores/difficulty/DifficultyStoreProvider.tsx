@@ -16,10 +16,8 @@ export const DifficultyStoreProvider = ({
   const [store] = React.useState(() =>
     createStore<DifficultyStore>()((set) => ({
       mode: initialMode,
-      includeStab: false,
       actions: {
         setMode: (mode) => set({ mode }),
-        setIncludeStab: (includeStab) => set({ includeStab }),
       },
     }))
   );
