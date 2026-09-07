@@ -1,6 +1,6 @@
 import { Matchup, Type, TypeEffectiveness } from '@/api/schema';
 import { bucketizeEffectiveness, calculateEffectivenessMultiplier } from '@/lib/calculateEffectiveness';
-import { recordMatchupHistory, repeatPenaltyFor } from '@/lib/matchupHistory';
+import { repeatPenaltyFor } from '@/lib/matchupHistory';
 import {
   getPokemonDataset,
   hydrateMove,
@@ -69,7 +69,13 @@ export const generateMatchup = async (attackerId: number): Promise<Matchup> => {
   const chosenType = pickAttackType(dataset, movesByType, defender.types!);
   const move = hydrateMove(dataset, randomItem(movesByType.get(chosenType.typeId)!));
 
-  recordMatchupHistory(chosenType.typeId, chosenType.effectiveness);
+  // Recording into matchupHistory happens in Battle.tsx, not here, on
+  // purpose: generateMatchup also runs for a "next round" prefetch that gets
+  // discarded whenever a switch or faint changes the active Pokemon before
+  // that round is reached (see usePrefetchMatchup in getMatchup.ts). If this
+  // function recorded its own pick, a discarded prefetch would still pollute
+  // the repeat-penalty streaks with a type/effectiveness the player never
+  // saw. Only the caller knows which generated matchup actually gets shown.
 
   return {
     attacker,

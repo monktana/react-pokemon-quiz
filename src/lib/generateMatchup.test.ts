@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { calculateEffectiveness, calculateEffectivenessMultiplier } from '@/lib/calculateEffectiveness';
 import { generateMatchup } from '@/lib/generateMatchup';
-import { resetMatchupHistory } from '@/lib/matchupHistory';
+import { recordMatchupHistory, resetMatchupHistory } from '@/lib/matchupHistory';
 import { getPokemonDataset, type PokemonDataset } from '@/lib/pokemonData';
 
 const pokemonRecords = [
@@ -196,6 +196,11 @@ describe('generateMatchup type variation', () => {
     let waterPicks = 0;
     for (let i = 0; i < sampleSize; i++) {
       const matchup = await generateMatchup(1);
+      // generateMatchup no longer records into matchupHistory itself (see
+      // its comment on why - a discarded prefetch must not pollute the
+      // streaks). Battle.tsx does that once a matchup is actually shown; this
+      // loop simulates one matchup being shown per iteration.
+      recordMatchupHistory(matchup.move!.type!.id!, matchup.effectiveness!);
       if (matchup.move!.type!.id === 2) waterPicks++;
     }
 
@@ -241,6 +246,8 @@ describe('generateMatchup type variation', () => {
     let previousTypeId: number | null = null;
     for (let i = 0; i < sampleSize; i++) {
       const matchup = await generateMatchup(1);
+      // Same simulated "Battle shows this matchup" step as above.
+      recordMatchupHistory(matchup.move!.type!.id!, matchup.effectiveness!);
       const typeId = matchup.move!.type!.id;
       if (typeId === previousTypeId) repeats++;
       previousTypeId = typeId!;
